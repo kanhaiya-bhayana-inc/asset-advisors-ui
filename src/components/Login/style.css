@@ -1,0 +1,84 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap');
+::-webkit-scrollbar{
+  display: none;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background: rgb(219 ,226    , 226);
+}
+.img{
+    height: 100%;
+}
+.row{
+    background: white;
+    /* width: 900px; */
+    border-radius: 30px;
+    box-shadow: 12px 12px 22px gray;
+}
+
+.btn{
+    height: 50px;
+    width: 100%;
+    background-color: #536dfe;
+}
+
+.btn:hover{
+   background: white;
+   border: 2px solid;
+   color: black;
+}
+.box{
+  width: 500px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.input-with-icon-div{
+  display: flex;
+}
+
+.custom-input{
+  width: 95%;
+  border: none;
+  outline: none;
+}
+
+.icon-span{
+  cursor: pointer;
+}
+
+.tracker-box{
+  background-color: #386489;
+  font-size: 14px;
+  color: #fff;
+  letter-spacing: 0.09em;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.tracker-box div{
+  margin: 5px 0;
+}
+
+.tracker-box .validated{
+  color: rgba(255, 255, 255, 0.5) ;
+}
+
+.list-icon{
+  margin-right: 8px;
+}
+
+.list-icon.green{
+  color: #0f0;
+}
+
+.img-fluid{
+  height: 100%;
+}

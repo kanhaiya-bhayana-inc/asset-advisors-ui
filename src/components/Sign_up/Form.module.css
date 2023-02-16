@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&family=Poppins:wght@200;300;400;500&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color:black;
+}
+body{
+    /* background: rgb(219 ,226    , 226); */
+    background: #0F2027;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.office
+{
+    border-radius:0.8rem;
+}
+.Form-error
+{
+    color:red;
+}
+input[type='name']
+{
+    width: 100%;
+    /* height: auto; */
+    /* /* padding: 12px 20px; */
+    /* margin: 8px 0; */ 
+    box-sizing: border-box;
+    border:3px;
+    border-bottom: 2px solid #8EC5FC;
+    /* background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); */
+}
+input[type='text']
+{
+    width: 100%;
+    /* padding: 12px 20px;
+    margin: 8px 0; */
+    box-sizing: border-box;
+    border:0px;
+    border-bottom: 2px solid #8EC5FC;
+    /* background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); */
+}
+input[type='password']
+{
+    width: 100%;
+    /* padding: 12px 20px;
+    margin: 8px 0; */
+    box-sizing: border-box;
+    border:0px;
+    border-bottom: 2px solid #8EC5FC;
+    /* background-color: #8EC5FC; */
+    /* background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); */
+}
+input[type='email']
+{
+    width: 100%;
+    /* padding: 12px 20px;
+    margin: 8px 0; */
+    box-sizing: border-box;
+    border:0px;
+    border-bottom: 2px solid #8EC5FC;
+    /* background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); */
+}
+input:focus{
+    outline:none;
+    background-color: #1c1c1c; 
+    border:0px;
+    border-bottom: 2px solid rgb(115, 60, 244);
+    color:white;    /* oranges! yey */
+  }
+  /* input[type='email']:focus
+{
+    outline:none;
+    background-color: #1c1c1c; 
+    border:0px;
+    border-bottom: 2px solid rgb(115, 60, 244);
+    color:white;    /* oranges! yey */
+.row{
+    background-color: #8EC5FC;
+background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    /* width: 900px; */
+    border-radius: 30px;
+    box-shadow: 12px 12px 22px gray;
+}
+/* .btn{
+    height: 50px;
+    width: 100%;
+    background-color: rgb(115, 60, 244);
+    border:none;
+}
+.btn:hover{
+   background-color: white;
+   border: 2px solid;
+   color: black;
+} */
+
+.glow-on-hover {
+    height: 50px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 3;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
