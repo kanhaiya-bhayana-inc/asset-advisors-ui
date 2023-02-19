@@ -34,7 +34,7 @@ function Login() {
             // const locres = res.text()
 
             // const errorekldjl = locres.errors
-            return "Emial cannot be empty";
+            return "Email cannot be empty";
           }
           else {
 

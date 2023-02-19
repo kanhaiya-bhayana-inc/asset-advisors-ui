@@ -22,6 +22,7 @@ import Change from './components/ChangePass/change';
 function App() {
   var auth = localStorage.getItem("tokena");
   var cauth = localStorage.getItem("tokenc");
+  var show = false
   let footerStyle = {
     minHeight: "75.2vh",
     margin: "50px auto",
