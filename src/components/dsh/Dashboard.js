@@ -6,6 +6,7 @@ export default function Dashboard() {
   const [clientsList, setClientsList] = useState([]);
 
   var obj = {}
+  var bool = false;
 
 
   var ntokenn = "";
@@ -32,6 +33,7 @@ export default function Dashboard() {
         obj = data;
         localStorage.setItem("id",data.userID)
         setDet(data);
+        bool = true;
 
         // console.log(obj);
         // console.log(det);
@@ -41,8 +43,7 @@ export default function Dashboard() {
       // let id = det.userID;
       // localStorage.setItem("id",id)
       // console.log(id)
-  }
-  )
+  },[])
 
   useEffect(() => {
     console.log("helo");
@@ -63,12 +64,13 @@ export default function Dashboard() {
         obj = data;
         // setDet({});
         setClientsList(data);
+        bool = false;
         console.log(clientsList);
         // console.log(det);
         // alert("Advisor registered successfully.")
         // window.location ='/login'
       })
-  }, [det])
+  }, [])
   
 
 
