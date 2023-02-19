@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 // import pic from './undraw_access_account_re_8spm.svg'
 import pic from './undraw_login_re_4vu2 (1).svg'
-import  './style.css'
+import './style.css'
 import { Link } from 'react-router-dom'
 
 
 function Login() {
-  const[email,setEmail] = useState("");
-  const[Password,setPassword] = useState("");
-  const loginVerify = () =>{
+  const [email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const loginVerify = () => {
     console.log(email, " ", Password);
     try {
-      fetch('https://localhost:7214/api/User/user-login', {
+      fetch('https://localhost:7214/api/User/adv-login', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
@@ -19,42 +19,42 @@ function Login() {
           "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
           "Access-Control-Max-Age": 86400
         },
-        body: JSON.stringify({email:email,Password:Password})
+        body: JSON.stringify({ email: email, Password: Password })
 
       })
         .then((res) => {
           // const msg = res.text()
           // console.log(res.text());
-          if (res.status === 200){
+          if (res.status === 200) {
             window.location = '/dashboard';
             // console.log(res);
             return res.text()
           }
-          else if (res.status === 400){
+          else if (res.status === 400) {
             // const locres = res.text()
-            
+
             // const errorekldjl = locres.errors
             return "Emial cannot be empty";
           }
-          else{
+          else {
 
             return res.text()
           }
-          
-                    
+
+
         })
-        .then((data) =>{
-          if (data.startsWith("ey")){
-            localStorage.setItem("token",JSON.stringify(data));
+        .then((data) => {
+          if (data.startsWith("ey")) {
+            localStorage.setItem("tokena", JSON.stringify(data));
             console.log(data);
           }
-        else{
-          alert(data)
+          else {
+            alert(data)
 
-        }
+          }
 
         })
-       
+
     } catch (error) {
       console.log("Error b->", error);
     }

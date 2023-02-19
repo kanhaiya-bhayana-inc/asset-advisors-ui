@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
+import jwt_decode from "jwt-decode";
+
+// var jwt = require("jsonwebtoken");
 
 export default function Dashboard() {
   const [det, setDet] = useState({});
@@ -12,8 +15,12 @@ export default function Dashboard() {
   var ntokenn = "";
   useEffect(() => {
 
-    let token = localStorage.getItem("token");
+    let token = localStorage.getItem("tokena");
     console.log(token);
+    const decoded = jwt_decode(token);
+console.log(decoded); 
+    // var decode1 = jwt.decode(token);
+    // console.log("decoded token -> " + decode1);
     let ntoken = "Bearer " + token.replaceAll('"', '');
     ntokenn = ntoken
     // console.log(ntoken);
@@ -79,7 +86,7 @@ export default function Dashboard() {
    * It sets the token to an empty string and then redirects the user to the homepage.
    */
   const logout = () => {
-    localStorage.setItem("token", "");
+    localStorage.setItem("tokena", "");
     window.location = '/';
   }
 

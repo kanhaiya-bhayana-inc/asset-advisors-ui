@@ -1,11 +1,66 @@
-import React from 'react'
 // import pic from './undraw_access_account_re_8spm.svg'
 import pic from '../LoginClient/undraw_login_re_4vu2 (1).svg'
 import  './style.css'
 import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+
 
 
 function Login() {
+
+  const [email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const loginVerify = () => {
+    console.log(email, " ", Password);
+    try {
+      fetch('https://localhost:7214/api/User/client-login', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
+          "Access-Control-Max-Age": 86400
+        },
+        body: JSON.stringify({ email: email, Password: Password })
+
+      })
+        .then((res) => {
+          // const msg = res.text()
+          // console.log(res.text());
+          if (res.status === 200) {
+            window.location = '/dashboardc';
+            // console.log(res);
+            return res.text()
+          }
+          else if (res.status === 400) {
+            // const locres = res.text()
+
+            // const errorekldjl = locres.errors
+            return "Emial cannot be empty";
+          }
+          else {
+
+            return res.text()
+          }
+
+
+        })
+        .then((data) => {
+          if (data.startsWith("ey")) {
+            localStorage.setItem("tokenc", JSON.stringify(data));
+            console.log(data);
+          }
+          else {
+            alert(data)
+
+          }
+
+        })
+
+    } catch (error) {
+      console.log("Error b->", error);
+    }
+  }
   return (
     <div >
       {/* <h1>hey</h1> */}
@@ -24,7 +79,7 @@ function Login() {
               <form className='needs-validation' novalidate>
                 <div className='form-row'>
                   <div className='col-lg-6'>
-                    <input type="text" placeholder='Email' className=' form-control my-3 p-2' required></input>
+                    <input type="email" placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email} className=' form-control my-3 p-2' required></input>
                     <div className="invalid-feedback">
                       Please choose a username.
                     </div>
@@ -32,12 +87,12 @@ function Login() {
                 </div>
                 <div className='form-row'>
                   <div className='col-lg-7'>
-                    <input type="Password" placeholder='******' className='form-control my-3 p-2' required></input>
+                    <input type="Password" placeholder='******' onChange={(e) => setPassword(e.target.value)} value={Password} className='form-control my-3 p-2' required></input>
                   </div>
                 </div>
                 <div className='form-row'>
                   <div className='col-lg-7'>
-                    <button type="submit" className="btn btn-dark mt-3 mb-4">Login</button>
+                    <button type="submit" onClick={loginVerify} className="btn btn-dark mt-3 mb-4">Login</button>
 
 
                   </div>
