@@ -97,7 +97,7 @@ function Login() {
 
                   </div>
                 </div>
-                <Link to='#' style={{ textDecoration: "none" }}>Forgot Password</Link>
+                <Link to='/forgotpass' style={{ textDecoration: "none" }}>Forgot Password</Link>
                 
               </form>
             </div>

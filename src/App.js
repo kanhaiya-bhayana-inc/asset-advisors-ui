@@ -15,6 +15,7 @@ import DashboardC from './components/DashboardC/DashboardC';
 import AdvAccVerification from './components/Verification/AdvAccVerification';
 import CannotAccess from './components/CannotAccess/CannotAccess';
 import Change from './components/ChangePass/change';
+import ForgotPass from './components/ForgotPass/ForgotPass';
 // import Create from './components/dashboard/Create';
 // import GetInvestments from './components/dashboard/GetInvestments';
 
@@ -47,6 +48,7 @@ function App() {
         <Route exact path="/loginc" element={<LoginClient/>}>  </Route>
         <Route  exact path="/SignUp" element={<Sign_up/>}></Route>
         <Route  exact path="/changepass" element={<Change/>}></Route>
+        <Route  exact path="/forgotpass" element={<ForgotPass/>}></Route>
          {/* <Redirect></Redirect>  */}
       </Routes> 
       </div>
