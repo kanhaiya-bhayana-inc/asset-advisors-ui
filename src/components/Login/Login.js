@@ -44,8 +44,10 @@ function Login() {
                     
         })
         .then((data) =>{
-          if (data.startsWith("ey"))
-          console.log(data);
+          if (data.startsWith("ey")){
+            localStorage.setItem("token",JSON.stringify(data));
+            console.log(data);
+          }
         else{
           alert(data)
 

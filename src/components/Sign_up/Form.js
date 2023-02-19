@@ -19,6 +19,7 @@ function Form() {
   }
 
 
+  /* A hook that is used to handle form state in React. */
   const Formik = useFormik({
     initialValues: initialValues,
     validationSchema: signUpSchema,

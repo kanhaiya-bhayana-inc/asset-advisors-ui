@@ -12,11 +12,13 @@ import Footer from './components/Footer/Footer';
 import LoginClient from './components/LoginClient/LoginClient';
 import Dashboard from './components/dsh/Dashboard';
 import AdvAccVerification from './components/Verification/AdvAccVerification';
+import CannotAccess from './components/CannotAccess/CannotAccess';
 // import Create from './components/dashboard/Create';
 // import GetInvestments from './components/dashboard/GetInvestments';
 
 
 function App() {
+  var auth = localStorage.getItem("token");
   let footerStyle = {
     minHeight: "75.2vh",
     margin: "50px auto",
@@ -27,14 +29,15 @@ function App() {
       <GetInvestments></GetInvestments> */}
 
 
-       <Navbar></Navbar>
+      {!auth && <Navbar></Navbar>}
      <div style={footerStyle}>
       <Routes>
       <Route exact path="/" element={<Home/>}>  </Route>
       <Route exact path="/services" element={<Services/>}>  </Route>
       <Route exact path="/about" element={<About/>}>  </Route>
         <Route exact path="/login" element={<Login/>}>  </Route>
-        <Route exact path="/dashboard" element={<Dashboard/>}>  </Route>
+       {auth &&  <Route exact path="/dashboard" element={<Dashboard/>}>  </Route>}
+        <Route exact path="/*" element={<CannotAccess/>}>  </Route>
         <Route exact path="/accverify" element={<AdvAccVerification/>}>  </Route>
         <Route exact path="/loginc" element={<LoginClient/>}>  </Route>
         <Route  exact path="/SignUp" element={<Sign_up/>}></Route>

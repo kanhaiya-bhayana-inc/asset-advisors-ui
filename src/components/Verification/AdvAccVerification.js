@@ -55,9 +55,9 @@ export default function AdvAccVerification() {
         <div className='container text-cener'>
             <form>
                 <h2>Enter You Verification token</h2>
-                <div className='form-row'>
-                    <div className='col-lg-10'>
-                        <input type="password" name="token" placeholder='enter verification token' required onChange={(e) => setToken(e.target.value)} value={token} className='form-control shadow-none my-3'></input>
+                <div className='form-row text-center'>
+                    <div className='col-lg-5'>
+                        <input type="password" name="token" placeholder='******' required onChange={(e) => setToken(e.target.value)} value={token} className='form-control shadow-none my-3'></input>
 
                     </div>
                 </div>
