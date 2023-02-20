@@ -14,7 +14,7 @@ export default function CannotAccess() {
           We cannot find the page you are looking for!
           <br /> <br />
           The page you are looking for doesn't exist or an other error occured.
-          <br /> Go back, or head over to backstreet.com to choose a new
+          <br /> Go back, or head over to assestadvisors.com to choose a new
           direction.
         </i>
       </p>

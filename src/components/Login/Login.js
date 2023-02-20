@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom'
 function Login() {
   const [email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const loginVerify = () => {
+  const loginVerify = (e) => {
+    e.preventDefault();
     console.log(email, " ", Password);
     try {
       fetch('https://localhost:7214/api/User/adv-login', {
@@ -34,7 +35,7 @@ function Login() {
             // const locres = res.text()
 
             // const errorekldjl = locres.errors
-            return "Email cannot be empty";
+            return "Email cannot be empty or password lenght must be atleast 6.";
           }
           else {
 

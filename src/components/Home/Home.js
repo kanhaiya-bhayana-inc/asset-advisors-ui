@@ -16,7 +16,7 @@ function Home() {
                         <div className='row'>
                             <div className='col-md-6 p-5  pt-5 pt-lg-0 order-2 order-lg-1 d-flex justify-content-center flex-column'>
                                 <div className="m-lg-5">
-                                    <h3 pl-3>Grow your business with <span className='brand'>BackStreet </span>Asset Manager</h3>
+                                    <h3 pl-3>Grow your business with<br/> <span className='brand'>Asset Advisor </span></h3>
                                     <p className='my-3'>We are a team of talented individuals that is all you need </p>
                                     <div className='mt-3'>
                                         <Link to='/Signup' className='btn btn-primary'>Get Started</Link>

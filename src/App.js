@@ -16,6 +16,8 @@ import AdvAccVerification from './components/Verification/AdvAccVerification';
 import CannotAccess from './components/CannotAccess/CannotAccess';
 import Change from './components/ChangePass/change';
 import ForgotPass from './components/ForgotPass/ForgotPass';
+import Ndsh from './components/NDsh/Ndsh';
+import DashboardAdv from './components/dsh/DashAdvisor';
 // import Create from './components/dashboard/Create';
 // import GetInvestments from './components/dashboard/GetInvestments';
 
@@ -49,6 +51,8 @@ function App() {
         <Route  exact path="/SignUp" element={<Sign_up/>}></Route>
         <Route  exact path="/changepass" element={<Change/>}></Route>
         <Route  exact path="/forgotpass" element={<ForgotPass/>}></Route>
+        {<Route  exact path="/newdash" element={<DashboardAdv/>}></Route>}
+        {/* <Route  exact path="/ndash" element={<Ndsh />}></Route> */}
          {/* <Redirect></Redirect>  */}
       </Routes> 
       </div>

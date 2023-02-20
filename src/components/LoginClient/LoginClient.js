@@ -10,7 +10,8 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const loginVerify = () => {
+  const loginVerify = (e) => {
+    e.preventDefault();
     console.log(email, " ", Password);
     try {
       fetch('https://localhost:7214/api/User/client-login', {
