@@ -5,7 +5,8 @@ function Footer() {
         height:"9vh"
     }
     let styLing = {
-        padding:"20px"
+        padding:"20px",
+        // marginTop:"80px"
     }
   return (
     <>

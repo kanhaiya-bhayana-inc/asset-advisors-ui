@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 // import pic from './undraw_access_account_re_8spm.svg'
 import pic from './undraw_login_re_4vu2 (1).svg'
 import './style.css'
-import { Link } from 'react-router-dom'
+import { Link,Navigate } from 'react-router-dom'
 
 
 function Login() {
@@ -27,7 +27,8 @@ function Login() {
           // const msg = res.text()
           // console.log(res.text());
           if (res.status === 200) {
-            window.location = '/dashboard';
+            window.location = '/aldsh';
+            // <Navigate to='aldsh' />
             // console.log(res);
             return res.text()
           }

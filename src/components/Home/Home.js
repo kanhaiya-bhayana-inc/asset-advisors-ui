@@ -8,7 +8,7 @@ function Home() {
 
 
 
-        <section id='header' className='d-flex align-items-center'>
+        <section id='header' className='d-flex align-items-center bg-light'>
 
             <div className='container  fluid nav_bg'>
                 <div className='row'>

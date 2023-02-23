@@ -3,23 +3,21 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Sign_up from './components/Sign_up/Form';
 import Navbar from './components/Navbar/Navbar';
-import {Route,Routes} from'react-router-dom'
-import Login from './components/Login/Login';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProtectedRoutes from './components/Utils/ProtectedRoutes';
+import MySide from './components/MyComp/Sidebar/MySidebar';
 import Home from './components/Home/Home';
-import Services from './components/Services/Services';
+import Main from './components/Main';
 import About from './components/About/About';
-import Footer from './components/Footer/Footer';
-import LoginClient from './components/LoginClient/LoginClient';
-import Dashboard from './components/dsh/Dashboard';
-import DashboardC from './components/DashboardC/DashboardC';
-import AdvAccVerification from './components/Verification/AdvAccVerification';
-import CannotAccess from './components/CannotAccess/CannotAccess';
-import Change from './components/ChangePass/change';
-import ForgotPass from './components/ForgotPass/ForgotPass';
-import Ndsh from './components/NDsh/Ndsh';
+import Login from './components/Login/Login'
+import LoginClient from './components/LoginClient/LoginClient'
+import AddClients from './components/AddClients/AddClients';
+import Profile from './components/Profile/Profile';
 import DashboardAdv from './components/dsh/DashAdvisor';
-// import Create from './components/dashboard/Create';
-// import GetInvestments from './components/dashboard/GetInvestments';
+import EditClients from './components/EditClients/EditClients';
+import EditAdvisor from './components/EditAdvisor/EditAdvisor';
+import ViewClient from './components/ClientViews/ViewClient';
+
 
 
 function App() {
@@ -31,37 +29,30 @@ function App() {
     margin: "50px auto",
   };
   return (
-    <>
-      {/* <Create></Create>
-      <GetInvestments></GetInvestments> */}
-
-
-      {!auth && <Navbar></Navbar>}
-     <div style={footerStyle}>
+    <Router>
+      {/* <Navbar/> */}
       <Routes>
-      <Route exact path="/" element={<Home/>}>  </Route>
-      <Route exact path="/services" element={<Services/>}>  </Route>
-      <Route exact path="/about" element={<About/>}>  </Route>
-        <Route exact path="/login" element={<Login/>}>  </Route>
-       {auth &&  <Route exact path="/dashboard" element={<Dashboard/>}>  </Route>}
-       {cauth &&  <Route exact path="/dashboardc" element={<DashboardC/>}>  </Route>}
-        <Route exact path="/*" element={<CannotAccess/>}>  </Route>
-        <Route exact path="/accverify" element={<AdvAccVerification/>}>  </Route>
-        <Route exact path="/loginc" element={<LoginClient/>}>  </Route>
-        <Route  exact path="/SignUp" element={<Sign_up/>}></Route>
-        <Route  exact path="/changepass" element={<Change/>}></Route>
-        <Route  exact path="/forgotpass" element={<ForgotPass/>}></Route>
-        {<Route  exact path="/newdash" element={<DashboardAdv/>}></Route>}
-        {/* <Route  exact path="/ndash" element={<Ndsh />}></Route> */}
-         {/* <Redirect></Redirect>  */}
-      </Routes> 
-      </div>
-      <Footer></Footer>
+        <Route element={<ProtectedRoutes />}>
 
-    
-        
-    </>
-    
+          <Route path="/aldsh"  element={<DashboardAdv />} />
+          {/* <Route path="/" element={<MySide />} /> */}
+          <Route path="/addClient" element={<AddClients />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/advisordash" element={<DashboardAdv />} />
+          <Route path="/editclient" element={<EditClients />} />
+          <Route path="/editadvisor" element={<EditAdvisor />} />
+          <Route path="/viewclient" element={<ViewClient />} />
+
+        </Route>
+        <Route path="/" exact element={<Main />} >
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/loginc" element={<LoginClient />} />
+          <Route path="/Signup" element={<Sign_up />} />
+        </Route>
+    </Routes>
+   </Router >
   );
 }
 

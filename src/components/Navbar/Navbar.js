@@ -11,7 +11,7 @@ function Navbar() {
 
 
 
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/"><img src={pic} className="img-fluid img1" alt='logo'/></Link>
                     
