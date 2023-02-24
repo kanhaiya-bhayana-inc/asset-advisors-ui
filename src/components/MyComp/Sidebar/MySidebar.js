@@ -25,16 +25,16 @@ export default function MySide() {
           onClick={() => setShowNav(!showNav)} />
       </div>
       <div className="header_img">
-      <button onClick={logout}>
-      <IoMdLogOut size={28}/>
-      </button>
+      {/* <button onClick={logout}> */}
+      <IoMdLogOut size={28} onClick={logout} className='mt-1' />
+      {/* </button> */}
       </div>
     </header>
     <div className={`l-navbar${showNav ? ' show' : ''}`}>
         
       <nav className="navv">
         <div>
-          <a href="/" className="nav_logo">
+          <a href="/advisordash" className="nav_logo">
             <i className='bi bi-alexa nav_logo-icon' /> <span className="nav_logo-name">E-Wealth Manager</span>
           </a>
           <div className="nav_list">
@@ -55,9 +55,10 @@ export default function MySide() {
             </a> */}
           </div>
         </div>
-        <a href="https://cluemediator.com" target="_blank" className="nav_link">
+        {/* <a href="https://cluemediator.com" target="_blank" className="nav_link">
           <i className='bi bi-box-arrow-left nav_icon' /><span className="nav_name">SignOut</span>
-        </a>
+        </a> */}
+        <p className='text-center mb-4 p-3'>&copy; &nbsp;Copyright, reserved<br></br> by e-wealth manager</p>
       </nav>
     </div>
     <div className="pt-4 pb-4">

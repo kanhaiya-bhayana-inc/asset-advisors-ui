@@ -5,6 +5,10 @@ import { signUpSchema } from '../schemas/Helper';
 import { Link } from 'react-router-dom';
 import style from '../Sign_up/Form.module.css'
 import { MdOutlinePublishedWithChanges } from "react-icons/md";
+import { AiOutlineEdit } from "react-icons/ai";
+import {AiOutlineCloseCircle} from 'react-icons/ai'
+
+
 
 
 export default function Profile() {
@@ -15,11 +19,13 @@ export default function Profile() {
   let condit = localStorage.getItem("id")
   const [det, setDet] = useState({});
   const [clientsList, setClientsList] = useState([]);
+  const [editShow,setEditShow] = useState(false);
 
   const profileData = async () => {
     let token = localStorage.getItem("tokena");
     let advId = localStorage.getItem("id");
     let ntoken = "Bearer " + token.replaceAll('"', '');
+
     // const [advEdit, setAdvEdit] = useState("false");
 
 
@@ -92,7 +98,7 @@ export default function Profile() {
             res.json()
             if (res.status === 200){
               alert("Profile updated successfully.")
-              window.location = '/advisordash';
+              window.location = '/profile';
             }
             else{
               alert("Something went wrong, try again.")
@@ -112,6 +118,7 @@ export default function Profile() {
   const myHa = () =>{
     console.log("djldsfjsl");
   }
+  // const [tempFlag,setTempFlag] = useState(false);
   // console.log("TestCase->",Formik.values);
   return (
     <>
@@ -120,13 +127,41 @@ export default function Profile() {
         <div className='container'>
           <form onSubmit={Formik.handleSubmit}>
             <div className='row p-2'>
-              <h3 className='text-center'>Advisor Profile</h3>
-              <h5>AdvisorID:&nbsp;{det.advisorID}</h5>
+            <div className='col-5'>
+   
+              <h5 className='mt-5'>Personal Details</h5>
+    <p className='font-weight-bold mt-2'>AdvisorID: {det.advisorID}</p>
+    </div>
+    
+    <div className='col-5'>
+              <h3 className=''>Advisor Profile</h3>
+    </div>
+    <div className='col-2 mb-2'>
+
+      <button className='float-right mt-5 btn btn-primary' type='button' onClick={(e)=>{setEditShow(true)}}>Edit</button>    
+    </div>
+    <hr />
+    <div className='col-4 mt-2'><label><b>SortName: &nbsp;{det.sortName}</b> </label></div>
+    <div className='col-4'><label>Email: &nbsp;{det.email} </label></div>
+    <div className='col-4'><label>Phone: &nbsp;{det.phone} </label></div>
+    <div className='col-4 mt-2'><label>Address: &nbsp;{det.address} </label></div>
+    <div className='col-4'><label>State: &nbsp;{det.state} </label></div>
+    <div className='col-4'><label>City: &nbsp;{det.city} </label></div>
+    <div className='col-4 mt-2'><label>Company: &nbsp;{det.company} </label></div>
+    <div className='p-2 mt-2'>
+      <hr />
+      {editShow && <AiOutlineCloseCircle size={25} className="" style={{float:"right"}} onClick={(e)=>{setEditShow(false)}} />}
+      </div>
+              {/* <h5>AdvisorID:&nbsp;{det.advisorID}</h5> */}
               {/* <h6 style={{fontWeight:"300!important"}}>AdvisorID:&nbsp;{det.advisorID}</h6> */}
-              <hr />
+              {/* <hr /> */}
               {/* </div> */}
               {/* <div className='row'> */}
-              <div className='col-4'>
+              {editShow ?
+              (
+                <>
+                
+                <div className='col-4'>
                 <p>FirstName</p>
                 <input type="text" name="firstName" placeholder='First Name' className='form-control shadow-none my-3' value={Formik.values.firstName} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
                 {Formik.errors.firstName && Formik.touched.firstName ? (<p className='Form-error'> {Formik.errors.firstName}</p>) : null}
@@ -137,7 +172,9 @@ export default function Profile() {
                 {Formik.errors.lastName && Formik.touched.lastName ? (<p className='Form-error'> {Formik.errors.lastName}</p>) : null}
 
               </div>
+              
               <div className='col-4'>
+                
                 <p>Phone</p>
                 <input type="text" name="phone" placeholder='Phone No' className='form-control shadow-none my-3' value={Formik.values.phone} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
                 {Formik.errors.phone && Formik.touched.phone ? (<p className='Form-error'> {Formik.errors.phone}</p>) : null}
@@ -169,15 +206,19 @@ export default function Profile() {
               </div>
 
               <div className='col-2 mt-2'>
-                {/* <br></br> */}
+                <br></br>
 
-                <button className='btn ' type='submit' > Update
+                <button className='btn ' type='submit'> Update
 
                   {/* <MdOutlinePublishedWithChanges size={20} /> Update */}
                 </button>
               </div>
-              <br></br>
-              <hr />
+              {/* <br></br> */}
+              {/* <hr /> */}
+              </>
+              ) : ""}
+              
+              
 
 
             </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdPersonAddAlt1 } from 'react-icons/md';
 import { BiChevronRight } from "react-icons/bi";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -7,19 +7,12 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 
 export default function DashboardAdv() {
+  const navigate = useNavigate();
   const style = {
     background: "white",
-    // height: "550px",
-    // width:"100%",
-    // marginLeft: "40px",
-    // marginRight: "40px",
-    // padding: "30px",
     borderRadius: "15px"
   }
   const addClientBtn = {
-    // marginLeft: "auto"
-    // padding:"20px",
-    // border:"1px solid black",
     width:"200px",
     backgroundColor:"##0000ff"
     
@@ -27,11 +20,6 @@ export default function DashboardAdv() {
   const st = {
     backgroundColor:"blue",
     color:"white",
-    // width:"100%"
-    
-    // borderRadius:"10px"
-    // borderRadius:"15px"
-  
   }
 
   const [flag, setFlag] = useState("false");
@@ -117,6 +105,7 @@ export default function DashboardAdv() {
           if (res.status === 200){
             alert("Client deleted successfully.")
             window.location = '/advisordash';
+            // navigate('/advisordash')
           }
           else{
             alert("Something went wrong, try again.")
@@ -157,8 +146,8 @@ export default function DashboardAdv() {
         <td>{e.phone}</td>
         {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
         
-        <td><Link to='/editclient'><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link></td>
-        <td><Link to='/viewclient'><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></Link></td>
+        <td><Link to={`/editclient/${e.userID}`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link></td>
+        <td><Link to={`/viewclient/${e.userID}`} ><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></Link></td>
             <td><AiOutlineDelete size={20} onClick={(ev)=>{delClient(e.userID)}}  /></td>
             {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
       </tr>
@@ -186,14 +175,14 @@ export default function DashboardAdv() {
       <table  className="table table-hover">
         <thead>
           <tr style={st}>
-            <th scope="col">#</th>
-            <th scope="col">ClientID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <th scope="col" style={{color:"white"}}>#</th>
+            <th scope="col" style={{color:"white"}}>ClientID</th>
+            <th scope="col" style={{color:"white"}}>Name</th>
+            <th scope="col" style={{color:"white"}}>Email</th>
+            <th scope="col" style={{color:"white"}}>Phone</th>
+            <th scope="col" style={{color:"white"}}></th>
+            <th scope="col" style={{color:"white"}}></th>
+            <th scope="col" style={{color:"white"}}></th>
           </tr>
         </thead>
         <tbody>
