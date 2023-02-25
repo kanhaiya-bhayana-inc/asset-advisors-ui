@@ -64,7 +64,7 @@ function Change() {
   return (
     <>
       <div className='d-flex justify-content-center' style={style}>
-        <form onSubmit={Formik.handleSubmit}> <h2>Enter Details to change your password.</h2>
+        <form onSubmit={Formik.handleSubmit}> <h2>Enter details to change your password.</h2>
           <div className='form-row'>
             <div className='col-lg-10'>
               <input type="password"  name="token" placeholder='Enter verification token' value={Formik.values.token} onChange={Formik.handleChange} onBlur={Formik.handleBlur} className='form-control shadow-none my-3' />

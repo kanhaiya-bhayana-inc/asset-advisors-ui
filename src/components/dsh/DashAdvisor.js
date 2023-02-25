@@ -141,7 +141,7 @@ export default function DashboardAdv() {
         <tr key={ind}>
         <th scope="row">{count++}</th>
         <td>{e.clientID}</td>
-        <td>{e.sortName}</td>
+        <td><Link style={{textDecoration:"none"}} to={`/viewclient/${e.userID}`} >{e.sortName}</Link></td>
         <td>{e.email}</td>
         <td>{e.phone}</td>
         {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
@@ -160,7 +160,7 @@ export default function DashboardAdv() {
     {/* <div className='row p-2' style={{backgroundColor:"#dbe2e2", border:"none"}}> */}
       {/* <div className='col'> */}
       {/* <div style={addClientBtn} className='d-flex flex-row-reverse'><b>&nbsp;Add Clients</b> */}
-      <Link to="/addClient" className="nav_link" style={{width:"200px"}}>
+      <Link to="/addClient" className="nav_link" style={{width:"200px",border:"1px solid black"}}>
               
       {/* <button  className='btn mb-2 btn-lg' style={addClientBtn}> */}
         <MdPersonAddAlt1 size={30} /> Add Clients

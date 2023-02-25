@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { MdPersonAddAlt1 } from 'react-icons/md';
+import { Link, useParams } from 'react-router-dom'
+import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
 
 export default function ViewClient() {
   let { vcliID } = useParams();
@@ -69,17 +72,19 @@ export default function ViewClient() {
         <div className='p-2 mt-2'>
           <hr />
         </div>
-
-        <h3 className='text-center'>Investment Details</h3>
+        <Link to="/addinvestment" className="nav_link text-center" style={{ width: "auto", border:"1px solid black",marginLeft: "20px" }}>
+          Add Investments   
+        </Link>
+        <h3 className='text-center mb-4' style={{marginTop:"-20px"}}>Investment Details</h3>
         <table className="table table-hover">
           <thead >
             <tr style={st}>
-              <th scope="col" style={{color:"white"}}>#</th>
-              <th scope="col" style={{color:"white"}}>UserID</th>
-              <th scope="col" style={{color:"white"}}>Name</th>
-              <th scope="col" style={{color:"white"}}>Email</th>
-              <th scope="col" style={{color:"white"}}>Phone</th>
-              {/* <th scope="col"></th> */}
+              <th scope="col" style={{ color: "white" }}>#</th>
+              <th scope="col" style={{ color: "white" }}>Id</th>
+              <th scope="col" style={{ color: "white" }}>Name</th>
+              <th scope="col" style={{ color: "white" }}>Type</th>
+              <th scope="col" style={{ color: "white" }}>Active</th>
+              <th scope="col" style={{ color: "white" }}>Action</th>
               {/* <th scope="col"></th> */}
               {/* <th scope="col"></th> */}
             </tr>
@@ -91,6 +96,7 @@ export default function ViewClient() {
               <td>Otto</td>
               <td>@mdo</td>
               <td>@mdo</td>
+              <td><Link to={`/editinvestment`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
               {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
@@ -102,6 +108,7 @@ export default function ViewClient() {
               <td>Thornton</td>
               <td>@fat</td>
               <td>@fat</td>
+              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
               {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
@@ -113,6 +120,7 @@ export default function ViewClient() {
               <td>Thornton</td>
               <td>@fat</td>
               <td>@fat</td>
+              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
               {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
@@ -124,6 +132,7 @@ export default function ViewClient() {
               <td>Thornton</td>
               <td>@fat</td>
               <td>@fat</td>
+              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
               {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
@@ -135,6 +144,7 @@ export default function ViewClient() {
               <td>Thornton</td>
               <td>@fat</td>
               <td>@fat</td>
+              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
               {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
@@ -146,6 +156,7 @@ export default function ViewClient() {
               <td>Thornton</td>
               <td>@fat</td>
               <td>@fat</td>
+              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
               {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
@@ -157,6 +168,7 @@ export default function ViewClient() {
               <td>Thornton</td>
               <td>@fat</td>
               <td>@fat</td>
+              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
               {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
@@ -168,88 +180,13 @@ export default function ViewClient() {
               <td>Thornton</td>
               <td>@fat</td>
               <td>@fat</td>
+              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
               {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
               {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
+            
 
 
           </tbody>

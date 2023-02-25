@@ -17,8 +17,11 @@ import DashboardAdv from './components/dsh/DashAdvisor';
 import EditClients from './components/EditClients/EditClients';
 import EditAdvisor from './components/EditAdvisor/EditAdvisor';
 import ViewClient from './components/ClientViews/ViewClient';
+import ChangePass from './components/ChangePass/change'
 
 import AdvAccVerification from './components/Verification/AdvAccVerification';
+import EditInvestment from './components/EditInvestment/EditInvestment';
+import AddInvestment from './components/AddInvestment/AddInvestment';
 
 
 
@@ -44,6 +47,8 @@ function App() {
           <Route path="/editclient/:vcliID" element={<EditClients />} />
           <Route path="/editadvisor" element={<EditAdvisor />} />
           <Route path="/viewclient/:vcliID" element={<ViewClient />} />
+          <Route path="/editinvestment" element={<EditInvestment />} />
+          <Route path="/addinvestment" element={<AddInvestment />} />
 
         </Route>
         <Route path="/" exact element={<Main />} >
@@ -53,6 +58,7 @@ function App() {
           <Route path="/loginc" element={<LoginClient />} />
           <Route path="/Signup" element={<Sign_up />} />
           <Route path="/accverify" element={<AdvAccVerification />} />
+          <Route path="/changepass" element={<ChangePass/>} />
         </Route>
     </Routes>
    </Router >
