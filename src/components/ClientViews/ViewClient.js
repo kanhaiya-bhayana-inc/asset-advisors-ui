@@ -6,6 +6,9 @@ import { AiOutlineDelete } from "react-icons/ai";
 
 export default function ViewClient() {
   let { vcliID } = useParams();
+  const [flag, setFlag] = useState("false");
+  let count = 1;
+  const [showMsg,setShowMsg] = useState(false);
   const st = {
     backgroundColor: "blue",
     color: "white",
@@ -14,7 +17,39 @@ export default function ViewClient() {
 
   }
   const [det, setDet] = useState({});
+  const [InvestmentDet, setInvestmentDet] = useState([]);
+  const [amount, setAmount] = useState("0");
 
+
+  const callTotalAmount = async () =>{
+    let token = localStorage.getItem("tokena");
+    let advId = localStorage.getItem("id");
+    let ntoken = "Bearer " + token.replaceAll('"', '');
+    // const [advEdit, setAdvEdit] = useState("false");
+
+
+
+    await fetch(`https://localhost:7214/api/Investment/GetTotalAmount/${vcliID}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
+        "Authorization": ntoken,
+        "Access-Control-Max-Age": 86400
+      }
+    })
+      .then(async res => await res.json())
+      .then((data) => {
+        // localStorage.setItem("id", data.userID);
+        // localStorage.setItem("advName", data.sortName);
+        if(data.result != NaN){
+          setAmount(data.result);
+        }
+        console.log("fdksjldk",data.result);
+
+      })
+  }
 
   const clientProfileData = async () => {
     let token = localStorage.getItem("tokena");
@@ -39,7 +74,8 @@ export default function ViewClient() {
         // localStorage.setItem("id", data.userID);
         // localStorage.setItem("advName", data.sortName);
         setDet(data);
-        console.log("data->" + data);
+        setFlag("true");
+        // console.log("data->" + data);
         // setInitialValues(data);
         // Formik.values(data);
 
@@ -50,11 +86,82 @@ export default function ViewClient() {
       })
   }
 
+  const investmentData = async () => {
+
+    let token = localStorage.getItem("tokena");
+    let advId = localStorage.getItem("id");
+    let ntoken = "Bearer " + token.replaceAll('"', '');
+    // const [advEdit, setAdvEdit] = useState("false");
+
+
+
+    await fetch(`https://localhost:7214/api/Investment/GetUserInvestments/${vcliID}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
+        "Authorization": ntoken,
+        "Access-Control-Max-Age": 86400
+      }
+    })
+      .then(async res => await res.json())
+      .then((data) => {
+        setInvestmentDet(data.result);
+        // if(data.result){
+        //   setAmount(data.result[0].totalAmount);
+        // }
+        console.log(data.result);
+        console.log("dfklsdjlf");
+      })
+  }
+
   useEffect(() => {
-    // if (flag != "true") { clientProfileData(); }
-    clientProfileData();
-    // myFunc();
-  }, [])
+    if (flag != "true") { clientProfileData(); }
+    callTotalAmount();
+    investmentData();
+  }, [flag])
+
+
+  const delInvestment = (iID,sID) =>{
+    let token = localStorage.getItem("tokena");
+    let ntoken = "Bearer " + token.replaceAll('"', '');
+    // console.log("my id si ",delCID);
+    try {
+      console.log("Call maked!");
+      fetch(`https://localhost:7214/api/Investment/advisorDeleteinvestment/${iID}/${sID}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT",
+          "Authorization": ntoken,
+          "Access-Control-Max-Age": 86400
+        },
+        // body: JSON.stringify(values)
+
+      })
+        .then(res => {
+          res.json()
+          if (res.status === 200){
+            alert("Investment deleted successfully.")
+            window.location = `/viewclient/${vcliID}`;
+            // navigate('/advisordash')
+          }
+          else{
+            alert("Something went wrong, try again.")
+          }
+        })
+        .then((data) =>{
+          console.log(data);
+          // alert(data);
+          // window.location ='/login'
+        })
+    } catch (error) {
+      console.log("Error b->", error);
+    }
+  }
+
   return (
     <>
       <div className='row'>
@@ -72,128 +179,63 @@ export default function ViewClient() {
         <div className='p-2 mt-2'>
           <hr />
         </div>
-        <Link to="/addinvestment" className="nav_link text-center" style={{ width: "auto", border:"1px solid black",marginLeft: "20px" }}>
-          Add Investments   
-        </Link>
-        <h3 className='text-center mb-4' style={{marginTop:"-20px"}}>Investment Details</h3>
+        <div className='col-4'>
+          <Link to={`/addinvestment/${vcliID}`} className="nav_link text-center" style={{ width: "180px", border: "1px solid black", marginLeft: "20px" }}>
+            Add Investments
+          </Link>
+        </div>
+        <div className='col-4'>
+          <h3 className='text-center p-4' style={{ marginTop: "-20px" }}>Investment Details</h3>
+        </div>
+
+        <div className="nav_link text-center col-3 mt-2" style={{ width: "250px", border: "1px solid black", marginLeft: "120px" }}>
+          Total Investments: {amount && amount.slice(0,-3)}
+        </div>
         <table className="table table-hover">
           <thead >
             <tr style={st}>
               <th scope="col" style={{ color: "white" }}>#</th>
-              <th scope="col" style={{ color: "white" }}>Id</th>
-              <th scope="col" style={{ color: "white" }}>Name</th>
-              <th scope="col" style={{ color: "white" }}>Type</th>
-              <th scope="col" style={{ color: "white" }}>Active</th>
+              <th scope="col" style={{ color: "white" }}>InfoId</th>
+              <th scope="col" style={{ color: "white" }}>Inv-Name</th>
+              <th scope="col" style={{ color: "white" }}>Inv-Type</th>
+              <th scope="col" style={{ color: "white" }}>Status-Active</th>
+              <th scope="col" style={{ color: "white" }}>Amount($)</th>
               <th scope="col" style={{ color: "white" }}>Action</th>
-              {/* <th scope="col"></th> */}
-              {/* <th scope="col"></th> */}
+
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td><Link to={`/editinvestment`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-              <td><Link to={`/editclient/`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link> &nbsp; <AiOutlineDelete size={20}   /></td>
-              {/* <td><BiChevronRight size={30} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineDelete size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-              {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
-            </tr>
-            
-
+            {InvestmentDet ? InvestmentDet.map((e, ind) => {
+              return (
+                <>
+                  <tr key={ind}>
+                    <th scope="row">{count++}</th>
+                    <td>{e.inofID}</td>
+                    <td>{e.investmentName}</td>
+                    <td>{e.investmentTypeName}</td>
+                    <td>{e.active}</td>
+                    <td>{e.investmentAmount}</td>
+                    <td><Link to={`/editinvestment/${e.inofID}/${e.strategyID}/${vcliID}`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))}  /></Link> &nbsp; <AiOutlineDelete size={20} onClick={(ev)=>delInvestment(e.inofID,e.strategyID)} /></td>
+                  </tr>
+                </>
+              );
+            }) : 
+           ""}
 
           </tbody>
         </table>
-
-
-      </div>
+            {!InvestmentDet ? <div className='p-4 tex-center'>
+            <div className="alert alert-warning alert-dismissible fade show" style={{width:"auto"}} role="alert">
+              
+              <strong>Hello user!</strong> There is no investments found for this client.
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div> 
+           :""}
+           </div>
+            
+      
+      
     </>
   )
 }

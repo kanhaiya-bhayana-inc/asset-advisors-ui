@@ -1,22 +1,124 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { signUpSchema } from './Vald';
+import { useFormik } from 'formik';
+import { useParams } from 'react-router-dom';
 
 export default function AddInvestment() {
-  return (
-    <div className='row'>
-        <h3 className='text-center p-4'>Add Investment</h3>
+  let token = localStorage.getItem("tokena");
+    let ntoken = "Bearer " + token.replaceAll('"', '');
 
-        <div className='col-3'>
-            <lable>Investment Name</lable>
-        <input type="text" name="investmentName" placeholder='Investment name' className='form-control shadow-none my-3' value=""   />
+  let { aicliID } = useParams();
+
+  const initialValues = {
+    investmentName:"",
+    investmentTypeName:"",
+    strategyName:"",
+    investmentAmount:"",
+    accountID:"",
+    active:""
+  };
+
+  const Formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: signUpSchema,
+    onSubmit: (values, action) => {
+      console.log(values);
+      try {
+        console.log("Call maked!");
+        fetch(`https://localhost:7214/api/Investment/advisor-add-investments/${aicliID}`, {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
+            "Authorization": ntoken,
+            "Access-Control-Max-Age": 86400
+          },
+          body: JSON.stringify(values)
+
+        })
+          .then(res => {
+            res.json()
+            if (res.status === 200){
+              alert("Investment created successfully.")
+              window.location = `/viewclient/${aicliID}`;
+            }
+            else{
+              alert("Something went wrong, try again.")
+            }
+          })
+          .then((data) =>{
+            console.log(data);
+            // alert(data);
+            // window.location ='/login'
+          })
+      } catch (error) {
+        console.log("Error b->", error);
+      }
+      action.resetForm();
+    }
+  });
+
+  return (
+      <form onSubmit={Formik.handleSubmit}>
+    <div className='row'>
+
+      <h3 className='text-center p-4'>Add Investment</h3>
+
+      <div className='col-4'>
+        <lable style={{marginLeft: "10px"}}>Investment Name</lable>
+        <input type="text" name="investmentName" placeholder='Investment name' value={Formik.values.investmentName} onChange={Formik.handleChange} className='form-control shadow-none my-3' />
+        {Formik.errors.investmentName && Formik.touched.investmentName ? (<p className='Form-error'> {Formik.errors.investmentName}</p>) : null}
+      </div>
+      
+      <div className='col-4'>
+        <div className="dropdown p-4" style={{ width: "auto" }}>
+          <select className="form-select" name='investmentTypeName' value={Formik.values.investmentTypeName} onChange={Formik.handleChange} aria-label="Default select example">
+            <option value="selected">Investment Type</option>
+            <option value="T-1">T-1</option>
+            <option value="T-2">T-2</option>
+            <option value="T-3">T-3</option>
+            <option value="T-4">T-4</option>
+          </select>
+          {Formik.errors.investmentTypeName && Formik.touched.investmentTypeName ? (<p className='Form-error'> {Formik.errors.investmentTypeName}</p>) : null}
         </div>
-        <div className='col-3'>
-            <lable>Investment Name</lable>
-        <input type="text" name="investmentName" placeholder='Investment name' className='form-control shadow-none my-3' value=""   />
+      </div>
+
+      <div className='col-4 mt-3'>
+      <div className="dropdown p-4" style={{ width: "auto" }}>
+          <select className="form-select" name='active' value={Formik.values.active} onChange={Formik.handleChange}  aria-label="Default select example">
+            <option value="selected">Active</option>
+            <option value="1">True</option>
+            <option value="0">False</option>
+          </select>
+          {Formik.errors.active && Formik.touched.active ? (<p className='Form-error'> {Formik.errors.active}</p>) : null}
         </div>
-        <div className='col-3'>
-            <lable>Investment Type Name</lable>
-        <input type="text" name="investmentTypeName" placeholder='Investment type name' className='form-control shadow-none my-3' value=""   />
-        </div>
+      </div>
+      <hr />
+      <div className='col-4'>
+        <lable style={{marginLeft: "10px"}}>AccountID</lable>
+        <input type="text" name="accountID" value={Formik.values.accountID} onChange={Formik.handleChange}  placeholder='Enter acoountID' className='form-control shadow-none my-3' />
+        {Formik.errors.accountID && Formik.touched.accountID ? (<p className='Form-error'> {Formik.errors.accountID}</p>) : null}
+      </div>
+      <div className='col-4' style={{marginLeft: "20px",width:"400px"}}>
+      <lable style={{marginLeft: "13px"}}>Strategy Name</lable>
+        <input type="text" name="strategyName" value={Formik.values.strategyName} onChange={Formik.handleChange} placeholder='Enter strategy name' className='form-control shadow-none my-3' />
+        {Formik.errors.strategyName && Formik.touched.strategyName ? (<p className='Form-error'> {Formik.errors.strategyName}</p>) : null}
+      </div>
+
+      <div className='col-4' style={{marginLeft: "20px",width:"380px"}}>
+      <lable style={{marginLeft: "15px"}}>Investment investmentAmount</lable>
+        <input type="text" name="investmentAmount" value={Formik.values.investmentAmount} onChange={Formik.handleChange} placeholder='Enter investment investmentAmount' className='form-control shadow-none my-3' />
+        {Formik.errors.investmentAmount && Formik.touched.investmentAmount ? (<p className='Form-error'> {Formik.errors.investmentAmount}</p>) : null}
+      </div>
+      <div className='col-4'>
+      </div>
+      <div className='col-4 mb-4 mt-4 text-center'>
+        <button className='btn btn-primary' type='submit' style={{width:"100px"}}> Add</button>
+      </div>
+      <div className='col-4'>
+      </div>
     </div>
+      </form>
   )
 }

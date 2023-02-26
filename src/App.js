@@ -47,8 +47,8 @@ function App() {
           <Route path="/editclient/:vcliID" element={<EditClients />} />
           <Route path="/editadvisor" element={<EditAdvisor />} />
           <Route path="/viewclient/:vcliID" element={<ViewClient />} />
-          <Route path="/editinvestment" element={<EditInvestment />} />
-          <Route path="/addinvestment" element={<AddInvestment />} />
+          <Route path="/editinvestment/:infoID/:strtID/:vcliID" element={<EditInvestment />} />
+          <Route path="/addinvestment/:aicliID" element={<AddInvestment />} />
 
         </Route>
         <Route path="/" exact element={<Main />} >
