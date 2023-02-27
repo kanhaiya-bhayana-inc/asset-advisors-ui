@@ -2,7 +2,7 @@
 import  style from'../Sign_up/Form.module.css'
 import pic from './team.svg'
 import { useFormik } from 'formik';
-import { signUpSchema } from '../schemas/Helper.js';
+import { signUpSchema } from './Helper.js';
 import { Link } from 'react-router-dom';
 function Form() {
   const initialValues = {
@@ -24,6 +24,7 @@ function Form() {
     initialValues: initialValues,
     validationSchema: signUpSchema,
     onSubmit: (values, action) => {
+      // e.preventDefault();
       console.log(values);
       try {
         fetch('https://localhost:7214/api/User/add-user', {

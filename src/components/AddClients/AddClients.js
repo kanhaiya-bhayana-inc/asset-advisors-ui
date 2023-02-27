@@ -2,7 +2,7 @@ import React from 'react'
 import MySide from '../MyComp/Sidebar/MySidebar'
 import { useFormik } from 'formik';
 // import { useFormik } from 'formik';
-import { signUpSchema } from '../schemas/Helper';
+import { signUpSchema } from './Helper';
 import { Link } from 'react-router-dom';
 import style from '../Sign_up/Form.module.css'
 
@@ -50,7 +50,7 @@ export default function AddClients() {
               window.location = '/advisordash';
             }
             else{
-              alert("Something went wrong, try again.")
+              alert("Something went wrong, or this client is already registered by other user, try again.")
             }
           })
           .then((data) =>{

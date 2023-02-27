@@ -123,9 +123,9 @@ export default function EditInvestment() {
                 <button className='float-right mt-5 btn btn-primary' type='button' onClick={(e) => { setEditShow(true) }}>Edit</button>
               </div>
               <div className='col-4 mt-2'><label><b>Investment Name: &nbsp; {det.investmentName}</b> </label></div>
-              <div className='col-4'><label>Investment Type: &nbsp;{det.typeName} </label></div>
+              <div className='col-4'><label>Investment Type: &nbsp;{det.investmentTypeName} </label></div>
               <div className='col-4'><label>Amount: &nbsp;{det.investmentAmount}</label></div>
-              <div className='col-4 mt-2'><label>AccountID: &nbsp;{det.acountID}</label></div>
+              <div className='col-4 mt-2'><label>AccountID: &nbsp;{det.accountID}</label></div>
               <div className='col-4'><label>StrategyID: &nbsp;{det.strategyID}</label></div>
               <div className='col-4'><label>Active: &nbsp;{det.active}</label></div>
               <div className='col-4 mt-2'><label>Strategy Name: &nbsp;{det.strategyName}</label></div>

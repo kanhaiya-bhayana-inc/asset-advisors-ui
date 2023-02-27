@@ -9,6 +9,7 @@ export default function ViewClient() {
   const [flag, setFlag] = useState("false");
   let count = 1;
   const [showMsg,setShowMsg] = useState(false);
+
   const st = {
     backgroundColor: "blue",
     color: "white",
@@ -19,8 +20,9 @@ export default function ViewClient() {
   const [det, setDet] = useState({});
   const [InvestmentDet, setInvestmentDet] = useState([]);
   const [amount, setAmount] = useState("0");
+  const [dataLength,setDataLength] = useState(0);
 
-
+    
   const callTotalAmount = async () =>{
     let token = localStorage.getItem("tokena");
     let advId = localStorage.getItem("id");
@@ -46,7 +48,7 @@ export default function ViewClient() {
         if(data.result != NaN){
           setAmount(data.result);
         }
-        console.log("fdksjldk",data.result);
+        // console.log("fdksjldk",data.result);
 
       })
   }
@@ -91,10 +93,6 @@ export default function ViewClient() {
     let token = localStorage.getItem("tokena");
     let advId = localStorage.getItem("id");
     let ntoken = "Bearer " + token.replaceAll('"', '');
-    // const [advEdit, setAdvEdit] = useState("false");
-
-
-
     await fetch(`https://localhost:7214/api/Investment/GetUserInvestments/${vcliID}`, {
       method: 'GET',
       headers: {
@@ -105,14 +103,16 @@ export default function ViewClient() {
         "Access-Control-Max-Age": 86400
       }
     })
-      .then(async res => await res.json())
+      .then(async res =>  await res.json())
       .then((data) => {
-        setInvestmentDet(data.result);
-        // if(data.result){
-        //   setAmount(data.result[0].totalAmount);
-        // }
-        console.log(data.result);
-        console.log("dfklsdjlf");
+      
+        // var v = JSON.parse(data.result);
+        
+          setInvestmentDet(data.result);
+          console.log("V is ",data.result );
+          console.log(Object.keys(data.result).length);
+          setDataLength(Object.keys(data.result).length);
+
       })
   }
 
@@ -120,6 +120,7 @@ export default function ViewClient() {
     if (flag != "true") { clientProfileData(); }
     callTotalAmount();
     investmentData();
+   
   }, [flag])
 
 
@@ -154,6 +155,11 @@ export default function ViewClient() {
         })
         .then((data) =>{
           console.log(data);
+          console.log("yoo",InvestmentDet);
+          // if (InvestmentDet.length ==1){
+          //   setInvestmentDet("");
+          // }
+          // investmentData();
           // alert(data);
           // window.location ='/login'
         })
@@ -221,10 +227,11 @@ export default function ViewClient() {
               );
             }) : 
            ""}
+           {/* {  InvestmentDet} */}
 
           </tbody>
         </table>
-            {!InvestmentDet ? <div className='p-4 tex-center'>
+            {dataLength == 0 ? <div className='p-4 tex-center'>
             <div className="alert alert-warning alert-dismissible fade show" style={{width:"auto"}} role="alert">
               
               <strong>Hello user!</strong> There is no investments found for this client.
