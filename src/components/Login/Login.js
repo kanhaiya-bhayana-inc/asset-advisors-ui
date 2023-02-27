@@ -64,7 +64,7 @@ function Login() {
   return (
     <div >
       {/* <h1>hey</h1> */}
-      <section className="Form style.my-4 style.mx-5">
+      <section className="Form style.my-4 style.mx-5" style={{minHeight: "80.2vh",marginTop:"40px"}}>
         <div className='container'>
 
           <div className='row py-5'>
@@ -78,7 +78,7 @@ function Login() {
               <h4>Sign Into Your Account</h4>
               <form className='needs-validation' novalidate>
                 <div className='form-row'>
-                  <div className='col-lg-6'>
+                  <div className='col-lg-7'>
                     <input type="email" placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email} className=' form-control my-3 p-2' required></input>
                     <div className="invalid-feedback">
                       Please choose a username.

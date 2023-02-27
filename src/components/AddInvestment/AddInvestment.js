@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { signUpSchema } from './Vald';
 import { useFormik } from 'formik';
 import { useParams } from 'react-router-dom';
+import '../AddInvestment/addinvestment.css';
 
 export default function AddInvestment() {
   let token = localStorage.getItem("tokena");
@@ -71,7 +72,7 @@ export default function AddInvestment() {
         {Formik.errors.investmentName && Formik.touched.investmentName ? (<p className='Form-error'> {Formik.errors.investmentName}</p>) : null}
       </div>
       
-      <div className='col-4'>
+      <div className='col-4 addbtn'>
         <div className="dropdown p-4" style={{ width: "auto" }}>
           <select className="form-select" name='investmentTypeName' value={Formik.values.investmentTypeName} onChange={Formik.handleChange} aria-label="Default select example">
             <option value="selected">Investment Type</option>

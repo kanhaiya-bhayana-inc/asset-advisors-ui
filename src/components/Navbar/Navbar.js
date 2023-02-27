@@ -23,24 +23,17 @@ function Navbar() {
                             <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" to="/services">Services</Link>
-                            </li>
+                            </li> */}
                             <li className="nav-item">
                                 <Link className="nav-link" to="/about">About</Link>
                             </li>
-                          
-                            <li className="nav-item dropdown">
-                                <Link className="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Login
-                                </Link>
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><Link className="dropdown-item" to="/login">Advisor</Link></li>
-                                    <li><Link className="dropdown-item" to="/loginc">Client</Link></li>
-                                    {/* <li><hr className="dropdown-divider"/></li> */}
-
-                                </ul>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/login">Login</Link>
                             </li>
+                          
+                            
                             <li className="nav-item">
                                 <Link className="nav-link" to="/signup">SignUp</Link>
                             </li>

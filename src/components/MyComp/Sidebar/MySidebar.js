@@ -5,6 +5,8 @@ import './sidebar.css';
 import { IoMdLogOut } from 'react-icons/io';
 import { SiGnuprivacyguard } from 'react-icons/si';
 import { TiTick } from 'react-icons/ti';
+import { MdOutlinePrivacyTip } from 'react-icons/md';
+import pic from '../Sidebar/favicon-32x32.png'
 
 // import DashboardAdv from '../DashboardAdvisor/DashAdvisor';
 import { Link, Outlet } from 'react-router-dom';
@@ -38,20 +40,23 @@ export default function MySide() {
         <nav className="navv">
           <div>
             <a href="/advisordash" className="nav_logo">
-              <i className='bi bi-alexa nav_logo-icon' /> <span className="nav_logo-name">E-Wealth Manager</span>
+              <img src={pic} className='dshlogo'></img> <span className="nav_logo-name ">Asset Advisors</span>
             </a>
             <div className="nav_list">
               <Link to="/advisordash" className="nav_link">
-                <i className='bi bi-people nav_icon' /><span className="nav_name">Clients</span>
+                <i className='bi bi-people nav_icon' /><span className="nav_name dshhvr">Clients</span>
               </Link>
               {/* <Link to="/addClient" className="nav_link">
               <i className='bi bi-person-add nav_icon' /><span className="nav_name">Add Client</span>
             </Link> */}
               <Link to="/profile" className="nav_link">
-                <i className='bi bi-person-check nav_icon' /><span className="nav_name">Profile</span>
+                <i className='bi bi-person-check nav_icon' /><span className="nav_name dshhvr">Profile</span>
               </Link>
               <Link to="/advisordash" className="nav_link">
-                <SiGnuprivacyguard /><span className="nav_name" onClick={(e) =>{setShwoPass(true)}}>Change Password</span>
+                <SiGnuprivacyguard /><span className="nav_name dshhvr" onClick={(e) =>{setShwoPass(true)}}>Change Password</span>
+              </Link>
+              <Link to="/privacypolicy" className="nav_link">
+                <MdOutlinePrivacyTip /><span className="nav_name dshhvr">Privacy Policy</span>
               </Link>
               {/* <a href="/" target="_blank" className="nav_link">
               <i className='bi bi-person-check nav_icon' /><span className="nav_name">Analytics</span>
@@ -61,16 +66,18 @@ export default function MySide() {
           {/* <a href="https://cluemediator.com" target="_blank" className="nav_link">
           <i className='bi bi-box-arrow-left nav_icon' /><span className="nav_name">SignOut</span>
         </a> */}
-          <p className='text-center mb-4 p-3'>&copy; &nbsp;Copyright, reserved<br></br> by e-wealth manager</p>
+        <Link to="/privacypolicy" className="nav_link disabled-link">
+        &copy;<span className="nav_name dshhvr">Copyright, reserved<br></br> by asset advisors</span>
+              </Link>
         </nav>
       </div>
       <div className="pt-4 pb-4">
         <h4>@{dispName}'s Dashboard</h4>
         {/* <DashboardAdv/> */}
-       {showPass ? <div style={{width:"50%"}}>
+       {showPass ? <div style={{width:"70%"}}>
           <div className="alert alert-warning alert-dismissible fade show" style={{width:"auto"}} role="alert">
-            <TiTick size={25} />
-            <strong>Hello user!</strong> An email has been sent to you, check your mail inbox.
+            <TiTick size={25} className='ticbtn' />
+            <strong>Hello user!</strong> &nbsp;You will receive an email very soon. Follow the instructions to change your password
             <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=>{setShwoPass(false)}}></button>
           </div>
         </div> : ""}

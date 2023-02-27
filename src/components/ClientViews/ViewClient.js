@@ -11,7 +11,7 @@ export default function ViewClient() {
   const [showMsg,setShowMsg] = useState(false);
 
   const st = {
-    backgroundColor: "blue",
+    backgroundColor: "#536dfe",
     color: "white",
     // borderRadius:"10px"
     // borderRadius:"15px"
@@ -170,7 +170,7 @@ export default function ViewClient() {
 
   return (
     <>
-      <div className='row'>
+      <div className='row' style={{marginRight:"10px"}}>
         {/* <div className="shadow-lg p-3 mb-5 bg-body-tertiary rounded">Larger shadow</div> */}
         <h3 className='text-center mt-2'>Personal Details</h3>
         <p className='font-weight-bold'>ClientID: {det.clientID}</p>
@@ -194,8 +194,8 @@ export default function ViewClient() {
           <h3 className='text-center p-4' style={{ marginTop: "-20px" }}>Investment Details</h3>
         </div>
 
-        <div className="nav_link text-center col-3 mt-2" style={{ width: "250px", border: "1px solid black", marginLeft: "120px" }}>
-          Total Investments: {amount && amount.slice(0,-3)}
+        <div className="nav_link text-center col-3 mt-1" style={{ width: "250px", border: "1px solid black", marginLeft: "120px" }}>
+          Total Investments: ${amount && amount.slice(0,-3)}
         </div>
         <table className="table table-hover">
           <thead >

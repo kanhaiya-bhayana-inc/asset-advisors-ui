@@ -19,7 +19,7 @@ function Home() {
                                     <h3 pl-3>Grow your business with<br/> <span className='brand'>Asset Advisor </span></h3>
                                     <p className='my-3'>We are a team of talented individuals that is all you need </p>
                                     <div className='mt-3'>
-                                        <Link to='/Signup' className='btn btn-primary'>Get Started</Link>
+                                        <Link to='/Signup' className='btn btn-primary hmbtn'>Get Started</Link>
                                     </div>
                                 </div>
 

@@ -14,7 +14,7 @@ function Footer() {
 
  <div className=" text-center" style={footerStyling}>
         <p style={styLing}>
-        copyright &#169; 2023. Asset Advisors . All rights reserved.
+        {/* copyright &#169; 2023. Asset Advisors . All rights reserved. */}
         </p>
         
         </div>

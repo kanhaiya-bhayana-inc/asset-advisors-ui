@@ -5,12 +5,14 @@ import { BiChevronRight } from "react-icons/bi";
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
+import './ds.css';
 
 export default function DashboardAdv() {
   const navigate = useNavigate();
   const style = {
     background: "white",
-    borderRadius: "15px"
+    borderRadius: "15px",
+    marginRight:"10px"
   }
   const addClientBtn = {
     width:"200px",
@@ -18,7 +20,7 @@ export default function DashboardAdv() {
     
   }
   const st = {
-    backgroundColor:"blue",
+    backgroundColor:"#536dfe",
     color:"white",
   }
 
@@ -160,17 +162,17 @@ export default function DashboardAdv() {
     {/* <div className='row p-2' style={{backgroundColor:"#dbe2e2", border:"none"}}> */}
       {/* <div className='col'> */}
       {/* <div style={addClientBtn} className='d-flex flex-row-reverse'><b>&nbsp;Add Clients</b> */}
-      <Link to="/addClient" className="nav_link" style={{width:"200px",border:"1px solid black"}}>
+      <Link to="/addClient" className="nav_link btndsh" style={{width:"200px",border:"1px solid black"}}>
               
       {/* <button  className='btn mb-2 btn-lg' style={addClientBtn}> */}
-        <MdPersonAddAlt1 size={30} /> Add Clients
+        <MdPersonAddAlt1  size={30}  className='adclient' /> Add Clients
       {/* </button> */}
             </Link>
       {/* </div> */}
     {/* </div> */}
 
      
-    <div style={style}>
+    <div style={style} >
       {/* </div> */}
       <table  className="table table-hover">
         <thead>

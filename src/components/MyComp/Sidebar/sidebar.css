@@ -176,3 +176,20 @@
     padding-left: calc(var(--nav-width) + 188px)
   }
 }
+
+.dshhvr:hover{
+  color:white;
+}
+.dshlogo{
+  width: 20px;
+  /* height: 100px; */
+}
+.ticbtn{
+  /* background-color: green; */
+  /* color: green !important; */
+  stroke:green !important;
+}
+
+.disabled-link {
+  pointer-events: none;
+}

@@ -22,6 +22,8 @@ import ChangePass from './components/ChangePass/change'
 import AdvAccVerification from './components/Verification/AdvAccVerification';
 import EditInvestment from './components/EditInvestment/EditInvestment';
 import AddInvestment from './components/AddInvestment/AddInvestment';
+import ForgotPass from './components/ForgotPass/ForgotPass'
+import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 
 
 
@@ -49,6 +51,7 @@ function App() {
           <Route path="/viewclient/:vcliID" element={<ViewClient />} />
           <Route path="/editinvestment/:infoID/:strtID/:vcliID" element={<EditInvestment />} />
           <Route path="/addinvestment/:aicliID" element={<AddInvestment />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
 
         </Route>
         <Route path="/" exact element={<Main />} >
@@ -59,6 +62,7 @@ function App() {
           <Route path="/Signup" element={<Sign_up />} />
           <Route path="/accverify" element={<AdvAccVerification />} />
           <Route path="/changepass" element={<ChangePass/>} />
+          <Route path="/forgotpass" element={<ForgotPass/>} />
         </Route>
     </Routes>
    </Router >

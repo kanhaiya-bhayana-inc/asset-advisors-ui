@@ -1,5 +1,6 @@
 //import React from 'react'
-import  style from'../Sign_up/Form.module.css'
+import  '../Sign_up/Form.css'
+import  '../Sign_up/Form.module.css'
 import pic from './team.svg'
 import { useFormik } from 'formik';
 import { signUpSchema } from './Helper.js';
@@ -124,7 +125,7 @@ function Form() {
                   <div className='form-row'>
                     <div className='col-lg-7'>
                       <input type="password" name="confirmpassword" placeholder='Confirm password' className='form-control shadow-none' value={Formik.values.confirmpassword} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
-                      {Formik.errors.confirmpassword&&Formik.touched.confirmpassword?(<p className='Form-error'> {Formik.errors.confirmpassword}</p>):null}
+                      {Formik.errors.confirmpassword&&Formik.touched.confirmpassword?(<p className='Form-error cnfPass'> {Formik.errors.confirmpassword}</p>):null}
                     </div>
                   </div>
                   <div className='form-row'>

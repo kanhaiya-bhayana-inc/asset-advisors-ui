@@ -1,0 +1,31 @@
+.btn_sign{
+    height: 45px;
+    width: 100%;
+    background-color: rgb(115, 60, 244);
+    border:none;
+} 
+.btn_sign:hover{
+   background-color: white;
+   border: 2px solid;
+   color: black;
+} 
+.signup-advisor-email
+{
+    width: 100%;
+    box-sizing: border-box;
+    border:0px;
+    border-bottom: 2px solid #8EC5FC; 
+}
+.Form-error
+{
+    color:red;
+    margin-left:10px;
+    margin-top:-15px;
+    font-size:x-small;
+}
+.cnfPass{
+    color:red;
+    margin-left:10px;
+    font-size:x-small;
+    margin-top: 3px;
+}
