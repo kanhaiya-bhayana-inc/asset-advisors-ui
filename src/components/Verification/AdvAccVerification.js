@@ -4,6 +4,16 @@ import { json } from 'react-router-dom';
 export default function AdvAccVerification() {
 
     const [token, setToken] = useState("");
+    const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [dispMsg,setDispMsg] = useState("");
+  const [showErrorsMsg,setShowErrorMsg] = useState(false);
+  const successBg = 'alert alert-success alert-dismissible fade show';
+  const warningBg = 'alert alert-warning alert-dismissible fade show';
+
+
+  function myFuncCall (){
+    window.location = '/login';
+  }
 
     const style ={
       background:"white",
@@ -37,13 +47,19 @@ export default function AdvAccVerification() {
             })
             .then((res) => {
               if (res.status === 200){
-                  alert("success")
-                window.location = '/login';
+                  // alert("success")
+                  setDispMsg("Account verified successfully!")
+              setShowSuccessMsg(true);
+              setTimeout(myFuncCall, 3000);
+                // window.location = '/login';
 
                 return res.text()
               }
               else if (res.status === 400){
-                alert("Token field is required")
+                setDispMsg("Token field is required!")
+              setShowSuccessMsg(true);
+              setShowErrorMsg(true);
+                // alert("Token field is required")
                 return res.text()
               }
               else{
@@ -74,6 +90,14 @@ export default function AdvAccVerification() {
     }
     return (
         <div className='d-flex justify-content-center' style={style}>
+          {showSuccessMsg && <div className='p-4 tex-center'>
+            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
+            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+              <strong>Hello user!</strong> {dispMsg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
+            </div>
+          </div> 
+           }
             <form>
                 <h2>Enter You Verification token</h2>
                 <div className='form-row'>

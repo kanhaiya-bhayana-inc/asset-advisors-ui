@@ -1,7 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useFormik } from 'formik';
 import { fschema } from './FPass';
 function Change() {
+
+  const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [dispMsg,setDispMsg] = useState("");
+  const [showErrorsMsg,setShowErrorMsg] = useState(false);
+  const successBg = 'alert alert-success alert-dismissible fade show';
+  const warningBg = 'alert alert-warning alert-dismissible fade show';
+
+
+  function myFuncCall (){
+    window.location = '/login';
+  }
+
   const style ={
     background:"white",
     height:"550px",
@@ -53,7 +65,10 @@ function Change() {
           })
           .then((data) =>{
             console.log(data);
-            alert(data)
+            // alert(data)
+            setDispMsg(data)
+            setShowSuccessMsg(true);
+            setTimeout(myFuncCall, 6000);
           })
       } catch (error) {
         console.log("Error b->", error);
@@ -64,8 +79,17 @@ function Change() {
   return (
     <>
       <div className='d-flex justify-content-center' style={style}>
+      
         <form onSubmit={Formik.handleSubmit}> <h2>Enter details to change your password.</h2>
           <div className='form-row'>
+          {showSuccessMsg && <div className='p-4 tex-center'>
+            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
+            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+              <strong>Hello user!</strong> {dispMsg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
+            </div>
+          </div> 
+           }
             <div className='col-lg-10'>
               <input type="password"  name="token" placeholder='Enter verification token' value={Formik.values.token} onChange={Formik.handleChange} onBlur={Formik.handleBlur} className='form-control shadow-none my-3' />
               {Formik.errors.token && Formik.touched.token ? (<p className='Form-error'> {Formik.errors.token}</p>) : null}
@@ -73,6 +97,7 @@ function Change() {
             </div>
           </div>
           <div className="form-row ">
+          
             <div className='col-lg-10'>
               <input  type="password" name="password" placeholder='Enter New Password' value={Formik.values.password} required onChange={Formik.handleChange} onBlur={Formik.handleBlur} className='form-control shadow-none my-3' />
               {Formik.errors.password && Formik.touched.password ? (<p className='Form-error'> {Formik.errors.password}</p>) : null}
