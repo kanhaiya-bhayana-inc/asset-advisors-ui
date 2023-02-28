@@ -12,6 +12,16 @@ import {AiOutlineCloseCircle} from 'react-icons/ai'
 
 
 export default function Profile() {
+  const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [dispMsg,setDispMsg] = useState("");
+  const [showErrorsMsg,setShowErrorMsg] = useState(false);
+  const successBg = 'alert alert-success alert-dismissible fade show';
+  const warningBg = 'alert alert-warning alert-dismissible fade show';
+
+
+  function myFuncCall (){
+    window.location = '/profile';
+  }
   let token = localStorage.getItem("tokena");
   let ntoken = "Bearer " + token.replaceAll('"', '');
   let url = 'https://localhost:7214/api/User/Get-Client-by/121313';
@@ -97,11 +107,19 @@ export default function Profile() {
           .then(res => {
             res.json()
             if (res.status === 200){
-              alert("Profile updated successfully.")
-              window.location = '/profile';
+              // alert("Profile updated successfully.")
+              setDispMsg("Profile updated successfully!")
+              setShowSuccessMsg(true);
+              setTimeout(myFuncCall, 3000);
+              // window.location = '/profile';
             }
             else{
-              alert("Something went wrong, try again.")
+              // alert("Something went wrong, try again.")
+              setDispMsg("Something went wrong, try again!")
+              setShowSuccessMsg(true);
+              setShowErrorMsg(true);
+              setTimeout(myFuncCall, 3000);
+              
             }
           })
           .then((data) =>{
@@ -150,6 +168,14 @@ export default function Profile() {
     <div className='col-4 mt-2'><label>Company: &nbsp;{det.company} </label></div>
     <div className='p-2 mt-2'>
       <hr />
+      {showSuccessMsg && <div className='p-4 tex-center'>
+            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
+            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+              <strong>Hello user!</strong> {dispMsg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
+            </div>
+          </div> 
+           }
       {editShow && <AiOutlineCloseCircle size={25} className="" style={{float:"right"}} onClick={(e)=>{setEditShow(false)}} />}
       </div>
               {/* <h5>AdvisorID:&nbsp;{det.advisorID}</h5> */}

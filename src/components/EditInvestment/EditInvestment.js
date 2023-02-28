@@ -10,6 +10,11 @@ export default function EditInvestment() {
   const [editShow, setEditShow] = useState(false);
   const [det, setDet] = useState({});
   let { infoID, strtID, vcliID,advuID } = useParams();
+  const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [dispMsg,setDispMsg] = useState("");
+  const [showErrorsMsg,setShowErrorMsg] = useState(false);
+  const successBg = 'alert alert-success alert-dismissible fade show';
+  const warningBg = 'alert alert-warning alert-dismissible fade show';
 
   const [initialValues, setInitialValues] = useState({
     investmentName: "",
@@ -19,7 +24,9 @@ export default function EditInvestment() {
     accountID: "",
     active: ""
   });
-
+  function myFuncCall (){
+    window.location = `/viewclient/${vcliID}`;
+  }
   const singleInvestmentData = async () => {
     let token = localStorage.getItem("tokena");
     let advId = localStorage.getItem("id");
@@ -86,11 +93,17 @@ export default function EditInvestment() {
           .then(res => {
             res.json()
             if (res.status === 200) {
-              alert("Investment updated successfully.")
-              window.location = `/viewclient/${vcliID}`;
+              // alert("Investment updated successfully.")
+              setDispMsg("Investment updated successfully.")
+              setShowSuccessMsg(true);
+              setTimeout(myFuncCall, 5000);
+              // window.location = `/viewclient/${vcliID}`;
             }
             else {
-              alert("Something went wrong, try again.")
+              // alert("Something went wrong, try again.")
+              setDispMsg("Something went wrong, try again.");
+              setShowErrorMsg(true);
+              setShowSuccessMsg(true);
             }
           })
           .then((data) => {
@@ -104,13 +117,23 @@ export default function EditInvestment() {
       action.resetForm();
     }
   })
-
+  const sc = () =>{
+    window.scrollTo(0, 0)
+  }
   return (
     <>
       <div className='mt-4'>
         <div className='container'>
           <form onSubmit={Formik.handleSubmit}>
             <div className='row p-2'>
+            {showSuccessMsg && <div className='p-4 tex-center'>
+            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
+            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+              <strong>Hello user!</strong> {dispMsg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
+            </div>
+          </div> 
+           }
               <div className='col-5'>
                 <h5 className='mt-5'>Investment Details</h5>
                 <p className='font-weight-bold mt-2'>InvestmentID:{det.inofID}</p>
@@ -191,7 +214,7 @@ export default function EditInvestment() {
       <div className='col-4'>
       </div>
       <div className='col-4 mb-4 mt-4 text-center'>
-        <button className='btn btn-primary' type='submit' style={{width:"150px"}}> Update</button>
+        <button className='btn btn-primary' type='submit' style={{width:"150px"}} onClick={sc}> Update</button>
       </div>
       <div className='col-4'>
       </div>

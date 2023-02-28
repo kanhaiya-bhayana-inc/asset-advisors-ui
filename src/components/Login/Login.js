@@ -8,6 +8,11 @@ import { Link,Navigate } from 'react-router-dom'
 function Login() {
   const [email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
+  const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [dispMsg,setDispMsg] = useState("");
+  const [showErrorsMsg,setShowErrorMsg] = useState(false);
+  const successBg = 'alert alert-success alert-dismissible fade show';
+  const warningBg = 'alert alert-warning alert-dismissible fade show';
   const loginVerify = (e) => {
     e.preventDefault();
     console.log(email, " ", Password);
@@ -36,6 +41,9 @@ function Login() {
             // const locres = res.text()
 
             // const errorekldjl = locres.errors
+            // setShowErrorMsg(true);
+            // setShowSuccessMsg(true);
+            
             return "Email cannot be empty or password lenght must be atleast 6.";
           }
           else {
@@ -51,7 +59,10 @@ function Login() {
             console.log(data);
           }
           else {
-            alert(data)
+            // alert(data)
+            setShowErrorMsg(true);
+            setShowSuccessMsg(true);
+            setDispMsg(data);
 
           }
 
@@ -68,6 +79,14 @@ function Login() {
         <div className='container'>
 
           <div className='row py-5'>
+          {showSuccessMsg && <div className='p-4 tex-center'>
+            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
+            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+              <strong>Hello user!</strong> {dispMsg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false)}}></button>
+            </div>
+          </div> 
+           }
             <div className='col-lg-6 '>
               <img src={pic}
                 className='img-fluid img m-lg-4' alt='image' />

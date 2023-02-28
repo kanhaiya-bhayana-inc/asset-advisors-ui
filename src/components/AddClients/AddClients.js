@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import MySide from '../MyComp/Sidebar/MySidebar'
 import { useFormik } from 'formik';
 // import { useFormik } from 'formik';
@@ -9,6 +9,14 @@ import style from '../Sign_up/Form.module.css'
 
 
 export default function AddClients() {
+
+  const [email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [dispMsg,setDispMsg] = useState("");
+  const [showErrorsMsg,setShowErrorMsg] = useState(false);
+  const successBg = 'alert alert-success alert-dismissible fade show';
+  const warningBg = 'alert alert-warning alert-dismissible fade show';
   let token = localStorage.getItem("tokena");
     let ntoken = "Bearer " + token.replaceAll('"', '');
 
@@ -23,6 +31,9 @@ export default function AddClients() {
     city: "",
     password: "",
     confirmpassword: ""
+  }
+  function myFuncCall (){
+    window.location = '/advisordash';
   }
   const Formik = useFormik({
     initialValues: initialValues,
@@ -46,11 +57,18 @@ export default function AddClients() {
           .then(res => {
             res.json()
             if (res.status === 200){
-              alert("Client created successfully.")
-              window.location = '/advisordash';
+              // alert("Client created successfully.")
+              setDispMsg("Client created successfully.")
+              setShowSuccessMsg(true);
+              setTimeout(myFuncCall, 5000);
+              // window.location = '/advisordash';
             }
             else{
-              alert("Something went wrong, or this client is already registered by other user, try again.")
+              // alert("Something went wrong, or this client is already registered by other user, try again.")
+              setDispMsg("Something went wrong, or this client is already registered by other user, try again.");
+              setShowErrorMsg(true);
+              setShowSuccessMsg(true);
+              
             }
           })
           .then((data) =>{
@@ -70,6 +88,14 @@ export default function AddClients() {
       <div className='container'>
         <form onSubmit={Formik.handleSubmit}>
         <div className='row p-2 text-center'>
+        {showSuccessMsg && <div className='p-4 tex-center'>
+            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
+            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+              <strong>Hello user!</strong> {dispMsg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
+            </div>
+          </div> 
+           }
           <h4>Add a new client</h4>
           {/* </div> */}
           {/* <div className='row'> */}

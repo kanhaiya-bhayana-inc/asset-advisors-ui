@@ -8,8 +8,11 @@ export default function ViewClient() {
   let { vcliID } = useParams();
   const [flag, setFlag] = useState("false");
   let count = 1;
-  const [showMsg,setShowMsg] = useState(false);
-
+  const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [dispMsg,setDispMsg] = useState("");
+  const [showErrorsMsg,setShowErrorMsg] = useState(false);
+  const successBg = 'alert alert-success alert-dismissible fade show';
+  const warningBg = 'alert alert-warning alert-dismissible fade show';
   const st = {
     backgroundColor: "#536dfe",
     color: "white",
@@ -22,7 +25,9 @@ export default function ViewClient() {
   const [amount, setAmount] = useState("0");
   const [dataLength,setDataLength] = useState(0);
 
-    
+  function myFuncCall (){
+    window.location = `/viewclient/${vcliID}`;
+  }
   const callTotalAmount = async () =>{
     let token = localStorage.getItem("tokena");
     let advId = localStorage.getItem("id");
@@ -145,12 +150,19 @@ export default function ViewClient() {
         .then(res => {
           res.json()
           if (res.status === 200){
-            alert("Investment deleted successfully.")
-            window.location = `/viewclient/${vcliID}`;
+            // alert("Investment deleted successfully.")
+            setDispMsg("Investment deleted successfully!")
+              setShowSuccessMsg(true);
+              setTimeout(myFuncCall, 3000);
+            // window.location = `/viewclient/${vcliID}`;
             // navigate('/advisordash')
           }
           else{
-            alert("Something went wrong, try again.")
+            // alert("Something went wrong, try again.")
+            setDispMsg("Something went wrong, try again!")
+              setShowSuccessMsg(true);
+              setShowErrorMsg(true);
+              setTimeout(myFuncCall, 3000);
           }
         })
         .then((data) =>{
@@ -197,11 +209,19 @@ export default function ViewClient() {
         <div className="nav_link text-center col-3 mt-1" style={{ width: "250px", border: "1px solid black", marginLeft: "120px" }}>
           Total Investments: ${amount && amount.slice(0,-3)}
         </div>
+        {showSuccessMsg && <div className='p-4 tex-center'>
+            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
+            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+              <strong>Hello user!</strong> {dispMsg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
+            </div>
+          </div> 
+           }
         <table className="table table-hover">
           <thead >
             <tr style={st}>
               <th scope="col" style={{ color: "white" }}>#</th>
-              <th scope="col" style={{ color: "white" }}>InfoId</th>
+              <th scope="col" style={{ color: "white" }}>Info-Id</th>
               <th scope="col" style={{ color: "white" }}>Inv-Name</th>
               <th scope="col" style={{ color: "white" }}>Inv-Type</th>
               <th scope="col" style={{ color: "white" }}>Status-Active</th>

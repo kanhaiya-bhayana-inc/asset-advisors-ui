@@ -9,6 +9,13 @@ export default function AddInvestment() {
     let ntoken = "Bearer " + token.replaceAll('"', '');
 
   let { aicliID } = useParams();
+  const [email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [dispMsg,setDispMsg] = useState("");
+  const [showErrorsMsg,setShowErrorMsg] = useState(false);
+  const successBg = 'alert alert-success alert-dismissible fade show';
+  const warningBg = 'alert alert-warning alert-dismissible fade show';
 
   const initialValues = {
     investmentName:"",
@@ -18,7 +25,9 @@ export default function AddInvestment() {
     accountID:"",
     active:""
   };
-
+  function myFuncCall (){
+    window.location = `/viewclient/${aicliID}`;
+  }
   const Formik = useFormik({
     initialValues: initialValues,
     validationSchema: signUpSchema,
@@ -41,11 +50,17 @@ export default function AddInvestment() {
           .then(res => {
             res.json()
             if (res.status === 200){
-              alert("Investment created successfully.")
-              window.location = `/viewclient/${aicliID}`;
+              // alert("Investment created successfully.")
+              setDispMsg("Investment created successfully.")
+              setShowSuccessMsg(true);
+              setTimeout(myFuncCall, 5000);
+              
             }
             else{
-              alert("Something went wrong, try again.")
+              // alert("Something went wrong, try again.")
+              setDispMsg("Something went wrong, try again.");
+              setShowErrorMsg(true);
+              setShowSuccessMsg(true);
             }
           })
           .then((data) =>{
@@ -63,6 +78,14 @@ export default function AddInvestment() {
   return (
       <form onSubmit={Formik.handleSubmit}>
     <div className='row'>
+    {showSuccessMsg && <div className='p-4 tex-center'>
+            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
+            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+              <strong>Hello user!</strong> {dispMsg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
+            </div>
+          </div> 
+           }
 
       <h3 className='text-center p-4'>Add Investment</h3>
 

@@ -8,6 +8,17 @@ import { AiOutlineEye } from "react-icons/ai";
 import './ds.css';
 
 export default function DashboardAdv() {
+  const [editShow,setEditShow] = useState(false);
+  const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [dispMsg,setDispMsg] = useState("");
+  const [showErrorsMsg,setShowErrorMsg] = useState(false);
+  const successBg = 'alert alert-success alert-dismissible fade show';
+  const warningBg = 'alert alert-warning alert-dismissible fade show';
+
+
+  function myFuncCall (){
+    window.location = '/advisordash';
+  }
   const navigate = useNavigate();
   const style = {
     background: "white",
@@ -105,12 +116,18 @@ export default function DashboardAdv() {
         .then(res => {
           res.json()
           if (res.status === 200){
-            alert("Client deleted successfully.")
-            window.location = '/advisordash';
+            // alert("Client deleted successfully.")
+            setDispMsg("Client deleted successfully!")
+              setShowSuccessMsg(true);
+              setTimeout(myFuncCall, 3000);
+            // window.location = '/advisordash';
             // navigate('/advisordash')
           }
           else{
-            alert("Something went wrong, try again.")
+            // alert("Something went wrong, try again.")
+            setDispMsg("Something went wrong, try again!")
+              setShowSuccessMsg(true);
+              setShowErrorMsg(true);
           }
         })
         .then((data) =>{
@@ -168,6 +185,14 @@ export default function DashboardAdv() {
         <MdPersonAddAlt1  size={30}  className='adclient' /> Add Clients
       {/* </button> */}
             </Link>
+            {showSuccessMsg && <div className='p-4 tex-center'>
+            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
+            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+              <strong>Hello user!</strong> {dispMsg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
+            </div>
+          </div> 
+           }
       {/* </div> */}
     {/* </div> */}
 

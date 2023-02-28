@@ -67,7 +67,7 @@ export default function MySide() {
           <i className='bi bi-box-arrow-left nav_icon' /><span className="nav_name">SignOut</span>
         </a> */}
         <Link to="/privacypolicy" className="nav_link disabled-link">
-        &copy;<span className="nav_name dshhvr">Copyright, reserved<br></br> by asset advisors</span>
+        <i class="bi bi-c-circle"></i><span className="nav_name dshhvr">Copyright, reserved<br></br> by asset advisors</span>
               </Link>
         </nav>
       </div>

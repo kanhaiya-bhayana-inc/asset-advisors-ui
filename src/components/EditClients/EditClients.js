@@ -22,7 +22,16 @@ export default function EditClients() {
   const [det, setDet] = useState({});
   const [clientsList, setClientsList] = useState([]);
   const [editShow,setEditShow] = useState(false);
+  const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [dispMsg,setDispMsg] = useState("");
+  const [showErrorsMsg,setShowErrorMsg] = useState(false);
+  const successBg = 'alert alert-success alert-dismissible fade show';
+  const warningBg = 'alert alert-warning alert-dismissible fade show';
 
+
+  function myFuncCall (){
+    window.location = `/editclient/${det.userID}`;
+  }
   const clientProfileData = async () => {
     let token = localStorage.getItem("tokena");
     let advId = localStorage.getItem("id");
@@ -96,11 +105,18 @@ export default function EditClients() {
           .then(res => {
             res.json()
             if (res.status === 200){
-              alert("Profile updated successfully.")
-              window.location = `/editclient/${det.userID}`;
+              // alert("Profile updated successfully.")
+
+              setDispMsg("Profile updated successfully!")
+              setShowSuccessMsg(true);
+              setTimeout(myFuncCall, 3000);
+              // window.location = `/editclient/${det.userID}`;
             }
             else{
-              alert("Something went wrong, try again.")
+              // alert("Something went wrong, try again.")
+              setDispMsg("Something went wrong, try again!")
+              setShowSuccessMsg(true);
+              setShowErrorMsg(true);
             }
           })
           .then((data) =>{
@@ -126,6 +142,14 @@ export default function EditClients() {
         <div className='container'>
           <form onSubmit={Formik.handleSubmit}>
             <div className='row p-2'>
+            {showSuccessMsg && <div className='p-4 tex-center'>
+            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
+            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+              <strong>Hello user!</strong> {dispMsg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
+            </div>
+          </div> 
+           }
             <div className='col-5'>
    
               <h5 className='mt-5'>Personal Details</h5>

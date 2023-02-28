@@ -5,7 +5,13 @@ import pic from './team.svg'
 import { useFormik } from 'formik';
 import { signUpSchema } from './Helper.js';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 function Form() {
+  const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [dispMsg,setDispMsg] = useState("");
+  const [showErrorsMsg,setShowErrorMsg] = useState(false);
+  const successBg = 'alert alert-success alert-dismissible fade show';
+  const warningBg = 'alert alert-warning alert-dismissible fade show';
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -39,11 +45,33 @@ function Form() {
           body: JSON.stringify(values)
 
         })
-          .then(res => res.json())
+          .then(res => {
+            if (res.status === 200){
+              setDispMsg("Your account has been created successfully, You will receive an email very soon. Follow the instructions to verify your account!")
+              setShowSuccessMsg(true);
+              setShowErrorMsg(false);
+              return res.text()
+            }else if (res.status === 400){
+              setDispMsg("This avisor is already registered, Please check your details!")
+              setShowSuccessMsg(true);
+              setShowErrorMsg(true);
+              return res.text()
+              
+            }
+            
+            else{
+              setDispMsg("Some error occured while creating your account, Please check the deatils you entered or try again later!");
+              setShowSuccessMsg(true);
+              setShowErrorMsg(true);
+              return res.text()
+
+            }
+          })
           .then((data) =>{
             console.log(data);
-            alert("Advisor registered successfully.")
-            window.location ='/login'
+            // alert("Advisor registered successfully.")
+            // alert(data);
+            // window.location ='/login'
           })
       } catch (error) {
         console.log("Error b->", error);
@@ -53,12 +81,25 @@ function Form() {
   })
   //console.log(Formik.errors);
   //console.log(Formik);
+    const sc = () =>{
+      window.scrollTo(0, 0)
+    }
+ 
   return (
     <div>
     {/* <h1>hey</h1> */}
       <section className='Form my-4 mx-5'>
           <div className='container'>
             <div className='row py-5'>
+            {showSuccessMsg && <div className='p-4 tex-center'>
+            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
+            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+              <strong>Hello user!</strong> {dispMsg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false)}}></button>
+            </div>
+          </div> 
+           }
+           
               <div className='col-lg-6 '>
                 <img src={pic} 
                 className='img-fluid office' alt='team'/>
@@ -130,7 +171,7 @@ function Form() {
                   </div>
                   <div className='form-row'>
                     <div className='col-lg-7'>
-                    <button type="submit" className="btn btn-primary mt-3 mb-3 glow-on-hover">Sign Up</button>
+                    <button type="submit" className="btn btn-primary mt-3 mb-3 glow-on-hover" onClick={sc}>Sign Up</button>
                     
                     </div>
                   </div>
