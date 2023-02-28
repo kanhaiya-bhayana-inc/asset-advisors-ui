@@ -24,6 +24,7 @@ import EditInvestment from './components/EditInvestment/EditInvestment';
 import AddInvestment from './components/AddInvestment/AddInvestment';
 import ForgotPass from './components/ForgotPass/ForgotPass'
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
+import Demotest from './components/Demotest/demotest';
 
 
 
@@ -63,6 +64,7 @@ function App() {
           <Route path="/accverify" element={<AdvAccVerification />} />
           <Route path="/changepass" element={<ChangePass/>} />
           <Route path="/forgotpass" element={<ForgotPass/>} />
+          <Route path="/demotest" element={<Demotest/>} />
         </Route>
     </Routes>
    </Router >

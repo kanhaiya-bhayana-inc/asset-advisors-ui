@@ -31,8 +31,15 @@ export default function MySide() {
         </div>
         <div className="header_img">
           {/* <button onClick={logout}> */}
+          {/* <i class="bi bi-box-arrow-right" size={30}></i> */}
           <IoMdLogOut size={28} onClick={logout} className='mt-1' />
           {/* </button> */}
+          {/* <select>
+            <option>Logout</option>
+            <option></option>
+            <option>Logout <IoMdLogOut size={12} onClick={logout} className='mt-1' /></option>
+            <option></option>
+          </select> */}
         </div>
       </header>
       <div className={`l-navbar${showNav ? ' show' : ''}`}>

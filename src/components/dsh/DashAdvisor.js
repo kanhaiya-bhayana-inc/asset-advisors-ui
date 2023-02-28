@@ -92,6 +92,7 @@ export default function DashboardAdv() {
 
   useEffect(() => {
     if (flag != "true") { DataCall(); }
+    console.log("coco");
     myFunc();
   }, [flag])
 
