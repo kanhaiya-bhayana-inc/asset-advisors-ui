@@ -80,7 +80,7 @@ export default function ForgotPass() {
         <>
             <div className='d-flex justify-content-center' style={style}>
             
-                <form onSubmit={Formik.handleSubmit}> <h2>Enter Email to Reset your password.</h2>
+                <form onSubmit={Formik.handleSubmit}> <h2>Enter an email to reset your password.</h2>
                     <div className='form-row'>
                     {showSuccessMsg && <div className='p-4 tex-center'>
             <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
@@ -99,7 +99,7 @@ export default function ForgotPass() {
 
                     <div className='form-row'>
                         <div className='col-lg-3'>
-                            <button type="submit" onClick={accVerify} className="btn btn-dark mt-3 mb-4">Update</button>
+                            <button type="submit" onClick={accVerify} className="btn btn-dark mt-3 mb-4">Submit</button>
                         </div>
                     </div>
 

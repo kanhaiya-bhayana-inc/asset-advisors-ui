@@ -104,18 +104,18 @@ export default function AddInvestment() {
             <option value="T-3">T-3</option>
             <option value="T-4">T-4</option>
           </select>
-          {Formik.errors.investmentTypeName && Formik.touched.investmentTypeName ? (<p className='Form-error'> {Formik.errors.investmentTypeName}</p>) : null}
+          {Formik.errors.investmentTypeName && Formik.touched.investmentTypeName ? (<p className='Form-error drp'> {Formik.errors.investmentTypeName}</p>) : null}
         </div>
       </div>
 
       <div className='col-4 mt-3'>
-      <div className="dropdown p-4" style={{ width: "auto" }}>
+      <div className="dropdown p-4 " style={{ width: "auto" }}>
           <select className="form-select" name='active' value={Formik.values.active} onChange={Formik.handleChange}  aria-label="Default select example">
             <option value="selected">Active</option>
             <option value="1">True</option>
             <option value="0">False</option>
           </select>
-          {Formik.errors.active && Formik.touched.active ? (<p className='Form-error'> {Formik.errors.active}</p>) : null}
+          {Formik.errors.active && Formik.touched.active ? (<p className='Form-error drp'> {Formik.errors.active}</p>) : null}
         </div>
       </div>
       <hr />

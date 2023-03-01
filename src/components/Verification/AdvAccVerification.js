@@ -56,7 +56,7 @@ export default function AdvAccVerification() {
                 return res.text()
               }
               else if (res.status === 400){
-                setDispMsg("Token field is required!")
+                setDispMsg("Invalid token, please enter the valid token!")
               setShowSuccessMsg(true);
               setShowErrorMsg(true);
                 // alert("Token field is required")
@@ -90,7 +90,11 @@ export default function AdvAccVerification() {
     }
     return (
         <div className='d-flex justify-content-center' style={style}>
-          {showSuccessMsg && <div className='p-4 tex-center'>
+          
+            <form>
+                <h2>Enter You Verification token</h2>
+                <div className='form-row'>
+                {showSuccessMsg && <div className='p-4 tex-center'>
             <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
             {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
               <strong>Hello user!</strong> {dispMsg}
@@ -98,9 +102,6 @@ export default function AdvAccVerification() {
             </div>
           </div> 
            }
-            <form>
-                <h2>Enter You Verification token</h2>
-                <div className='form-row'>
                     <div className='col-lg-10'>
                         <input type="password" required name="token" placeholder='******' onChange={(e) => setToken(e.target.value)} value={token} className='form-control shadow-none my-3' />
 

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MdPersonAddAlt1 } from 'react-icons/md';
-import { BiChevronRight } from "react-icons/bi";
+// import { BiChevronRight } from "react-icons/bi";
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import './ds.css';
 
 export default function DashboardAdv() {
-  const [editShow,setEditShow] = useState(false);
+  // const [editShow,setEditShow] = useState(false);
   const [showSuccessMsg,setShowSuccessMsg] = useState(false);
   const [dispMsg,setDispMsg] = useState("");
   const [showErrorsMsg,setShowErrorMsg] = useState(false);
@@ -19,28 +19,51 @@ export default function DashboardAdv() {
   function myFuncCall (){
     window.location = '/advisordash';
   }
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const style = {
     background: "white",
     borderRadius: "15px",
     marginRight:"10px"
   }
-  const addClientBtn = {
-    width:"200px",
-    backgroundColor:"##0000ff"
+  // const addClientBtn = {
+  //   width:"200px",
+  //   backgroundColor:"##0000ff"
     
-  }
+  // }
   const st = {
     backgroundColor:"#536dfe",
     color:"white",
   }
 
-  const [flag, setFlag] = useState("false");
+  // const [flag, setFlag] = useState("false");
   let condit = localStorage.getItem("id")
   const [det, setDet] = useState({});
   const [clientsList, setClientsList] = useState([]);
+  const [dataLength,setDataLength] = useState(0);
   let count = 1;
 
+  const myFunc = async () => {
+    let token = localStorage.getItem("tokena");
+    let ntoken = "Bearer " + token.replaceAll('"', '');
+    let id = localStorage.getItem("id");
+    console.log(id);
+    await fetch(`https://localhost:7214/api/User/get-all-clients/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
+        "Authorization": ntoken,
+        "Access-Control-Max-Age": 86400
+      }
+    })
+      .then(async res => await res.json())
+      .then((data) => {
+        setClientsList(data);
+        setDataLength(Object.keys(data).length);
+        console.log("called");
+      })
+  }
   
   const DataCall = async () => {
     let token = localStorage.getItem("tokena");
@@ -63,38 +86,21 @@ export default function DashboardAdv() {
         localStorage.setItem("id", data.userID);
         localStorage.setItem("advName", data.sortName);
         setDet(data);
-        setFlag("true");
-        console.log(flag);
+        myFunc();
+        // setFlag("true");
+        
       })
   };
 
-  const myFunc = async () => {
-    let token = localStorage.getItem("tokena");
-    let ntoken = "Bearer " + token.replaceAll('"', '');
-    let id = localStorage.getItem("id");
-    console.log(id);
-    await fetch(`https://localhost:7214/api/User/get-all-clients/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json',
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
-        "Authorization": ntoken,
-        "Access-Control-Max-Age": 86400
-      }
-    })
-      .then(async res => await res.json())
-      .then((data) => {
-        setClientsList(data);
-      })
-  }
+ 
 
-
+let ii = 1;
   useEffect(() => {
-    if (flag != "true") { DataCall(); }
-    console.log("coco");
-    myFunc();
-  }, [flag])
+    // if (flag != "true")  
+    console.log("coco", ii++);
+    DataCall(); 
+    // myFunc();
+  }, [])
 
   const delClient = (delCID) =>{
     let token = localStorage.getItem("tokena");
@@ -147,7 +153,7 @@ export default function DashboardAdv() {
     window.location = '/';
   }
 
-  const cli = clientsList.map((e, ind) => {
+  const cli = clientsList?.map((e, ind) => {
     return (
      <>
         {/* <div key={ind} className='form-row text-center'>
@@ -188,7 +194,7 @@ export default function DashboardAdv() {
             </Link>
             {showSuccessMsg && <div className='p-4 tex-center'>
             <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
-            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+            {showErrorsMsg ? <i className="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
               <strong>Hello user!</strong> {dispMsg}
               <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
             </div>
@@ -245,9 +251,19 @@ export default function DashboardAdv() {
             <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td>
           </tr> */}
          {cli}
+        
 
         </tbody>
+        
       </table>
+      {dataLength == 0 ? <div className='p-4 tex-center'>
+            <div className="alert alert-warning alert-dismissible fade show" style={{width:"auto"}} role="alert">
+              
+              <strong>Hello user!</strong> You have not created any client yet!
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div> 
+           :""}
     </div>
     </>
   )
