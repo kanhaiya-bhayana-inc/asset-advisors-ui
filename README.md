@@ -68,3 +68,21 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Snapshots
+
+![](WorkFLow-Snapshots/Home_1.png)
+![](WorkFLow-Snapshots/Home_4.png)
+![](WorkFLow-Snapshots/AccountVerification.png)
+![](WorkFLow-Snapshots/Home_2.png)
+![](WorkFLow-Snapshots/Home_3.png)
+![](WorkFLow-Snapshots/ForgotPassword.png)
+![](WorkFLow-Snapshots/ChangePassword.png)
+![](WorkFLow-Snapshots/Dashboard.png)
+![](WorkFLow-Snapshots/d2.png)
+![](WorkFLow-Snapshots/addClient.png)
+![](WorkFLow-Snapshots/editClient.png)
+![](WorkFLow-Snapshots/updateClient.png)
+![](WorkFLow-Snapshots/investments.png)
+![](WorkFLow-Snapshots/addInvestments.png)
+![](WorkFLow-Snapshots/getallinvestments.png)
