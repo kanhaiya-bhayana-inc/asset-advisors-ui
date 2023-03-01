@@ -2,7 +2,9 @@ import React from 'react'
 
 function Footer() {
     let footerStyling={
-        height:"9vh"
+        height:"9vh",
+        backgroundColor:"transparent"
+        
     }
     let styLing = {
         padding:"20px",

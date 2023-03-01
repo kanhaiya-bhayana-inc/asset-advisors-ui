@@ -41,3 +41,10 @@
 /* .hmbtn{
     color: #536dfe;
 } */
+
+
+@media screen and (max-width: 990px) {
+    .smDMT {
+      margin-top: 200px !important;
+    }
+}
