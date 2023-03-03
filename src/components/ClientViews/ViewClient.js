@@ -4,6 +4,9 @@ import { Link, useParams } from 'react-router-dom'
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 
+import swal from 'sweetalert';
+
+
 export default function ViewClient() {
   let { vcliID } = useParams();
   const [flag, setFlag] = useState("false");
@@ -151,9 +154,14 @@ export default function ViewClient() {
           res.json()
           if (res.status === 200){
             // alert("Investment deleted successfully.")
-            setDispMsg("Investment deleted successfully!")
-              setShowSuccessMsg(true);
-              setTimeout(myFuncCall, 2000);
+            // setDispMsg("Investment deleted successfully!")
+              // setShowSuccessMsg(true);
+              // setTimeout(myFuncCall, 2000);
+              swal("Investment deleted successfully!", {
+                icon: "success",
+              }).then(()=>{
+                myFuncCall();
+              });
             // window.location = `/viewclient/${vcliID}`;
             // navigate('/advisordash')
           }
@@ -180,6 +188,22 @@ export default function ViewClient() {
     }
   }
 
+  function showDelDi(iid,sid){
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to see that investment again!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        // delClient(did)
+        delInvestment(iid,sid);
+        // myFuncCall();
+      }
+    });
+  }
   return (
     <>
       <div className='row' style={{marginRight:"10px"}}>
@@ -212,7 +236,7 @@ export default function ViewClient() {
         {showSuccessMsg && <div className='p-4 tex-center'>
             <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
             {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
-              <strong>Hello user!</strong> {dispMsg}
+              <strong></strong> {dispMsg}
               <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
             </div>
           </div> 
@@ -241,7 +265,7 @@ export default function ViewClient() {
                     <td>{e.investmentTypeName}</td>
                     <td>{e.active}</td>
                     <td>{e.investmentAmount}</td>
-                    <td><Link to={`/editinvestment/${e.inofID}/${e.strategyID}/${vcliID}`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))}  /></Link> &nbsp; <AiOutlineDelete size={20} onClick={(ev)=>delInvestment(e.inofID,e.strategyID)} /></td>
+                    <td><Link to={`/editinvestment/${e.inofID}/${e.strategyID}/${vcliID}`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))}  /></Link> &nbsp; <AiOutlineDelete size={20} onClick={(ev)=>showDelDi(e.inofID,e.strategyID)} /></td>
                   </tr>
                 </>
               );
@@ -254,7 +278,7 @@ export default function ViewClient() {
             {dataLength == 0 ? <div className='p-4 tex-center'>
             <div className="alert alert-warning alert-dismissible fade show" style={{width:"auto"}} role="alert">
               
-              <strong>Hello user!</strong> There is no investments found for this client.
+              We couldn't found any investments for this client.
               <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           </div> 

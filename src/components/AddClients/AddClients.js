@@ -91,7 +91,7 @@ export default function AddClients() {
         {showSuccessMsg && <div className='p-4 tex-center'>
             <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
             {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
-              <strong>Hello user!</strong> {dispMsg}
+              {dispMsg}
               <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
             </div>
           </div> 
@@ -133,14 +133,14 @@ export default function AddClients() {
             {Formik.errors.city && Formik.touched.city ? (<p className='Form-error'> {Formik.errors.city}</p>) : null}
           </div>
           <div className='col-4'>
-            <input type="password" name="password" placeholder='Password' className='form-control shadow-none my-3' value={Formik.values.password} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
-            {Formik.errors.password && Formik.touched.password ? (<p className='Form-error'> {Formik.errors.password}</p>) : null}
+            {/* <input type="password" name="password" placeholder='Password' className='form-control shadow-none my-3' value={Formik.values.password} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
+            {Formik.errors.password && Formik.touched.password ? (<p className='Form-error'> {Formik.errors.password}</p>) : null} */}
           </div>
           <div className='col-4'>
-            <input type="password" name="confirmpassword" placeholder='Confirm password' className='form-control shadow-none my-3' value={Formik.values.confirmpassword} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
-            {Formik.errors.confirmpassword && Formik.touched.confirmpassword ? (<p className='Form-error'> {Formik.errors.confirmpassword}</p>) : null}
+            {/* <input type="password" name="confirmpassword" placeholder='Confirm password' className='form-control shadow-none my-3' value={Formik.values.confirmpassword} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
+            {Formik.errors.confirmpassword && Formik.touched.confirmpassword ? (<p className='Form-error'> {Formik.errors.confirmpassword}</p>) : null} */}
           </div>
-          <div className='col-2'>
+          <div className='col-2 text-center' style={{marginLeft:"100px"}}>
             <button type="submit" className="btn btn-primary mt-3 mb-3 glow-on-hover">Add</button>
 
           </div>

@@ -6,7 +6,29 @@ import { useFormik } from 'formik';
 import { signUpSchema } from './Helper.js';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+// import { SMTPClient } from 'emailjs';
+
 function Form() {
+  // const client = new SMTPClient({
+  //   user: 'shivamsharmaincedo@gmail.com',
+  //   password: 'shiv@123',
+  //   host: 'smtp.shivamsharmaincedo@gmail.com',
+  //   ssl: true,
+  // });
+  // function sendMail(){
+  // client.send(
+  //   {
+  //     text: 'i hope this works',
+  //     from: client.user,
+  //     to: 'bkanhaiya.bhayana@gmail.com',
+  //     cc: '',
+  //     subject: 'testing emailjs',
+  //   },
+  //   (err, message) => {
+  //     console.log(err || message);
+  //   }
+  // );
+  // }
   const [showSuccessMsg,setShowSuccessMsg] = useState(false);
   const [dispMsg,setDispMsg] = useState("");
   const [showErrorsMsg,setShowErrorMsg] = useState(false);
@@ -50,6 +72,7 @@ function Form() {
               setDispMsg("Your account has been created successfully, You will receive an email very soon. Follow the instructions to verify your account!")
               setShowSuccessMsg(true);
               setShowErrorMsg(false);
+              // sendMail();
               return res.text()
             }else if (res.status === 400){
               setDispMsg("This avisor is already registered, Please check your details!")
@@ -94,7 +117,7 @@ function Form() {
             {showSuccessMsg && <div className='p-4 tex-center'>
             <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
             {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
-              <strong>Hello user!</strong> {dispMsg}
+              <strong></strong> {dispMsg}
               <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false)}}></button>
             </div>
           </div> 

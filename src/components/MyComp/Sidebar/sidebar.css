@@ -113,6 +113,12 @@
   border-radius: 12px;
 }
 
+.cstm:hover{
+  color: white !important;
+  background-color: #695CFE !important;
+  border-radius: 12px !important;
+}
+
 .nav_icon {
   font-size: 1.25rem
 }
@@ -180,6 +186,7 @@
 .dshhvr:hover{
   color:white;
 }
+
 .dshlogo{
   width: 20px;
   /* height: 100px; */

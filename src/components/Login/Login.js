@@ -82,7 +82,7 @@ function Login() {
           {showSuccessMsg && <div className='p-4 tex-center'>
             <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
             {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
-              <strong>Hello user!</strong> {dispMsg}
+              <strong></strong> {dispMsg}
               <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false)}}></button>
             </div>
           </div> 
