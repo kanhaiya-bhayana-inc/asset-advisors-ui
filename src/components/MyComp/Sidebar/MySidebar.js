@@ -32,7 +32,7 @@ export default function MySide() {
         <div className="header_img">
           {/* <button onClick={logout}> */}
           {/* <i class="bi bi-box-arrow-right" size={30}></i> */}
-          <IoMdLogOut size={28} onClick={logout} className='mt-1' />
+          {/* <IoMdLogOut size={28} onClick={logout} className='mt-1' /> */}
           {/* </button> */}
           {/* <select>
             <option>Logout</option>
@@ -70,12 +70,12 @@ export default function MySide() {
             </a> */}
             </div>
           </div>
-          {/* <a href="https://cluemediator.com" target="_blank" className="nav_link">
-          <i className='bi bi-box-arrow-left nav_icon' /><span className="nav_name">SignOut</span>
-        </a> */}
-        <Link to="/privacypolicy" className="nav_link disabled-link">
+          <button  className="nav_link" onClick={logout}> 
+          <i className='bi bi-box-arrow-left nav_icon' /><span className="nav_name dshhvr">SignOut</span>
+        </button>
+        {/* <Link to="/privacypolicy" className="nav_link disabled-link">
         <i class="bi bi-c-circle"></i><span className="nav_name dshhvr">Copyright, reserved<br></br> by asset advisors</span>
-              </Link>
+              </Link> */}
         </nav>
       </div>
       <div className="pt-4 pb-4">

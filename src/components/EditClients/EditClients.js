@@ -231,7 +231,7 @@ export default function EditClients() {
               <div className='col-2 mt-2'>
                 <br></br>
 
-                <button className='btn ' type='submit'> Update
+                <button className='btn btn-primary' type='submit'> Update
 
                   {/* <MdOutlinePublishedWithChanges size={20} /> Update */}
                 </button>

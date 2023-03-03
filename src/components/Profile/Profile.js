@@ -107,10 +107,12 @@ export default function Profile() {
           .then(res => {
             res.json()
             if (res.status === 200){
+              let srtName = values.lastName + ", " +  values.firstName;
               // alert("Profile updated successfully.")
               setDispMsg("Profile updated successfully!")
               setShowSuccessMsg(true);
-              setTimeout(myFuncCall, 3000);
+              setTimeout(myFuncCall, 1000);
+              localStorage.setItem("advName",srtName);
               // window.location = '/profile';
             }
             else{
@@ -234,7 +236,7 @@ export default function Profile() {
               <div className='col-2 mt-2'>
                 <br></br>
 
-                <button className='btn ' type='submit'> Update
+                <button className='btn btn-primary ' type='submit'> Update
 
                   {/* <MdOutlinePublishedWithChanges size={20} /> Update */}
                 </button>

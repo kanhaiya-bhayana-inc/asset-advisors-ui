@@ -153,7 +153,7 @@ export default function ViewClient() {
             // alert("Investment deleted successfully.")
             setDispMsg("Investment deleted successfully!")
               setShowSuccessMsg(true);
-              setTimeout(myFuncCall, 3000);
+              setTimeout(myFuncCall, 2000);
             // window.location = `/viewclient/${vcliID}`;
             // navigate('/advisordash')
           }
@@ -206,9 +206,9 @@ export default function ViewClient() {
           <h3 className='text-center p-4' style={{ marginTop: "-20px" }}>Investment Details</h3>
         </div>
 
-        <div className="nav_link text-center col-3 mt-1" style={{ width: "250px", border: "1px solid black", marginLeft: "120px" }}>
+       {dataLength != 0 ? <div className="nav_link text-center col-3 mt-1" style={{ width: "250px", border: "1px solid black", marginLeft: "120px" }}>
           Total Investments: ${amount && amount.slice(0,-3)}
-        </div>
+        </div> :""}
         {showSuccessMsg && <div className='p-4 tex-center'>
             <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
             {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;

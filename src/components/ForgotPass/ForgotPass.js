@@ -12,7 +12,7 @@ export default function ForgotPass() {
 
 
   function myFuncCall (){
-    window.location = '/login';
+    // window.location = '/login';
   }
 
     const style = {
@@ -82,7 +82,7 @@ export default function ForgotPass() {
             
                 <form onSubmit={Formik.handleSubmit}> <h2>Enter an email to reset your password.</h2>
                     <div className='form-row'>
-                    {showSuccessMsg && <div className='p-4 tex-center'>
+                    {showSuccessMsg && <div className='p-4 tex-center' >
             <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
             {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
               <strong>Hello user!</strong> {dispMsg}

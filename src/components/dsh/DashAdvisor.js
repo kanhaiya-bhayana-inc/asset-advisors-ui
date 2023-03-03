@@ -6,7 +6,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import './ds.css';
-
+import swal from 'sweetalert';
 export default function DashboardAdv() {
   // const [editShow,setEditShow] = useState(false);
   const [showSuccessMsg,setShowSuccessMsg] = useState(false);
@@ -124,17 +124,31 @@ let ii = 1;
           res.json()
           if (res.status === 200){
             // alert("Client deleted successfully.")
-            setDispMsg("Client deleted successfully!")
-              setShowSuccessMsg(true);
-              setTimeout(myFuncCall, 3000);
+            // swal("Good job!", "Client deleted successfully!", "success").then(()=>{
+            //   myFuncCall();
+            // })
+            swal("Client has been deleted!", {
+              icon: "success",
+            }).then(()=>{
+              myFuncCall();
+            });
+
+            
+            // setDispMsg("Client deleted successfully!")
+              // setShowSuccessMsg(true);
+              // setTimeout(myFuncCall, 3000);
             // window.location = '/advisordash';
             // navigate('/advisordash')
           }
           else{
             // alert("Something went wrong, try again.")
-            setDispMsg("Something went wrong, try again!")
-              setShowSuccessMsg(true);
-              setShowErrorMsg(true);
+            // setDispMsg("Something went wrong, try again!")
+            //   setShowSuccessMsg(true);
+            //   setShowErrorMsg(true);
+            swal("Something went wrong, try again!", {
+              icon: "error",
+            });
+            
           }
         })
         .then((data) =>{
@@ -174,22 +188,39 @@ let ii = 1;
         
         <td><Link to={`/editclient/${e.userID}`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link></td>
         <td><Link to={`/viewclient/${e.userID}`} ><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></Link></td>
-            <td><AiOutlineDelete size={20} onClick={(ev)=>{delClient(e.userID)}}  /></td>
+            <td><AiOutlineDelete size={20} onClick={(ev)=>{showDelDi(e.userID)}}  /></td>
             {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
       </tr>
      </>
         );
   })
 
+  function showDelDi(did){
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to see the client information!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        delClient(did)
+        // myFuncCall();
+      } else {
+        swal("Your client is not deleted!");
+      }
+    });
+  }
   return (
     <>
     {/* <div className='row p-2' style={{backgroundColor:"#dbe2e2", border:"none"}}> */}
       {/* <div className='col'> */}
       {/* <div style={addClientBtn} className='d-flex flex-row-reverse'><b>&nbsp;Add Clients</b> */}
-      <Link to="/addClient" className="nav_link btndsh" style={{width:"200px",border:"1px solid black"}}>
+      <Link to="/addClient" className="nav_link btndsh mt-3 mb-3" style={{width:"185px",border:"1px solid black"}}>
               
       {/* <button  className='btn mb-2 btn-lg' style={addClientBtn}> */}
-        <MdPersonAddAlt1  size={30}  className='adclient' /> Add Clients
+        <MdPersonAddAlt1  size={20}  className='adclient' /> Add Clients
       {/* </button> */}
             </Link>
             {showSuccessMsg && <div className='p-4 tex-center'>
