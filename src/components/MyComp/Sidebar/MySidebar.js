@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './sidebar.css';
@@ -43,7 +43,41 @@ export default function MySide() {
     });
 
   }
+  const [det, setDet] = useState({});
 
+
+  const DataCall = async () => {
+    let token = localStorage.getItem("tokena");
+    let ntoken = "Bearer " + token.replaceAll('"', '');
+    
+
+
+    await fetch(`https://localhost:7214/api/User/get-user-auth`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
+        "Authorization": ntoken,
+        "Access-Control-Max-Age": 86400
+      }
+    })
+      .then(async res => await res.json())
+      .then((data) => {
+        // localStorage.setItem("id", data.userID);
+        // localStorage.setItem("advName", data.sortName);
+        setDet(data);
+        // setFlag("true");
+        
+      })
+  };
+  // let ii = 1;
+  useEffect(() => {
+    // if (flag != "true")  
+    // console.log("coco", ii++);
+    DataCall(); 
+    // myFunc();
+  }, [])
   const callChangPass = async() =>{
     let token = localStorage.getItem("tokena");
     let ntoken = "Bearer " + token.replaceAll('"', '');
@@ -180,7 +214,7 @@ export default function MySide() {
         </nav>
       </div>
       <div className="pt-4 pb-4">
-        <h4>@{dispName}'s Dashboard</h4>
+        <h4>@{det.sortName}'s Dashboard</h4>
         {/* <DashboardAdv/> */}
        {showPass ? <div style={{width:"70%"}}>
           <div className="alert alert-warning alert-dismissible fade show" style={{width:"auto"}} role="alert">
