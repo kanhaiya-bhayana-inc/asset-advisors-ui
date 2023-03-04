@@ -10,6 +10,6 @@ export const signUpSchema=Yup.object({
     address:Yup.string().min(2).max(25).required("Please enter your address"),
     state:Yup.string().min(2).max(25).required("Please enter your state"),
     city:Yup.string().min(2).max(25).required("Please enter your City"),
-    // password:Yup.string().max(15).required("Please enter your password"),
-    // confirmpassword:Yup.string().required("Please enter the password again to confirm").oneOf([Yup.ref("password"),null],"Password must match")
+    password:Yup.string().max(15).required("Please enter your password"),
+    confirmpassword:Yup.string().required("Please enter the password again to confirm").oneOf([Yup.ref("password"),null],"Password must match")
 });

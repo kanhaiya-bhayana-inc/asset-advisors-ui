@@ -160,9 +160,9 @@ export default function MySide() {
               <Link to="/advisordash" className="nav_link">
                 <SiGnuprivacyguard /><span className="nav_name dshhvr" onClick={chanPass}>Change Password</span>
               </Link>
-              <Link to="/privacypolicy" className="nav_link">
+              {/* <Link to="/privacypolicy" className="nav_link">
                 <MdOutlinePrivacyTip /><span className="nav_name dshhvr">Privacy Policy</span>
-              </Link>
+              </Link> */}
               {/* <a href="/" target="_blank" className="nav_link">
               <i className='bi bi-person-check nav_icon' /><span className="nav_name">Analytics</span>
             </a> */}

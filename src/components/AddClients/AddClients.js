@@ -29,8 +29,8 @@ export default function AddClients() {
     address: "",
     state: "",
     city: "",
-    password: "",
-    confirmpassword: ""
+    password: "string",
+    confirmpassword: "string"
   }
   function myFuncCall (){
     window.location = '/advisordash';
