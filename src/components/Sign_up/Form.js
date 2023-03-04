@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import { signUpSchema } from './Helper.js';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 // import { SMTPClient } from 'emailjs';
 
 function Form() {
@@ -15,6 +16,23 @@ function Form() {
   //   host: 'smtp.shivamsharmaincedo@gmail.com',
   //   ssl: true,
   // });
+  var templateParams = {
+    notes: 'You have successfully created your account, Use the token you have recived on your mail to verify your account.',
+    to_name: '',
+    // to_name:"",
+    message:"",
+    to_email:"bkanhaiya.bhayana@gmail.com"
+};
+  const sendEmail =() =>{
+    emailjs.send('service_e0rgs4f', 'template_4e0cj9r', templateParams,'Pt9HoMrwEOtiaXuMI')
+    .then(function(response) {
+       console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+       console.log('FAILED...', error);
+    });
+
+  }
+
   // function sendMail(){
   // client.send(
   //   {
@@ -29,6 +47,8 @@ function Form() {
   //   }
   // );
   // }
+
+  
   const [showSuccessMsg,setShowSuccessMsg] = useState(false);
   const [dispMsg,setDispMsg] = useState("");
   const [showErrorsMsg,setShowErrorMsg] = useState(false);
@@ -68,10 +88,16 @@ function Form() {
 
         })
           .then(res => {
+            // res.json()
             if (res.status === 200){
               setDispMsg("Your account has been created successfully, You will receive an email very soon. Follow the instructions to verify your account!")
               setShowSuccessMsg(true);
+
+              // console.log(res.body);
+             
+              
               setShowErrorMsg(false);
+              // alert(window.location = '/accverify');
               // sendMail();
               return res.text()
             }else if (res.status === 400){
@@ -87,11 +113,18 @@ function Form() {
               setShowSuccessMsg(true);
               setShowErrorMsg(true);
               return res.text()
-
+              
             }
           })
           .then((data) =>{
-            console.log(data);
+            console.log(JSON.parse(data).verificationToken);
+            let m = JSON.parse(data).verificationToken;
+            let sn = JSON.parse(data).sortName;
+            if(m){
+              templateParams.message = m;
+              templateParams.to_name = sn;
+              sendEmail();
+            }
             // alert("Advisor registered successfully.")
             // alert(data);
             // window.location ='/login'
