@@ -8,6 +8,8 @@ import { TiTick } from 'react-icons/ti';
 import { MdOutlinePrivacyTip } from 'react-icons/md';
 import pic from '../Sidebar/favicon-32x32.png'
 import swal from 'sweetalert';
+import emailjs from '@emailjs/browser';
+
 
 
 // import DashboardAdv from '../DashboardAdvisor/DashAdvisor';
@@ -16,6 +18,63 @@ import { Link, Outlet } from 'react-router-dom';
 
 export default function MySide() {
   const dispName = localStorage.getItem("advName");
+
+  var templateParams = {
+    notes: 'We got your request for changing the password, Please follow below steps to change your password:\n 1. You have received a verification token on this mail, use that token to change your password. \n 2. You can only change your password in next 20 minutes after that your token will be expired. \n 3. Use token and enter your new password then confirm new password and your password will be changed.',
+    to_name: dispName,
+    // to_name:"",
+    message:"",
+    to_email:"bkanhaiya.bhayana@gmail.com"
+};
+  const sendEmail =() =>{
+    emailjs.send('service_e0rgs4f', 'template_yxdwaeh', templateParams,'Pt9HoMrwEOtiaXuMI')
+    .then(function(response) {
+      if (response.status === 200){
+        swal("You will receive an email very soon, Follow the instructions in the email to change your password!",{
+          icon:"success"
+        });
+      }
+       console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+      swal("Something went wrong, try again!",{
+        icon:"error"
+      });
+       console.log('FAILED...', error);
+    });
+
+  }
+
+  const callChangPass = async() =>{
+    let token = localStorage.getItem("tokena");
+    let ntoken = "Bearer " + token.replaceAll('"', '');
+    let id = localStorage.getItem("id");
+    console.log(id);
+    await fetch(`https://localhost:7214/api/User/change-password`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
+        "Authorization": ntoken,
+        "Access-Control-Max-Age": 86400
+      }
+    })
+      .then(res =>{
+        // res.json()
+        // console.log(res);
+        return res.text();
+      })
+      .then((data) => {
+        // let d = JSON.parse(data)
+        if (data){
+          templateParams.message = data;
+          sendEmail();
+        }
+        
+        // console.log(data); 
+      })
+  }
+  
   const logout = () => {
     localStorage.setItem("tokena", "");
     localStorage.setItem("id", "");
@@ -48,9 +107,14 @@ export default function MySide() {
     })
     .then((chnagePassword) => {
       if (chnagePassword) {
-        swal("You will receive an email very soon. Follow the instructions to change your password",{
-          icon:"success"
-        });
+        callChangPass();
+         
+        
+        // else{
+        //   swal("Something went wrong, try again!",{
+        //     icon:"error"
+        //   });
+        // }
         // myFuncCall();
       }
     });
