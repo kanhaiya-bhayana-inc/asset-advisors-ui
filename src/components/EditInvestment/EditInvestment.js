@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 export default function EditInvestment() {
   const [editShow, setEditShow] = useState(false);
   const [det, setDet] = useState({});
-  let { infoID, strtID, vcliID,advuID } = useParams();
+  let { infoID, strtID, vcliID } = useParams();
   const [showSuccessMsg,setShowSuccessMsg] = useState(false);
   const [dispMsg,setDispMsg] = useState("");
   const [showErrorsMsg,setShowErrorMsg] = useState(false);
@@ -29,9 +29,7 @@ export default function EditInvestment() {
   }
   const singleInvestmentData = async () => {
     let token = localStorage.getItem("tokena");
-    let advId = localStorage.getItem("id");
     let ntoken = "Bearer " + token.replaceAll('"', '');
-    // const [advEdit, setAdvEdit] = useState("false");
 
 
 

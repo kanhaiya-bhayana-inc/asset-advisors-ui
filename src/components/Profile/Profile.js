@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik';
-// import { useFormik } from 'formik';
 import { signUpSchema } from '../schemas/Helper';
-import { Link } from 'react-router-dom';
-import style from '../Sign_up/Form.module.css'
-import { MdOutlinePublishedWithChanges } from "react-icons/md";
-import { AiOutlineEdit } from "react-icons/ai";
 import {AiOutlineCloseCircle} from 'react-icons/ai'
 
 
@@ -24,16 +19,11 @@ export default function Profile() {
   }
   let token = localStorage.getItem("tokena");
   let ntoken = "Bearer " + token.replaceAll('"', '');
-  let url = 'https://localhost:7214/api/User/Get-Client-by/121313';
-  const [flag, setFlag] = useState("false");
-  let condit = localStorage.getItem("id")
   const [det, setDet] = useState({});
-  const [clientsList, setClientsList] = useState([]);
   const [editShow,setEditShow] = useState(false);
 
   const profileData = async () => {
     let token = localStorage.getItem("tokena");
-    let advId = localStorage.getItem("id");
     let ntoken = "Bearer " + token.replaceAll('"', '');
 
     // const [advEdit, setAdvEdit] = useState("false");
@@ -60,12 +50,8 @@ export default function Profile() {
         
         // console.log("Mydata->", det);
         // console.log("Mydata2->", initialValues);
-        setFlag("true");
         // console.log(flag);
       })
-  }
-  const myFunc = async () => {
-    setFlag("false");
   }
 
   useEffect(() => {
@@ -73,7 +59,6 @@ export default function Profile() {
     profileData();
     // myFunc();
   },[])
-  const [firstName, setFirstName] = useState("");
   const [initialValues,setInitialValues] = useState({
     firstName: "",
     lastName: "",
@@ -135,9 +120,6 @@ export default function Profile() {
       action.resetForm();
     }
   })
-  const myHa = () =>{
-    console.log("djldsfjsl");
-  }
   // const [tempFlag,setTempFlag] = useState(false);
   // console.log("TestCase->",Formik.values);
   return (

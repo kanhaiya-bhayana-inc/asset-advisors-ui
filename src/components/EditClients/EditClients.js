@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import {useParams} from 'react-router-dom'
 import { useFormik } from 'formik';
-// import { useFormik } from 'formik';
 import { signUpSchema } from '../schemas/Helper';
-import { Link } from 'react-router-dom';
-import style from '../Sign_up/Form.module.css'
-import { MdOutlinePublishedWithChanges } from "react-icons/md";
-import { AiOutlineEdit } from "react-icons/ai";
+
 import {AiOutlineCloseCircle} from 'react-icons/ai'
 
 
@@ -16,11 +12,7 @@ export default function EditClients() {
   let { vcliID } = useParams();
   let token = localStorage.getItem("tokena");
   let ntoken = "Bearer " + token.replaceAll('"', '');
-  let url = 'https://localhost:7214/api/User/Get-Client-by/121313';
-  const [flag, setFlag] = useState("false");
-  let condit = localStorage.getItem("id")
   const [det, setDet] = useState({});
-  const [clientsList, setClientsList] = useState([]);
   const [editShow,setEditShow] = useState(false);
   const [showSuccessMsg,setShowSuccessMsg] = useState(false);
   const [dispMsg,setDispMsg] = useState("");
@@ -34,9 +26,7 @@ export default function EditClients() {
   }
   const clientProfileData = async () => {
     let token = localStorage.getItem("tokena");
-    let advId = localStorage.getItem("id");
     let ntoken = "Bearer " + token.replaceAll('"', '');
-    // const [advEdit, setAdvEdit] = useState("false");
 
 
 
@@ -66,11 +56,10 @@ export default function EditClients() {
       })
   }
 
+  let depen = "nochange";
   useEffect(() => {
-    // if (flag != "true") { clientProfileData(); }
     clientProfileData();
-    // myFunc();
-  }, [])
+  }, [depen])
   // const [firstName, setFirstName] = useState("");
   const [initialValues,setInitialValues] = useState({
     firstName: "",
@@ -82,7 +71,6 @@ export default function EditClients() {
     state: "",
     city: "",
   });
-  // console.log("datadfsf->",initialValues);
   const Formik = useFormik({
     initialValues: initialValues,
     validationSchema: signUpSchema,
@@ -130,11 +118,6 @@ export default function EditClients() {
       action.resetForm();
     }
   })
-  const myHa = () =>{
-    console.log("djldsfjsl");
-  }
-  // const [tempFlag,setTempFlag] = useState(false);
-  // console.log("TestCase->",Formik.values);
   return (
     <>
       <div className='mt-4'>

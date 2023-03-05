@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { json } from 'react-router-dom';
 
 export default function AdvAccVerification() {
 
@@ -23,10 +22,6 @@ export default function AdvAccVerification() {
       marginRight:"40px",
       padding:"30px",
       borderRadius:"15px"
-    }
-  
-    const passStyle ={
-      color :"red"
     }
 
     const accVerify = (e) => {

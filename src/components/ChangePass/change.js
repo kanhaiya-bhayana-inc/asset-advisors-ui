@@ -23,20 +23,10 @@ function Change() {
     padding:"30px",
     borderRadius:"15px"
   }
-
-  const passStyle ={
-    color :"red"
-  }
-  function setToken(val) {
-
-  }
-  function accVerify() {
-    
-  }
   const initialValues = {
     token: "",
     password: "",
-    confirmPassword: ""
+    confirmpassword: ""
   }
   const Formik = useFormik({
     initialValues: initialValues,
@@ -58,7 +48,6 @@ function Change() {
           .then(res => {
             if (res.status === 200){
               return res.text()
-              window.location ='/login'
             }
             return res.text()
 
@@ -72,6 +61,7 @@ function Change() {
           })
       } catch (error) {
         console.log("Error b->", error);
+        setShowErrorMsg(true);
       }
       action.resetForm();
     }
@@ -112,7 +102,7 @@ function Change() {
           </div>
           <div className='form-row'>
             <div className='col-lg-4'>
-              <button type="submit" onClick={accVerify} className="btn btn-dark mt-3 mb-4">Update</button>
+              <button type="submit" className="btn btn-dark mt-3 mb-4">Update</button>
             </div>
           </div>
 

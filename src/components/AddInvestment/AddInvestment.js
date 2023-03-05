@@ -9,8 +9,6 @@ export default function AddInvestment() {
     let ntoken = "Bearer " + token.replaceAll('"', '');
 
   let { aicliID } = useParams();
-  const [email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
   const [showSuccessMsg,setShowSuccessMsg] = useState(false);
   const [dispMsg,setDispMsg] = useState("");
   const [showErrorsMsg,setShowErrorMsg] = useState(false);

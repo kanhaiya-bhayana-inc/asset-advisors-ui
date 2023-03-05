@@ -1,17 +1,11 @@
 import React, {useState} from 'react'
-import MySide from '../MyComp/Sidebar/MySidebar'
 import { useFormik } from 'formik';
 // import { useFormik } from 'formik';
 import { signUpSchema } from './Helper';
-import { Link } from 'react-router-dom';
-import style from '../Sign_up/Form.module.css'
 
 
 
 export default function AddClients() {
-
-  const [email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
   const [showSuccessMsg,setShowSuccessMsg] = useState(false);
   const [dispMsg,setDispMsg] = useState("");
   const [showErrorsMsg,setShowErrorMsg] = useState(false);

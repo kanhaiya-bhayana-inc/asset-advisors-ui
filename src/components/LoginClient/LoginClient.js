@@ -71,7 +71,7 @@ function Login() {
           <div className='row py-5'>
             <div className='col-lg-6 '>
               <img src={pic}
-                className='img-fluid img m-lg-4' alt='image' />
+                className='img-fluid img m-lg-4' alt='imagepreview' />
 
             </div>
             <div className='col-lg-6   px-5 pt-5'>

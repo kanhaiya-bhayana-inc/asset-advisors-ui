@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 // import pic from './undraw_access_account_re_8spm.svg'
 import pic from './undraw_login_re_4vu2 (1).svg'
 import './style.css'
-import { Link,Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 function Login() {
@@ -89,7 +89,7 @@ function Login() {
            }
             <div className='col-lg-6 '>
               <img src={pic}
-                className='img-fluid img m-lg-4' alt='image' />
+                className='img-fluid img m-lg-4' alt='imageprev' />
 
             </div>
             <div className='col-lg-6   px-5 pt-5'>

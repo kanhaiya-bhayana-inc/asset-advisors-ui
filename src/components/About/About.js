@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import pic from '../About/undraw_career_progress_ivdb.svg'
 
 function About() {

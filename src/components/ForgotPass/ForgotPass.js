@@ -49,15 +49,7 @@ export default function ForgotPass() {
         borderRadius: "15px"
     }
 
-    const passStyle = {
-        color: "red"
-    }
-    function setToken(val) {
-
-    }
-    function accVerify() {
-
-    }
+    
     const initialValues = {
         email: "",
     }
@@ -134,7 +126,7 @@ export default function ForgotPass() {
 
                     <div className='form-row'>
                         <div className='col-lg-3'>
-                            <button type="submit" onClick={accVerify} className="btn btn-dark mt-3 mb-4">Submit</button>
+                            <button type="submit" className="btn btn-dark mt-3 mb-4">Submit</button>
                         </div>
                     </div>
 

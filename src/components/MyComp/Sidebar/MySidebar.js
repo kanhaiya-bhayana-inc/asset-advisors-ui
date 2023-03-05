@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './sidebar.css';
-import { IoMdLogOut } from 'react-icons/io';
 import { SiGnuprivacyguard } from 'react-icons/si';
 import { TiTick } from 'react-icons/ti';
-import { MdOutlinePrivacyTip } from 'react-icons/md';
 import pic from '../Sidebar/favicon-32x32.png'
 import swal from 'sweetalert';
 import emailjs from '@emailjs/browser';
@@ -179,7 +177,7 @@ export default function MySide() {
         <nav className="navv">
           <div>
             <a href="/advisordash" className="nav_logo">
-              <img src={pic} className='dshlogo'></img> <span className="nav_logo-name ">Asset Advisors</span>
+              <img src={pic} className='dshlogo' alt='imgpreview'></img> <span className="nav_logo-name ">Asset Advisors</span>
             </a>
             <div className="nav_list">
               <Link to="/advisordash" className="nav_link">

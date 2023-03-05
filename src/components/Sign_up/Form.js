@@ -5,7 +5,7 @@ import pic from './team.svg'
 import { useFormik } from 'formik';
 import { signUpSchema } from './Helper.js';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 // import { SMTPClient } from 'emailjs';
 

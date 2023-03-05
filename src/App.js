@@ -1,11 +1,9 @@
 
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import Sign_up from './components/Sign_up/Form';
-import Navbar from './components/Navbar/Navbar';
+import SignUp from './components/Sign_up/Form';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoutes from './components/Utils/ProtectedRoutes';
-import MySide from './components/MyComp/Sidebar/MySidebar';
 import Home from './components/Home/Home';
 import Main from './components/Main';
 import About from './components/About/About';
@@ -29,13 +27,6 @@ import Demotest from './components/Demotest/demotest';
 
 
 function App() {
-  var auth = localStorage.getItem("tokena");
-  var cauth = localStorage.getItem("tokenc");
-  var show = false
-  let footerStyle = {
-    minHeight: "75.2vh",
-    margin: "50px auto",
-  };
   return (
     <Router>
       {/* <Navbar/> */}
@@ -60,7 +51,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/loginc" element={<LoginClient />} />
-          <Route path="/Signup" element={<Sign_up />} />
+          <Route path="/Signup" element={<SignUp />} />
           <Route path="/accverify" element={<AdvAccVerification />} />
           <Route path="/changepass" element={<ChangePass/>} />
           <Route path="/forgotpass" element={<ForgotPass/>} />

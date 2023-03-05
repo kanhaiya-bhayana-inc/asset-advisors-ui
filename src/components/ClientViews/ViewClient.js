@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { MdPersonAddAlt1 } from 'react-icons/md';
 import { Link, useParams } from 'react-router-dom'
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -19,9 +18,6 @@ export default function ViewClient() {
   const st = {
     backgroundColor: "#536dfe",
     color: "white",
-    // borderRadius:"10px"
-    // borderRadius:"15px"
-
   }
   const [det, setDet] = useState({});
   const [InvestmentDet, setInvestmentDet] = useState([]);
@@ -33,7 +29,6 @@ export default function ViewClient() {
   }
   const callTotalAmount = async () =>{
     let token = localStorage.getItem("tokena");
-    let advId = localStorage.getItem("id");
     let ntoken = "Bearer " + token.replaceAll('"', '');
     // const [advEdit, setAdvEdit] = useState("false");
 
@@ -53,7 +48,7 @@ export default function ViewClient() {
       .then((data) => {
         // localStorage.setItem("id", data.userID);
         // localStorage.setItem("advName", data.sortName);
-        if(data.result != NaN){
+        if(data.result !== isNaN){
           setAmount(data.result);
         }
         // console.log("fdksjldk",data.result);
@@ -63,7 +58,6 @@ export default function ViewClient() {
 
   const clientProfileData = async () => {
     let token = localStorage.getItem("tokena");
-    let advId = localStorage.getItem("id");
     let ntoken = "Bearer " + token.replaceAll('"', '');
     // const [advEdit, setAdvEdit] = useState("false");
 
@@ -99,7 +93,6 @@ export default function ViewClient() {
   const investmentData = async () => {
 
     let token = localStorage.getItem("tokena");
-    let advId = localStorage.getItem("id");
     let ntoken = "Bearer " + token.replaceAll('"', '');
     await fetch(`https://localhost:7214/api/Investment/GetUserInvestments/${vcliID}`, {
       method: 'GET',
@@ -125,10 +118,9 @@ export default function ViewClient() {
   }
 
   useEffect(() => {
-    if (flag != "true") { clientProfileData(); }
+    if (flag !== "true") { clientProfileData(); }
     callTotalAmount();
     investmentData();
-   
   }, [flag])
 
 
@@ -230,7 +222,7 @@ export default function ViewClient() {
           <h3 className='text-center p-4' style={{ marginTop: "-20px" }}>Investment Details</h3>
         </div>
 
-       {dataLength != 0 ? <div className="nav_link text-center col-3 mt-1" style={{ width: "250px", border: "1px solid black", marginLeft: "120px" }}>
+       {dataLength !== 0 ? <div className="nav_link text-center col-3 mt-1" style={{ width: "250px", border: "1px solid black", marginLeft: "120px" }}>
           Total Investments: ${amount && amount.slice(0,-3)}
         </div> :""}
         {showSuccessMsg && <div className='p-4 tex-center'>
@@ -275,7 +267,7 @@ export default function ViewClient() {
 
           </tbody>
         </table>
-            {dataLength == 0 ? <div className='p-4 tex-center'>
+            {dataLength === 0 ? <div className='p-4 tex-center'>
             <div className="alert alert-warning alert-dismissible fade show" style={{width:"auto"}} role="alert">
               
               We couldn't found any investments for this client.

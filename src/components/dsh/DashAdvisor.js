@@ -9,11 +9,6 @@ import './ds.css';
 import swal from 'sweetalert';
 export default function DashboardAdv() {
   // const [editShow,setEditShow] = useState(false);
-  const [showSuccessMsg,setShowSuccessMsg] = useState(false);
-  const [dispMsg,setDispMsg] = useState("");
-  const [showErrorsMsg,setShowErrorMsg] = useState(false);
-  const successBg = 'alert alert-success alert-dismissible fade show';
-  const warningBg = 'alert alert-warning alert-dismissible fade show';
 
 
   function myFuncCall (){
@@ -36,8 +31,6 @@ export default function DashboardAdv() {
   }
 
   // const [flag, setFlag] = useState("false");
-  let condit = localStorage.getItem("id")
-  const [det, setDet] = useState({});
   const [clientsList, setClientsList] = useState([]);
   const [dataLength,setDataLength] = useState(0);
   let count = 1;
@@ -85,7 +78,7 @@ export default function DashboardAdv() {
       .then((data) => {
         localStorage.setItem("id", data.userID);
         localStorage.setItem("advName", data.sortName);
-        setDet(data);
+        // setDet(data);
         myFunc();
         // setFlag("true");
         
@@ -161,11 +154,6 @@ let ii = 1;
     }
   }
 
-  const logout = () => {
-    localStorage.setItem("tokena", "");
-    localStorage.setItem("id", "");
-    window.location = '/';
-  }
 
   const cli = clientsList?.map((e, ind) => {
     return (
@@ -223,14 +211,7 @@ let ii = 1;
         <MdPersonAddAlt1  size={20}  className='adclient' /> Add Clients
       {/* </button> */}
             </Link>
-            {showSuccessMsg && <div className='p-4 tex-center'>
-            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
-            {showErrorsMsg ? <i className="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
-              {dispMsg}
-              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
-            </div>
-          </div> 
-           }
+           
       {/* </div> */}
     {/* </div> */}
 
@@ -287,7 +268,7 @@ let ii = 1;
         </tbody>
         
       </table>
-      {dataLength == 0 ? <div className='p-4 tex-center'>
+      {dataLength === 0 ? <div className='p-4 tex-center'>
             <div className="alert alert-warning alert-dismissible fade show" style={{width:"auto"}} role="alert">
               
               You have not created any client yet!
