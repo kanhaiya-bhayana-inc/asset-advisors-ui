@@ -86,14 +86,14 @@ export default function DashboardAdv() {
   };
 
  
-
+let noch = "nochange";
 let ii = 1;
   useEffect(() => {
-    // if (flag != "true")  
     console.log("coco", ii++);
     DataCall(); 
+    console.log(noch);
     // myFunc();
-  }, [])
+  }, [noch])
 
   const delClient = (delCID) =>{
     let token = localStorage.getItem("tokena");

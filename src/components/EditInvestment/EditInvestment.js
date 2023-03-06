@@ -57,12 +57,12 @@ export default function EditInvestment() {
         // console.log(flag);
       })
   }
-
+let noc = "nochange";
   useEffect(() => {
     // if (flag != "true") { clientProfileData(); }
     singleInvestmentData();
     // myFunc();
-  }, [])
+  }, [noc])
 
 
   const Formik = useFormik({
