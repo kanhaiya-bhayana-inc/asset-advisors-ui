@@ -7,8 +7,18 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import './ds.css';
 import swal from 'sweetalert';
+import { CSVLink } from 'react-csv';
+
 export default function DashboardAdv() {
   // const [editShow,setEditShow] = useState(false);
+
+const colName =[
+    { label:"CLient-ID", key:"clientID" },
+    { label:"Client Name", key:"sortName" },
+    { label:"Email", key:"email" },
+    { label:"Phone", key:"phone" },
+    { label:"Address", key:"address" }
+  ]
 
 
   function myFuncCall (){
@@ -55,6 +65,7 @@ export default function DashboardAdv() {
         setClientsList(data);
         setDataLength(Object.keys(data).length);
         console.log("called");
+        console.log(data);
       })
   }
   
@@ -276,6 +287,8 @@ let ii = 1;
             </div>
           </div> 
            :""}
+
+           <CSVLink data={clientsList} headers={colName} filename='ClientData.csv'><i class="bi bi-cloud-download" style={{height:"20px",padding:"5px"}}></i>CSV</CSVLink>
     </div>
     </>
   )

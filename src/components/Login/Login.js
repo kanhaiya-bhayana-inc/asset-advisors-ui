@@ -16,6 +16,22 @@ function Login() {
   const loginVerify = (e) => {
     e.preventDefault();
     console.log(email, " ", Password);
+    if (email.trim().length === 0){
+      setShowErrorMsg(true);
+            setShowSuccessMsg(true);
+            setDispMsg("Email cannot be empty!");
+      // alert("email cannot be empty!");
+      console.log("huu")
+    }
+    else if (Password.trim().length === 0){
+      setShowErrorMsg(true);
+            setShowSuccessMsg(true);
+            setDispMsg("Password cannot be empty!");
+      // alert("email cannot be empty!");
+      console.log("huu")
+    }
+    else{
+        console.log("ju");
     try {
       fetch('https://localhost:7214/api/User/adv-login', {
         method: 'POST',
@@ -44,7 +60,7 @@ function Login() {
             // setShowErrorMsg(true);
             // setShowSuccessMsg(true);
             
-            return "Email cannot be empty or password lenght must be atleast 6.";
+            return "Wrong Password!";
           }
           else {
 
@@ -71,6 +87,7 @@ function Login() {
     } catch (error) {
       console.log("Error b->", error);
     }
+  }
   }
   return (
     <div >

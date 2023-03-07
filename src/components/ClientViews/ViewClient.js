@@ -2,11 +2,31 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
+import { CSVLink } from 'react-csv';
 
 import swal from 'sweetalert';
 
 
 export default function ViewClient() {
+  const colName =[
+    // { label:"CLient-ID", key:"clientID" },
+    { label:"Client-ID", key:"c-----" },
+    { label:"Info-ID", key:"inofID" },
+    { label:"Account-ID", key:"accountID" },
+    { label:"Investment-Name", key:"investmentName" },
+    { label:"Investment-Type-Name", key:"investmentTypeName" },
+    { label:"Amount", key:"investmentAmount" },
+  ]
+
+  const ClientDetailscolName =[
+    // { label:"CLient-ID", key:"clientID" },
+    { label:"Client-ID", key:"clientID" },
+    { label:"Client Name", key:"sortName" },
+    { label:"Email", key:"email" },
+    { label:"Phone", key:"phone" }
+  ];
+  var testArray =[];
+  // console.log("array is ",testArray);
   let { vcliID } = useParams();
   const [flag, setFlag] = useState("false");
   let count = 1;
@@ -111,8 +131,11 @@ export default function ViewClient() {
         
           setInvestmentDet(data.result);
           console.log("V is ",data.result );
-          console.log(Object.keys(data.result).length);
-          setDataLength(Object.keys(data.result).length);
+          if (data.result != null){
+
+            console.log(Object.keys(data.result).length);
+            setDataLength(Object.keys(data.result).length);
+          }
 
       })
   }
@@ -222,7 +245,7 @@ export default function ViewClient() {
           <h3 className='text-center p-4' style={{ marginTop: "-20px" }}>Investment Details</h3>
         </div>
 
-       {dataLength !== 0 ? <div className="nav_link text-center col-3 mt-1" style={{ width: "250px", border: "1px solid black", marginLeft: "120px" }}>
+       {dataLength != 0 ? <div className="nav_link text-center col-3 mt-1" style={{ width: "250px", border: "1px solid black", marginLeft: "120px" }}>
           Total Investments: ${amount && amount.slice(0,-3)}
         </div> :""}
         {showSuccessMsg && <div className='p-4 tex-center'>
@@ -267,7 +290,7 @@ export default function ViewClient() {
 
           </tbody>
         </table>
-            {dataLength === 0 ? <div className='p-4 tex-center'>
+            {dataLength == 0 ? <div className='p-4 tex-center'>
             <div className="alert alert-warning alert-dismissible fade show" style={{width:"auto"}} role="alert">
               
               We couldn't found any investments for this client.
@@ -275,9 +298,20 @@ export default function ViewClient() {
             </div>
           </div> 
            :""}
+           {dataLength != 0 ?
+           (
+            <>
+            {/* {InvestmentDet.splice(0,0,ClientDetailscolName)} */}
+            
+            {/* var narray = JSON.parse(JSON.stringify(InvestmentDet));
+            
+            testArray.push(`{"Client-ID"-det.clientID}`)
+            {console.log(testArray)} */}
+              <CSVLink data={InvestmentDet} headers={colName} filename={`${det.sortName}.csv`}><i class="bi bi-cloud-download" style={{height:"20px",padding:"5px"}}></i>CSV</CSVLink>
+            </>
+          ):""}
            </div>
             
-      
       
     </>
   )
