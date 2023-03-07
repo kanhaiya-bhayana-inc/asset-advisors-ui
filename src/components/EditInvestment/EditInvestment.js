@@ -94,6 +94,7 @@ let noc = "nochange";
               // alert("Investment updated successfully.")
               setDispMsg("Investment updated successfully.")
               setShowSuccessMsg(true);
+              setEditShow(false);
               setTimeout(myFuncCall, 5000);
               // window.location = `/viewclient/${vcliID}`;
             }

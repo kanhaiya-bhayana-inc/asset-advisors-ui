@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {useParams} from 'react-router-dom'
 import { useFormik } from 'formik';
 import { signUpSchema } from '../schemas/Helper';
+import './Edit.css';
 
 import {AiOutlineCloseCircle} from 'react-icons/ai'
 
@@ -97,6 +98,7 @@ export default function EditClients() {
 
               setDispMsg("Profile updated successfully!")
               setShowSuccessMsg(true);
+              setEditShow(false);
               setTimeout(myFuncCall, 3000);
               // window.location = `/editclient/${det.userID}`;
             }
@@ -147,7 +149,7 @@ export default function EditClients() {
       <button className='float-right mt-5 btn btn-primary' type='button' onClick={(e)=>{setEditShow(true)}}>Edit</button>    
     </div>
     <hr />
-    <div className='col-4 mt-2'><label><b>SortName: &nbsp;{det.sortName}</b> </label></div>
+    <div className='col-4 mt-2'><label className='bol'><b>SortName: &nbsp;{det.sortName}</b> </label></div>
     <div className='col-4'><label>Email: &nbsp;{det.email} </label></div>
     <div className='col-4'><label>Phone: &nbsp;{det.phone} </label></div>
     <div className='col-4 mt-2'><label>Address: &nbsp;{det.address} </label></div>

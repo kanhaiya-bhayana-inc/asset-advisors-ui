@@ -96,6 +96,7 @@ export default function Profile() {
               // alert("Profile updated successfully.")
               setDispMsg("Profile updated successfully!")
               setShowSuccessMsg(true);
+              setEditShow(false);
               setTimeout(myFuncCall, 1000);
               localStorage.setItem("advName",srtName);
               // window.location = '/profile';

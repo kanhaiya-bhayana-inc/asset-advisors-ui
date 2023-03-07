@@ -79,7 +79,7 @@ export default function AddClients() {
   return (
     <>
       {/* <MySide/> */}
-      <div className='container'>
+      <div style={{marginRight:"20px"}}>
         <form onSubmit={Formik.handleSubmit}>
         <div className='row p-2'>
         {showSuccessMsg && <div className='p-4'>
