@@ -189,8 +189,8 @@ export default function MySide() {
               <Link to="/profile" className="nav_link">
                 <i className='bi bi-person-check nav_icon' /><span className="nav_name dshhvr">Profile</span>
               </Link>
-              <Link to="/advisordash" className="nav_link">
-                <SiGnuprivacyguard /><span className="nav_name dshhvr" onClick={chanPass}>Change Password</span>
+              <Link to="/advisordash" className="nav_link" onClick={chanPass}>
+                <SiGnuprivacyguard /><span className="nav_name dshhvr" >Change Password</span>
               </Link>
               {/* <Link to="/privacypolicy" className="nav_link">
                 <MdOutlinePrivacyTip /><span className="nav_name dshhvr">Privacy Policy</span>

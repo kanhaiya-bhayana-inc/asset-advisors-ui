@@ -11,7 +11,7 @@ import { CSVLink } from 'react-csv';
 
 export default function DashboardAdv() {
   // const [editShow,setEditShow] = useState(false);
-
+  var fname ="ClientsData"
 const colName =[
     { label:"CLient-ID", key:"clientID" },
     { label:"Client Name", key:"sortName" },
@@ -89,6 +89,7 @@ const colName =[
       .then((data) => {
         localStorage.setItem("id", data.userID);
         localStorage.setItem("advName", data.sortName);
+        fname = data.sortName;
         // setDet(data);
         myFunc();
         // setFlag("true");
@@ -226,10 +227,18 @@ let ii = 1;
       {/* </div> */}
     {/* </div> */}
 
-     
-    <div style={style} >
+    {dataLength != 0 ? 
+           (
+            <>
+            
+            <CSVLink data={clientsList} headers={colName} filename={`Client's data.csv`} className='p-2'><i class="bi bi-cloud-download" style={{height:"20px",padding:"5px"}}></i>CSV</CSVLink>
+            </>
+           ) :""}
+    <div style={style} className='row mt-2'>
       {/* </div> */}
+      
       <table  className="table table-hover">
+        
         <thead>
           <tr style={st}>
             <th scope="col" style={{color:"white"}}>#</th>
@@ -288,7 +297,7 @@ let ii = 1;
           </div> 
            :""}
 
-           <CSVLink data={clientsList} headers={colName} filename='ClientData.csv'><i class="bi bi-cloud-download" style={{height:"20px",padding:"5px"}}></i>CSV</CSVLink>
+           
     </div>
     </>
   )

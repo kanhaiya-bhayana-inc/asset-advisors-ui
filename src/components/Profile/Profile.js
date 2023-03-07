@@ -126,7 +126,7 @@ export default function Profile() {
     <>
       <div className='mt-4'>
 
-        <div className='container'>
+        <div style={{marginRight:"20px"}}>
           <form onSubmit={Formik.handleSubmit}>
             <div className='row p-2'>
             <div className='col-5'>

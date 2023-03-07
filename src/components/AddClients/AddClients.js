@@ -81,8 +81,8 @@ export default function AddClients() {
       {/* <MySide/> */}
       <div className='container'>
         <form onSubmit={Formik.handleSubmit}>
-        <div className='row p-2 text-center'>
-        {showSuccessMsg && <div className='p-4 tex-center'>
+        <div className='row p-2'>
+        {showSuccessMsg && <div className='p-4'>
             <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
             {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
               {dispMsg}
@@ -90,7 +90,7 @@ export default function AddClients() {
             </div>
           </div> 
            }
-          <h4>Add a new client</h4>
+          <h4 className='text-center p-3'>Add a new client</h4>
           {/* </div> */}
           {/* <div className='row'> */}
           <div className='col-4'>

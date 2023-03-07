@@ -121,7 +121,7 @@ let noc = "nochange";
   return (
     <>
       <div className='mt-4'>
-        <div className='container'>
+        <div style={{marginRight:"20px"}}>
           <form onSubmit={Formik.handleSubmit}>
             <div className='row p-2'>
             {showSuccessMsg && <div className='p-4 tex-center'>
@@ -173,10 +173,10 @@ let noc = "nochange";
         <div className="dropdown p-4 mt-3" style={{ width: "auto" }}>
           <select className="form-select" name='investmentTypeName' value={Formik.values.investmentTypeName} onChange={Formik.handleChange} aria-label="Default select example">
             <option value="selected">Investment Type</option>
-            <option value="T-1">T-1</option>
-            <option value="T-2">T-2</option>
-            <option value="T-3">T-3</option>
-            <option value="T-4">T-4</option>
+            <option value="Unknown">Unknown</option>
+            <option value="Retirement">Retirement</option>
+            <option value="GeneralSavings">GeneralSavings</option>
+            <option value="Income">Income</option>
           </select>
           {Formik.errors.investmentTypeName && Formik.touched.investmentTypeName ? (<p className='Form-error'> {Formik.errors.investmentTypeName}</p>) : null}
         </div>

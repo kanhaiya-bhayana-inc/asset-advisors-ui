@@ -122,7 +122,7 @@ export default function EditClients() {
     <>
       <div className='mt-4'>
 
-        <div className='container'>
+        <div style={{marginRight:"20px"}}>
           <form onSubmit={Formik.handleSubmit}>
             <div className='row p-2'>
             {showSuccessMsg && <div className='p-4 tex-center'>

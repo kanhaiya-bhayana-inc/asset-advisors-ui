@@ -10,7 +10,10 @@ import swal from 'sweetalert';
 export default function ViewClient() {
   const colName =[
     // { label:"CLient-ID", key:"clientID" },
-    { label:"Client-ID", key:"c-----" },
+    { label:"Client-ID", key:"totalAmount" },
+    { label:"Client Name", key:"clientName" },
+    { label:"Email", key:"email" },
+    { label:"Phone", key:"phone" },
     { label:"Info-ID", key:"inofID" },
     { label:"Account-ID", key:"accountID" },
     { label:"Investment-Name", key:"investmentName" },
@@ -256,6 +259,27 @@ export default function ViewClient() {
             </div>
           </div> 
            }
+            {dataLength != 0 ?
+           (
+            <>
+            {/* {InvestmentDet.splice(0,0,ClientDetailscolName)} */}
+            
+            {/* var narray = JSON.parse(JSON.stringify(InvestmentDet));
+            
+            testArray.push(`{"Client-ID"-det.clientID}`)
+            {console.log(testArray)} */}
+            {/* {InvestmentDet.push("clientID":det.clientID)} */}
+            {InvestmentDet.map((e,i)=>{
+              e.totalAmount = det.clientID;
+              e.clientName = det.sortName;
+              e.email = det.email;
+              e.phone = det.phone;
+            })}
+
+              <CSVLink data={InvestmentDet} headers={colName} filename={`${det.sortName}.csv`} className='p-2'><i class="bi bi-cloud-download" style={{height:"20px",padding:"5px"}}></i>CSV</CSVLink>
+              <br></br>
+            </>
+          ):""}
         <table className="table table-hover">
           <thead >
             <tr style={st}>
@@ -298,18 +322,7 @@ export default function ViewClient() {
             </div>
           </div> 
            :""}
-           {dataLength != 0 ?
-           (
-            <>
-            {/* {InvestmentDet.splice(0,0,ClientDetailscolName)} */}
-            
-            {/* var narray = JSON.parse(JSON.stringify(InvestmentDet));
-            
-            testArray.push(`{"Client-ID"-det.clientID}`)
-            {console.log(testArray)} */}
-              <CSVLink data={InvestmentDet} headers={colName} filename={`${det.sortName}.csv`}><i class="bi bi-cloud-download" style={{height:"20px",padding:"5px"}}></i>CSV</CSVLink>
-            </>
-          ):""}
+          
            </div>
             
       
