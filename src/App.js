@@ -28,7 +28,7 @@ import Demotest from './components/Demotest/demotest';
 
 function App() {
   return (
-    <Router basename='/'>
+    <Router>
       {/* <Navbar/> */}
       <Routes>
         <Route element={<ProtectedRoutes />}>

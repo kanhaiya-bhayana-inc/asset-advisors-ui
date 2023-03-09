@@ -1,3 +1,7 @@
-new WebPack.DefinePlugin({
-    BASENAME: '/users'
-})
+plugins: [
+    new webpack.DefinePlugin({
+      BASENAME: JSON.stringify("/users/")
+    })
+
+
+    
