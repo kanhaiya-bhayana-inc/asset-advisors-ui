@@ -4,6 +4,11 @@ import MySide from '../MyComp/Sidebar/MySidebar'
 
 export default function ProtectedRoutes() {
     let auth = localStorage.getItem("tokena");
+    window.onbeforeunload = () => {
+      localStorage.removeItem('tokena');
+      localStorage.removeItem('advName');
+      localStorage.removeItem('id');
+    }
   return (
     auth
     ?
