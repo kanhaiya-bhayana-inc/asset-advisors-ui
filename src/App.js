@@ -1,4 +1,3 @@
-import '/public/Web.config'
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import SignUp from './components/Sign_up/Form';

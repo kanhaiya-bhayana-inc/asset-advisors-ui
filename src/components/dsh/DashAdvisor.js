@@ -223,17 +223,20 @@ let ii = 1;
         <MdPersonAddAlt1  size={20}  className='adclient' /> Add Clients
       {/* </button> */}
             </Link>
+
+
+            {dataLength != 0 ? 
+           (
+            <>
+            
+            <CSVLink data={clientsList} headers={colName} filename={`Client's data.csv`} style={{float:"right",marginTop:"-45px",marginRight:"10px"}} className='p-2'><i class="bi bi-cloud-download" style={{height:"20px",padding:"5px"}}></i>CSV</CSVLink>
+            </>
+           ) :""}
            
       {/* </div> */}
     {/* </div> */}
 
-    {dataLength != 0 ? 
-           (
-            <>
-            
-            <CSVLink data={clientsList} headers={colName} filename={`Client's data.csv`} className='p-2'><i class="bi bi-cloud-download" style={{height:"20px",padding:"5px"}}></i>CSV</CSVLink>
-            </>
-           ) :""}
+    
     <div style={style} className='row mt-2'>
       {/* </div> */}
       

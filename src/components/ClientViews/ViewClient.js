@@ -276,7 +276,7 @@ export default function ViewClient() {
               e.phone = det.phone;
             })}
 
-              <CSVLink data={InvestmentDet} headers={colName} filename={`${det.sortName}.csv`} className='p-2'><i class="bi bi-cloud-download" style={{height:"20px",padding:"5px"}}></i>CSV</CSVLink>
+              <CSVLink data={InvestmentDet} headers={colName} filename={`${det.sortName}.csv`} style={{marginLeft:"20px"}} className='p-2' ><i class="bi bi-cloud-download" style={{height:"20px",padding:"5px"}}></i>CSV</CSVLink>
               <br></br>
             </>
           ):""}
