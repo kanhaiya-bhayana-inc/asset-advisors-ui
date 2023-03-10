@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import { useFormik } from 'formik';
 import { signUpSchema } from '../schemas/Helper';
 import './Edit.css';
@@ -10,6 +10,8 @@ import {AiOutlineCloseCircle} from 'react-icons/ai'
 
 
 export default function EditClients() {
+  var uId = "";
+  const navigate = useNavigate();
   let { vcliID } = useParams();
   let token = localStorage.getItem("tokena");
   let ntoken = "Bearer " + token.replaceAll('"', '');
@@ -23,7 +25,10 @@ export default function EditClients() {
 
 
   function myFuncCall (){
-    window.location = `/editclient/${det.userID}`;
+  //  navigate(`/editclient/${det.userID}`);
+  navigate('.', { replace: true });
+  setShowSuccessMsg(false); 
+    // window.location = `/editclient/${det.userID}`;
   }
   const clientProfileData = async () => {
     let token = localStorage.getItem("tokena");
@@ -43,9 +48,10 @@ export default function EditClients() {
     })
       .then(async res => await res.json())
       .then((data) => {
-        // localStorage.setItem("id", data.userID);
+        localStorage.setItem("uid", data.userID);
         // localStorage.setItem("advName", data.sortName);
         setDet(data);
+        uId = data.userID;
         console.log(data);
         setInitialValues(data);
         // Formik.values(data);
@@ -79,7 +85,9 @@ export default function EditClients() {
     onSubmit: (values,action) => {
       try {
         console.log("Call maked!");
-        fetch(`https://localhost:7214/api/User/Update-Client/${det.userID}`, {
+        console.log(values);
+        uId = localStorage.getItem("uid");
+        fetch(`https://localhost:7214/api/User/Update-Client/${uId}`, {
           method: 'PUT',
           headers: {
             'Content-type': 'application/json',
@@ -92,14 +100,22 @@ export default function EditClients() {
 
         })
           .then(res => {
-            res.json()
+            // res.json()
             if (res.status === 200){
               // alert("Profile updated successfully.")
 
               setDispMsg("Profile updated successfully!")
+              // setDet(res.body)
+              // console.log(res);
               setShowSuccessMsg(true);
               setEditShow(false);
-              setTimeout(myFuncCall, 3000);
+              setTimeout(myFuncCall, 1000);
+              console.log(`/editclient/${det.userID}`);
+              return res.json();
+              // return res;
+              // return res.body;
+              
+              // navigate(`/editclient/${det.userID}`);
               // window.location = `/editclient/${det.userID}`;
             }
             else{
@@ -107,10 +123,17 @@ export default function EditClients() {
               setDispMsg("Something went wrong, try again!")
               setShowSuccessMsg(true);
               setShowErrorMsg(true);
+              return "error";
             }
+            
           })
           .then((data) =>{
+            console.log("Yo");
             console.log(data);
+            if (data != "error"){
+              setDet(data);
+              setInitialValues(data);
+            }
             // alert(data);
             // window.location ='/login'
           })

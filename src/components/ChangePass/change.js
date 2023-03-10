@@ -57,7 +57,7 @@ function Change() {
             // alert(data)
             setDispMsg(data)
             setShowSuccessMsg(true);
-            setTimeout(myFuncCall, 6000);
+            setTimeout(myFuncCall, 5000);
           })
       } catch (error) {
         console.log("Error b->", error);

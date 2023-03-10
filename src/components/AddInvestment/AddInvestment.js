@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { signUpSchema } from './Vald';
 import { useFormik } from 'formik';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../AddInvestment/addinvestment.css';
 
 export default function AddInvestment() {
@@ -23,8 +23,10 @@ export default function AddInvestment() {
     accountID:"",
     active:""
   };
+  const navigate = useNavigate();
   function myFuncCall (){
-    window.location = `/viewclient/${aicliID}`;
+    let url = `/viewclient/${aicliID}`;
+    navigate(url,{replace:true});
   }
   const Formik = useFormik({
     initialValues: initialValues,
@@ -46,12 +48,12 @@ export default function AddInvestment() {
 
         })
           .then(res => {
-            res.json()
+            // res.json()
             if (res.status === 200){
               // alert("Investment created successfully.")
               setDispMsg("Investment created successfully.")
               setShowSuccessMsg(true);
-              setTimeout(myFuncCall, 5000);
+              setTimeout(myFuncCall, 3000);
               
             }
             else{
@@ -129,8 +131,8 @@ export default function AddInvestment() {
       </div>
 
       <div className='col-4' style={{marginLeft: "20px",width:"380px"}}>
-      <lable style={{marginLeft: "15px"}}>Investment investmentAmount</lable>
-        <input type="text" name="investmentAmount" value={Formik.values.investmentAmount} onChange={Formik.handleChange} placeholder='Enter investment investmentAmount' className='form-control shadow-none my-3' />
+      <lable style={{marginLeft: "15px"}}>Investment Amount</lable>
+        <input type="text" name="investmentAmount" value={Formik.values.investmentAmount} onChange={Formik.handleChange} placeholder='Enter investment amount' className='form-control shadow-none my-3' />
         {Formik.errors.investmentAmount && Formik.touched.investmentAmount ? (<p className='Form-error'> {Formik.errors.investmentAmount}</p>) : null}
       </div>
       <div className='col-4'>

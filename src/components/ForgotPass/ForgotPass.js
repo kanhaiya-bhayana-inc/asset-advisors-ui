@@ -17,7 +17,7 @@ export default function ForgotPass() {
         // window.location = '/login';
     }
     var templateParams = {
-        notes: 'We got your request for reseting the password, Please follow below steps to change your password:\n 1. You have received a verification token on this mail, use that token to change your password. \n 2. You can only change your password in next 20 minutes after that your token will be expired. \n 3. Use token and enter your new password then confirm new password and your password will be changed.',
+        notes: 'We got your request for resetting the password, Please follow below steps to change your password:\n 1. You have received a verification token on this mail, use that token to change your password. \n 2. You can only change your password in next 20 minutes after that your token will be expired. \n 3. Use token and enter your new password then confirm new password and your password will be changed.',
         to_name: 'User',
         // to_name:"",
         message: "",
@@ -93,7 +93,7 @@ export default function ForgotPass() {
                             setDispMsg(data)
                             setShowErrorMsg(true);
                         }
-                        setTimeout(myFuncCall, 6000);
+                        setTimeout(myFuncCall, 5000);
                         // alert(data)
 
                     })

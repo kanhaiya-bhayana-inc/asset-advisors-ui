@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik';
 import { signUpSchema } from './Vald';
 import { AiOutlineCloseCircle } from 'react-icons/ai'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
@@ -24,8 +24,10 @@ export default function EditInvestment() {
     accountID: "",
     active: ""
   });
+  const navigate = useNavigate();
   function myFuncCall (){
-    window.location = `/viewclient/${vcliID}`;
+    let url = `/viewclient/${vcliID}`;
+    navigate(url,{replace:true});
   }
   const singleInvestmentData = async () => {
     let token = localStorage.getItem("tokena");
@@ -95,7 +97,7 @@ let noc = "nochange";
               setDispMsg("Investment updated successfully.")
               setShowSuccessMsg(true);
               setEditShow(false);
-              setTimeout(myFuncCall, 5000);
+              setTimeout(myFuncCall, 2000);
               // window.location = `/viewclient/${vcliID}`;
             }
             else {
@@ -199,15 +201,15 @@ let noc = "nochange";
         <input type="text" name="accountID" value={Formik.values.accountID} onChange={Formik.handleChange}  placeholder='Enter accountID' className='form-control shadow-none my-3' />
         {Formik.errors.accountID && Formik.touched.accountID ? (<p className='Form-error'> {Formik.errors.accountID}</p>) : null}
       </div>
-      <div className='col-4' style={{marginLeft: "20px",width:"320px"}}>
+      <div className='col-4' style={{marginLeft: "20px",width:"360px"}}>
       <lable style={{marginLeft: "13px"}}>Strategy Name</lable>
         <input type="text" name="strategyName" value={Formik.values.strategyName} onChange={Formik.handleChange} placeholder='Enter strategy name' className='form-control shadow-none my-3' />
         {Formik.errors.strategyName && Formik.touched.strategyName ? (<p className='Form-error'> {Formik.errors.strategyName}</p>) : null}
       </div>
 
-      <div className='col-4' style={{marginLeft: "40px",width:"320px"}}>
+      <div className='col-4' style={{marginLeft: "40px",width:"360px"}}>
       <lable style={{marginLeft: "15px"}}>Investment Amount</lable>
-        <input type="text" name="investmentAmount" value={Formik.values.investmentAmount} onChange={Formik.handleChange} placeholder='Enter investment investmentAmount' className='form-control shadow-none my-3' />
+        <input type="text" name="investmentAmount" value={Formik.values.investmentAmount} onChange={Formik.handleChange} placeholder='Enter investment amount' className='form-control shadow-none my-3' />
         {Formik.errors.investmentAmount && Formik.touched.investmentAmount ? (<p className='Form-error'> {Formik.errors.investmentAmount}</p>) : null}
       </div>
       <div className='col-4'>

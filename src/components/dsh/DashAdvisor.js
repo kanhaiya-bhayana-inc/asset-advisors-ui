@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdPersonAddAlt1 } from 'react-icons/md';
 // import { BiChevronRight } from "react-icons/bi";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -10,6 +10,7 @@ import swal from 'sweetalert';
 import { CSVLink } from 'react-csv';
 
 export default function DashboardAdv() {
+  const navigate = useNavigate();
   // const [editShow,setEditShow] = useState(false);
   var fname ="ClientsData"
 const colName =[
@@ -22,7 +23,9 @@ const colName =[
 
 
   function myFuncCall (){
-    window.location = '/advisordash';
+    // window.location = '/advisordash';
+    myFunc();
+    navigate('.',{replace: true});
   }
   // const navigate = useNavigate();
   const style = {
@@ -188,7 +191,7 @@ let ii = 1;
         
         <td><Link to={`/editclient/${e.userID}`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))} /></Link></td>
         <td><Link to={`/viewclient/${e.userID}`} ><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></Link></td>
-            <td><AiOutlineDelete size={20} onClick={(ev)=>{showDelDi(e.userID)}}  /></td>
+            <td><AiOutlineDelete size={20} onClick={(ev)=>{showDelDi(e.userID)}} style={{cursor: "pointer"}} /></td>
             {/* <td><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></td> */}
       </tr>
      </>

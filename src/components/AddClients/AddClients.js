@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useFormik } from 'formik';
 // import { useFormik } from 'formik';
 import { signUpSchema } from './Helper';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -26,8 +27,11 @@ export default function AddClients() {
     password: "string",
     confirmpassword: "string"
   }
+  const navigate = useNavigate();
   function myFuncCall (){
-    window.location = '/advisordash';
+    // window.location = '/advisordash';
+    navigate('/advisordash',{replace:true});
+
   }
   const Formik = useFormik({
     initialValues: initialValues,
@@ -54,7 +58,7 @@ export default function AddClients() {
               // alert("Client created successfully.")
               setDispMsg("Client created successfully.")
               setShowSuccessMsg(true);
-              setTimeout(myFuncCall, 5000);
+              setTimeout(myFuncCall, 2000);
               // window.location = '/advisordash';
             }
             else{

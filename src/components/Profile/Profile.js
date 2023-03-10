@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik';
 import { signUpSchema } from '../schemas/Helper';
 import {AiOutlineCloseCircle} from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 export default function Profile() {
+  const navigate = useNavigate();
   const [showSuccessMsg,setShowSuccessMsg] = useState(false);
   const [dispMsg,setDispMsg] = useState("");
   const [showErrorsMsg,setShowErrorMsg] = useState(false);
@@ -15,7 +17,8 @@ export default function Profile() {
 
 
   function myFuncCall (){
-    window.location = '/profile';
+    navigate('.',{replace: true})
+    setShowSuccessMsg(false);
   }
   let token = localStorage.getItem("tokena");
   let ntoken = "Bearer " + token.replaceAll('"', '');
@@ -42,10 +45,11 @@ export default function Profile() {
     })
       .then(async res => await res.json())
       .then((data) => {
-        // localStorage.setItem("id", data.userID);
+        localStorage.setItem("auID", data.advisorID);
         // localStorage.setItem("advName", data.sortName);
         setDet(data);
         setInitialValues(data);
+        console.log(data);
         // Formik.values(data);
         
         // console.log("Mydata->", det);
@@ -68,6 +72,7 @@ export default function Profile() {
     address: "",
     state: "",
     city: "",
+    // clientID:"abcdef"
   });
   // console.log("datadfsf->",initialValues);
   const Formik = useFormik({
@@ -77,7 +82,10 @@ export default function Profile() {
     onSubmit: (values,action) => {
       try {
         console.log("Call maked!");
-        fetch(`https://localhost:7214/api/User/update-user-advisor/${det.advisorID}`, {
+        console.log(values);
+        var auit = localStorage.getItem("auID");
+        console.log(auit);
+        fetch(`https://localhost:7214/api/User/update-user-advisor/${auit}`, {
           method: 'PUT',
           headers: {
             'Content-type': 'application/json',
@@ -90,7 +98,7 @@ export default function Profile() {
 
         })
           .then(res => {
-            res.json()
+            
             if (res.status === 200){
               let srtName = values.lastName + ", " +  values.firstName;
               // alert("Profile updated successfully.")
@@ -99,6 +107,7 @@ export default function Profile() {
               setEditShow(false);
               setTimeout(myFuncCall, 1000);
               localStorage.setItem("advName",srtName);
+              return res.json();
               // window.location = '/profile';
             }
             else{
@@ -107,11 +116,17 @@ export default function Profile() {
               setShowSuccessMsg(true);
               setShowErrorMsg(true);
               setTimeout(myFuncCall, 3000);
+              return "error";
               
             }
           })
           .then((data) =>{
             console.log(data);
+            if (data != "error"){
+              setDet(data);
+              setInitialValues(data);
+
+            }
             // alert(data);
             // window.location ='/login'
           })
@@ -192,7 +207,7 @@ export default function Profile() {
               </div>
               <div className='col-4'>
                 <p>Email</p>
-                <input type="email" name="email" placeholder='Email' className='form-control shadow-none my-3' value={Formik.values.email} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
+                <input type="email" disabled name="email" placeholder='Email' className='form-control shadow-none my-3' value={Formik.values.email} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
                 {Formik.errors.email && Formik.touched.email ? (<p className='Form-error'> {Formik.errors.email}</p>) : null}
               </div>
               <div className='col-4'>

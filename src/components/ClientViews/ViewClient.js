@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import { CSVLink } from 'react-csv';
@@ -47,8 +47,12 @@ export default function ViewClient() {
   const [amount, setAmount] = useState("0");
   const [dataLength,setDataLength] = useState(0);
 
+  const navigate = useNavigate();
   function myFuncCall (){
-    window.location = `/viewclient/${vcliID}`;
+    // let url = `/viewclient/${vcliID}`;
+    console.log("reached T-1");
+    navigate('.',{replace:true});
+
   }
   const callTotalAmount = async () =>{
     let token = localStorage.getItem("tokena");
@@ -169,7 +173,7 @@ export default function ViewClient() {
 
       })
         .then(res => {
-          res.json()
+          // res.json()
           if (res.status === 200){
             // alert("Investment deleted successfully.")
             // setDispMsg("Investment deleted successfully!")
@@ -178,6 +182,7 @@ export default function ViewClient() {
               swal("Investment deleted successfully!", {
                 icon: "success",
               }).then(()=>{
+                investmentData();
                 myFuncCall();
               });
             // window.location = `/viewclient/${vcliID}`;
@@ -188,7 +193,7 @@ export default function ViewClient() {
             setDispMsg("Something went wrong, try again!")
               setShowSuccessMsg(true);
               setShowErrorMsg(true);
-              setTimeout(myFuncCall, 3000);
+              setTimeout(myFuncCall, 1000);
           }
         })
         .then((data) =>{
@@ -300,11 +305,11 @@ export default function ViewClient() {
                   <tr key={ind}>
                     <th scope="row">{count++}</th>
                     <td>{e.inofID}</td>
-                    <td>{e.investmentName}</td>
+                    <td><Link style={{textDecoration:"none"}} to={`/editinvestment/${e.inofID}/${e.strategyID}/${vcliID}`} >{e.investmentName}</Link></td>
                     <td>{e.investmentTypeName}</td>
                     <td>{e.active}</td>
                     <td>{e.investmentAmount}</td>
-                    <td><Link to={`/editinvestment/${e.inofID}/${e.strategyID}/${vcliID}`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))}  /></Link> &nbsp; <AiOutlineDelete size={20} onClick={(ev)=>showDelDi(e.inofID,e.strategyID)} /></td>
+                    <td><Link to={`/editinvestment/${e.inofID}/${e.strategyID}/${vcliID}`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))}  /></Link> &nbsp; <AiOutlineDelete size={20} onClick={(ev)=>showDelDi(e.inofID,e.strategyID)} style={{cursor: "pointer"}} /></td>
                   </tr>
                 </>
               );
