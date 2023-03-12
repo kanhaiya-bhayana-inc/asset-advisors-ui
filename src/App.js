@@ -15,6 +15,7 @@ import EditClients from './components/EditClients/EditClients';
 import EditAdvisor from './components/EditAdvisor/EditAdvisor';
 import ViewClient from './components/ClientViews/ViewClient';
 import ChangePass from './components/ChangePass/change'
+import { createHashHistory } from '@remix-run/router';
 
 import AdvAccVerification from './components/Verification/AdvAccVerification';
 import EditInvestment from './components/EditInvestment/EditInvestment';
@@ -26,8 +27,10 @@ import Demotest from './components/Demotest/demotest';
 
 
 function App() {
+  const history = createHashHistory();
+
   return (
-    <Router>
+    <Router history={history}>
       {/* <Navbar/> */}
       <Routes>
         <Route element={<ProtectedRoutes />}>
