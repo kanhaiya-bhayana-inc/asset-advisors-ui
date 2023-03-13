@@ -67,7 +67,8 @@ function Login() {
             if (data.startsWith("ey")) {
               localStorage.setItem("tokena", JSON.stringify(data));
               console.log(data);
-            } else {
+            }
+             else {
               // alert(data)
               setShowErrorMsg(true);
               setShowSuccessMsg(true);
@@ -76,7 +77,8 @@ function Login() {
           });
         } catch (error) {
         setIsLoading(false);
-        console.log("Error b->", error);
+       
+        console.log(error);
       }
     }
   };
@@ -167,7 +169,7 @@ function Login() {
                         isLoading ? "loading" : ""
                       }`}
                     >
-                      {isLoading ? "Signing Up..." : "Sign In"}
+                      {isLoading ? "Signing In..." : "Sign In"}
                     </button>
                   </div>
                 </div>

@@ -17,7 +17,11 @@ function About() {
             <div className='col-md-6 p-5  pt-5 pt-lg-0 order-2 order-lg-1 d-flex justify-content-center flex-column'>
                 <div className="m-lg-5">
                     <h4>Asset Advisors</h4>
-                <p style={{textAlign: "justify"}}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p style={{textAlign: "justify"}}>Welcome to Asset Advisors, your go-to platform for managing your investments with ease. This portal is designed to simplify the investment management process, making it accessible to both seasoned and novice investors.
+
+With Asset Advisors, you can sign up and create profiles for your clients. You'll be able to manage their investments by adding, editing, and deleting as necessary. 
+<br></br><br></br>
+Thank you for choosing Asset Advisors to manage your investments. We look forward to helping you achieve your financial goals.</p>
                 {/* <p className='my-3'>We are a team of talented individuals that is all you need </p> */}             
                 </div>
                 
