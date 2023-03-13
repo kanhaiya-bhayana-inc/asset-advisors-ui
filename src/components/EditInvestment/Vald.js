@@ -8,6 +8,4 @@ export const signUpSchema=Yup.object({
     accountID:Yup.string().min(6).max(6).required("AccountID field is mandatory.").trim(),
     strategyName:Yup.string().min(2).max(25).required("StrategyName field is mandatory.").trim(),
     investmentAmount:Yup.string().min(1).max(25).required("Amount field is mandatory.").trim(),
-  
-  
 });
