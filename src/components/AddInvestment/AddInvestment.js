@@ -5,6 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../AddInvestment/addinvestment.css';
 
 export default function AddInvestment() {
+  const [isLoading, setIsLoading] = useState(false);
+
   let token = localStorage.getItem("tokena");
     let ntoken = "Bearer " + token.replaceAll('"', '');
 
@@ -34,6 +36,7 @@ export default function AddInvestment() {
     onSubmit: (values, action) => {
       console.log(values);
       try {
+        setIsLoading(true);
         console.log("Call maked!");
         fetch(`https://localhost:7214/api/Investment/advisor-add-investments/${aicliID}`, {
           method: 'POST',
@@ -68,6 +71,19 @@ export default function AddInvestment() {
             // alert(data);
             // window.location ='/login'
           })
+          .catch((error) => {
+            setIsLoading(false);
+            
+            console.log("Error occurred:", error);
+
+            if (error == "TypeError: Failed to fetch") {
+              setShowErrorMsg(true);
+              setShowSuccessMsg(true);
+              setDispMsg("Server is Facing some issue. Please check Again Later!");
+            }
+            // setIsLoading(false);
+            // Handle the error here
+          });
       } catch (error) {
         console.log("Error b->", error);
       }
@@ -137,8 +153,11 @@ export default function AddInvestment() {
       </div>
       <div className='col-4'>
       </div>
-      <div className='col-4 mb-4 mt-4 text-center'>
-        <button className='btn btn-primary' type='submit' style={{width:"100px"}}> Add</button>
+      <div className='col-4 mb-3 mt-3 text-center'>
+        <button className={`btn btn-primary ${
+                        isLoading ? "loading" : ""
+                      }`} type='submit' style={{width:"190px"}}> {isLoading ? "Adding...": "Add"}</button>
+       
       </div>
       <div className='col-4'>
       </div>

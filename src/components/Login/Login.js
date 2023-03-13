@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import pic from "./undraw_login_re_4vu2 (1).svg";
 import "./style.css";
 import { Link } from "react-router-dom";
+import { setLocale } from "yup";
 
 function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,41 +45,49 @@ function Login() {
           body: JSON.stringify({ email: email, Password: Password }),
         })
           .then((res) => {
-            // const msg = res.text()
-            // console.log(res.text());
-            if (res.status === 200) {
-              window.location = "/aldsh";
-              // <Navigate to='aldsh' />
-              // console.log(res);
-              return res.text();
-            } else if (res.status === 400) {
-              // const locres = res.text()
-
-              // const errorekldjl = locres.errors
-              // setShowErrorMsg(true);
-              // setShowSuccessMsg(true);
-              return "Wrong Password!";
-            } else {
-              return res.text();
+            try {
+              
+              if (res.status === 200) {
+                window.location = "/aldsh";
+                return res.text();
+              } else if (res.status === 400) {
+                return "Wrong Password!";
+              } else {
+                setIsLoading(false);
+                return res.text();
+              }
+            } catch (error) {
+              setIsLoading(false);
+              console.log("server is Facing some issue");
             }
           })
           .then((data) => {
-            setIsLoading(false);
             if (data.startsWith("ey")) {
               localStorage.setItem("tokena", JSON.stringify(data));
               console.log(data);
-            }
-             else {
+            } else {
               // alert(data)
               setShowErrorMsg(true);
               setShowSuccessMsg(true);
               setDispMsg(data);
             }
+            setIsLoading(false);
+          })
+          .catch((error) => {
+            
+            console.log("Error occurred:", error);
+
+            if (error == "TypeError: Failed to fetch") {
+              setShowErrorMsg(true);
+              setShowSuccessMsg(true);
+              setDispMsg("Server is Facing some issue. Please check Again Later!");
+            }
+            setIsLoading(false);
+            // Handle the error here
           });
-        } catch (error) {
+      } catch (error) {
         setIsLoading(false);
-       
-        console.log(error);
+        console.log("Error b->", error);
       }
     }
   };
@@ -153,7 +162,7 @@ function Login() {
                 </div>
                 <div className="form-row">
                   <div className="col-lg-7">
-                  {/* <button
+                    {/* <button
                       type="submit"
                       className={`btn btn-primary mt-3 mb-3 glow-on-hover ${
                         isLoading ? "loading" : ""
@@ -169,7 +178,7 @@ function Login() {
                         isLoading ? "loading" : ""
                       }`}
                     >
-                      {isLoading ? "Signing In..." : "Sign In"}
+                      {isLoading ? "Logging In..." : "Sign In"}
                     </button>
                   </div>
                 </div>

@@ -48,7 +48,7 @@ const sendEmail = (action) => {
         setIsLoading(false);
         sc();
         setDispMsg(
-          "Some error occured while creating your account, Please check the deatils you entered or try again later!"
+          "Some error occurred while creating your account, Please check the details you entered or try again later!"
         );
         setShowSuccessMsg(true);
         setShowErrorMsg(true);
@@ -151,6 +151,19 @@ const sendEmail = (action) => {
                 setShowErrorMsg(true);
               }
             }
+          })
+          .catch((error) => {
+            sc();
+            
+            console.log("Error occurred:", error);
+
+            if (error == "TypeError: Failed to fetch") {
+              setShowErrorMsg(true);
+              setShowSuccessMsg(true);
+              setDispMsg("Server is Facing some issue. Please check Again Later!");
+            }
+            setIsLoading(false);
+            // Handle the error here
           });
       } catch (error) {
         console.log("Error b->", error);

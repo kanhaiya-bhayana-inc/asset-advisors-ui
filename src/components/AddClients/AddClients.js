@@ -3,10 +3,12 @@ import { useFormik } from 'formik';
 // import { useFormik } from 'formik';
 import { signUpSchema } from './Helper';
 import { useNavigate } from 'react-router-dom';
-
+import './AddClients.css'
 
 
 export default function AddClients() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [showSuccessMsg,setShowSuccessMsg] = useState(false);
   const [dispMsg,setDispMsg] = useState("");
   const [showErrorsMsg,setShowErrorMsg] = useState(false);
@@ -39,6 +41,7 @@ export default function AddClients() {
     onSubmit: (values, action) => {
       console.log(values);
       try {
+        setIsLoading(true);
         console.log("Call maked!");
         fetch('https://localhost:7214/api/User/add-client', {
           method: 'POST',
@@ -70,11 +73,24 @@ export default function AddClients() {
             }
           })
           .then((data) =>{
+            // setIsLoading(false);
             console.log(data);
             // alert(data);
             // window.location ='/login'
           })
+          .catch((error) => {
+            setIsLoading(false);
+            console.log("Error occurred:", error);
+
+            if (error == "TypeError: Failed to fetch") {
+              setShowErrorMsg(true);
+              setShowSuccessMsg(true);
+              setDispMsg("Server is Facing some issue. Please check Again Later!");
+            }
+            // Handle the error here
+          });
       } catch (error) {
+
         console.log("Error b->", error);
       }
       action.resetForm();
@@ -139,8 +155,10 @@ export default function AddClients() {
             {Formik.errors.confirmpassword && Formik.touched.confirmpassword ? (<p className='Form-error'> {Formik.errors.confirmpassword}</p>) : null} */}
           </div>
           <div className='col-2 text-center' style={{marginLeft:"100px"}}>
-            <button type="submit" className="btn btn-primary mt-3 mb-3 glow-on-hover">Add</button>
-
+            <button type="submit" className={`btn btn-primary mt-3 mb-3 glow-on-hover ${
+                        isLoading ? "loading" : ""
+                      }`}>{isLoading ? "Adding..." : "Add"}</button>
+           
           </div>
 
 

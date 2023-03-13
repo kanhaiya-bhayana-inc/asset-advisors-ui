@@ -115,6 +115,18 @@ export default function ViewClient() {
         // setFlag("true");
         // console.log(flag);
       })
+      .catch((error) => {
+            
+        console.log("Error occurred:", error);
+
+        if (error == "TypeError: Failed to fetch") {
+          setShowErrorMsg(true);
+          setShowSuccessMsg(true);
+          setDispMsg("Server is Facing some issue. Please check Again Later!");
+        }
+        // setIsLoading(false);
+        // Handle the error here
+      });
   }
 
   const investmentData = async () => {
@@ -183,6 +195,7 @@ export default function ViewClient() {
                 icon: "success",
               }).then(()=>{
                 investmentData();
+                callTotalAmount();
                 myFuncCall();
               });
             // window.location = `/viewclient/${vcliID}`;
@@ -206,6 +219,18 @@ export default function ViewClient() {
           // alert(data);
           // window.location ='/login'
         })
+        .catch((error) => {
+            
+          console.log("Error occurred:", error);
+
+          if (error == "TypeError: Failed to fetch") {
+            setShowErrorMsg(true);
+            setShowSuccessMsg(true);
+            setDispMsg("Server is Facing some issue. Please check Again Later!");
+          }
+          // setIsLoading(false);
+          // Handle the error here
+        });
     } catch (error) {
       console.log("Error b->", error);
     }
