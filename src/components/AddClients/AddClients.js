@@ -67,6 +67,7 @@ export default function AddClients() {
             else{
               // alert("Something went wrong, or this client is already registered by other user, try again.")
               setDispMsg("Something went wrong, or this client is already registered by other user, try again.");
+              setIsLoading(false);
               setShowErrorMsg(true);
               setShowSuccessMsg(true);
               
@@ -106,7 +107,7 @@ export default function AddClients() {
             <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
             {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
               {dispMsg}
-              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);setShowErrorMsg(false);}}></button>
             </div>
           </div> 
            }

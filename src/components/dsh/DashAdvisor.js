@@ -10,6 +10,12 @@ import swal from 'sweetalert';
 import { CSVLink } from 'react-csv';
 
 export default function DashboardAdv() {
+
+  const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [dispMsg,setDispMsg] = useState("");
+  const [showErrorsMsg,setShowErrorMsg] = useState(false);
+  const successBg = 'alert alert-success alert-dismissible fade show';
+  const warningBg = 'alert alert-warning alert-dismissible fade show';
   const navigate = useNavigate();
   // const [editShow,setEditShow] = useState(false);
   var fname ="ClientsData"
@@ -43,7 +49,7 @@ const colName =[
     color:"white",
   }
 
-  // const [flag, setFlag] = useState("false");
+  const [flag, setFlag] = useState(false);
   const [clientsList, setClientsList] = useState([]);
   const [dataLength,setDataLength] = useState(0);
   let count = 1;
@@ -70,6 +76,7 @@ const colName =[
         console.log("called");
         console.log(data);
       })
+      
   }
   
   const DataCall = async () => {
@@ -98,6 +105,20 @@ const colName =[
         // setFlag("true");
         
       })
+      .catch((error) => {
+        // setIsLoading(false);
+        console.log("Error occurred:kjfldsjfl", error);
+
+        if (error == "TypeError: Failed to fetch") {
+          setShowErrorMsg(true);
+          setShowSuccessMsg(true);
+          setDispMsg("Server is Facing some issue. Please check Again Later!");
+          console.log(dispMsg);
+          setFlag(true);
+          setDataLength(0)
+        }
+        // Handle the error here
+      });
   };
 
  
@@ -240,8 +261,15 @@ let ii = 1;
       {/* </div> */}
     {/* </div> */}
 
-    
-    <div style={style} className='row mt-2'>
+    {showSuccessMsg && <div className='p-4'>
+            <div className={(showErrorsMsg ? warningBg : successBg)} style={{width:"auto"}} role="alert">
+            {showErrorsMsg ? <i class="bi bi-exclamation-circle"></i> : <i className="bi bi-check-circle mt-1"></i>} &nbsp;
+              {dispMsg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={(e)=> {setShowSuccessMsg(false);}}></button>
+            </div>
+          </div> 
+           }
+    {!flag && <div style={style} className='row mt-2'>
       {/* </div> */}
       
       <table  className="table table-hover">
@@ -295,7 +323,7 @@ let ii = 1;
         </tbody>
         
       </table>
-      {dataLength === 0 ? <div className='p-4 tex-center'>
+      {dataLength === 0 && flag == false ? <div className='p-4 tex-center'>
             <div className="alert alert-warning alert-dismissible fade show" style={{width:"auto"}} role="alert">
               
               You have not created any client yet!
@@ -305,7 +333,7 @@ let ii = 1;
            :""}
 
            
-    </div>
+    </div>}
     </>
   )
 }
