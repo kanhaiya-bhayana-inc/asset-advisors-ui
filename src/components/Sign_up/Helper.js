@@ -20,7 +20,7 @@ export const signUpSchema = Yup.object({
     .max(10)
     .required("*Please enter a valid mobile number").trim(),
 
-  email: Yup.string().email().required("*Please enter a valid email"),
+  email: Yup.string().email().required("*Please enter a valid email").trim(),
   company: Yup.string()
     .min(2)
     .max(25)

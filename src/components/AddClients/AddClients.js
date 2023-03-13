@@ -26,8 +26,8 @@ export default function AddClients() {
     address: "",
     state: "",
     city: "",
-    password: "string",
-    confirmpassword: "string"
+    password: "String@1234",
+    confirmpassword: "String@1234"
   }
   const navigate = useNavigate();
   function myFuncCall (){

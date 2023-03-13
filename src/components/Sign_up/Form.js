@@ -231,13 +231,13 @@ const sendEmail = (action) => {
                   </div>
                   <div className='form-row'>
                     <div className='col-lg-7'>
-                      <input type="name" name="address" placeholder='address' className='form-control shadow-none my-3' value={Formik.values.address} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
+                      <input type="name" name="address" placeholder='Address' className='form-control shadow-none my-3' value={Formik.values.address} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
                       {Formik.errors.address&&Formik.touched.address?(<p className='Form-error'> {Formik.errors.address}</p>):null}
                     </div>
                   </div>
                   <div className='form-row'>
                     <div className='col-lg-7'>
-                      <input type="name" name="state" placeholder='state' className='form-control shadow-none my-3' value={Formik.values.state} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
+                      <input type="name" name="state" placeholder='State' className='form-control shadow-none my-3' value={Formik.values.state} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
                       {Formik.errors.state&&Formik.touched.state?(<p className='Form-error'> {Formik.errors.state}</p>):null}
                     </div>
                   </div>
@@ -249,7 +249,7 @@ const sendEmail = (action) => {
                   </div>
                   <div className='form-row'>
                     <div className='col-lg-7'>
-                      <input type="password" name="password" placeholder='password' className='form-control shadow-none my-3' value={Formik.values.password} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
+                      <input type="password" name="password" placeholder='Password' className='form-control shadow-none my-3' value={Formik.values.password} onChange={Formik.handleChange} onBlur={Formik.handleBlur}></input>
                       {Formik.errors.password&&Formik.touched.password?(<p className='Form-error'> {Formik.errors.password}</p>):null}
                     </div>
                   </div>

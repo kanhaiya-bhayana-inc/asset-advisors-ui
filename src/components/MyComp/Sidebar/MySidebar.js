@@ -63,8 +63,9 @@ export default function MySide() {
       .then(async res => await res.json())
       .then((data) => {
         // localStorage.setItem("id", data.userID);
-        // localStorage.setItem("advName", data.sortName);
+        localStorage.setItem("advName", data.sortName);
         setDet(data);
+        
         // setFlag("true");
         
       })
@@ -212,7 +213,7 @@ export default function MySide() {
         </nav>
       </div>
       <div className="pt-4 pb-4">
-        <h4>@{det.sortName}'s Dashboard</h4>
+        <h4>@{dispName}'s Dashboard</h4>
         {/* <DashboardAdv/> */}
        {showPass ? <div style={{width:"70%"}}>
           <div className="alert alert-warning alert-dismissible fade show" style={{width:"auto"}} role="alert">

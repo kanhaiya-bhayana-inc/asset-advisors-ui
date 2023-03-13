@@ -163,7 +163,7 @@ let noc = "nochange";
               <div className='col-4'><label>Amount: &nbsp;{det.investmentAmount}</label></div>
               <div className='col-4 mt-2'><label>AccountID: &nbsp;{det.accountID}</label></div>
               <div className='col-4'><label>StrategyID: &nbsp;{det.strategyID}</label></div>
-              <div className='col-4'><label>Active: &nbsp;{det.active}</label></div>
+              <div className='col-4'><label>Active Status: &nbsp;{det.active}</label></div>
               <div className='col-4 mt-2'><label>Strategy Name: &nbsp;{det.strategyName}</label></div>
               <div className='p-2 mt-2'>
                 <hr />
@@ -200,7 +200,7 @@ let noc = "nochange";
       <div className='col-4 mt-3'>
       <div className="dropdown p-4" style={{ width: "auto" }}>
           <select className="form-select" name='active' value={Formik.values.active} onChange={Formik.handleChange}  aria-label="Default select example">
-            <option value="selected">Active</option>
+            <option value="selected">Active Status</option>
             <option value="1">True</option>
             <option value="0">False</option>
           </select>

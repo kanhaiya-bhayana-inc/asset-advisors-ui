@@ -127,7 +127,7 @@ export default function AddInvestment() {
       <div className='col-4 mt-3'>
       <div className="dropdown p-4 " style={{ width: "auto" }}>
           <select className="form-select" name='active' value={Formik.values.active} onChange={Formik.handleChange}  aria-label="Default select example">
-            <option value="selected">Active</option>
+            <option value="selected">Active Status</option>
             <option value="1">True</option>
             <option value="0">False</option>
           </select>
