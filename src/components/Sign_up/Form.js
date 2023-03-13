@@ -10,6 +10,7 @@ import emailjs from '@emailjs/browser';
 // import { SMTPClient } from 'emailjs';
 
 function Form() {
+  const [isLoading, setIsLoading] = useState(false);
   // const client = new SMTPClient({
   //   user: 'shivamsharmaincedo@gmail.com',
   //   password: 'shiv@123',
@@ -23,15 +24,38 @@ function Form() {
     message:"",
     to_email:"bkanhaiya.bhayana@gmail.com"
 };
-  const sendEmail =() =>{
-    emailjs.send('service_e0rgs4f', 'template_4e0cj9r', templateParams,'Pt9HoMrwEOtiaXuMI')
-    .then(function(response) {
-       console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
-       console.log('FAILED...', error);
-    });
-
-  }
+const sendEmail = (action) => {
+  emailjs
+    .send(
+      "service_e0rgs4f",
+      "template_4e0cj9r",
+      templateParams,
+      "Pt9HoMrwEOtiaXuMI"
+    )
+    .then(
+      function (response) {
+        setIsLoading(false);
+        sc();
+        action.resetForm();
+        setDispMsg(
+          "Your account has been created successfully, You will receive an email very soon. Follow the instructions to verify your account!"
+        );
+        setShowSuccessMsg(true);
+        setShowErrorMsg(false);
+        console.log("SUCCESS!", response.status, response.text);
+      },
+      function (error) {
+        setIsLoading(false);
+        sc();
+        setDispMsg(
+          "Some error occured while creating your account, Please check the deatils you entered or try again later!"
+        );
+        setShowSuccessMsg(true);
+        setShowErrorMsg(true);
+        console.log("FAILED...", error);
+      }
+    );
+};
 
   // function sendMail(){
   // client.send(
@@ -72,71 +96,68 @@ function Form() {
   const Formik = useFormik({
     initialValues: initialValues,
     validationSchema: signUpSchema,
-    onSubmit: (values, action) => {
+    onSubmit: (values, action) =>  {
       // e.preventDefault();
       console.log(values);
       try {
-        fetch('https://localhost:7214/api/User/add-user', {
-          method: 'POST',
+        setIsLoading(true);
+        fetch("https://localhost:7214/api/User/add-user", {
+          method: "POST",
           headers: {
-            'Content-type': 'application/json',
+            "Content-type": "application/json",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
-            "Access-Control-Max-Age": 86400
+            "Access-Control-Max-Age": 86400,
           },
-          body: JSON.stringify(values)
-
+          body: JSON.stringify(values),
         })
-          .then(res => {
+          .then((res) => {
             // res.json()
-            if (res.status === 200){
-              setDispMsg("Your account has been created successfully, You will receive an email very soon. Follow the instructions to verify your account!")
-              setShowSuccessMsg(true);
-
-              // console.log(res.body);
-             
-              
-              setShowErrorMsg(false);
-              // alert(window.location = '/accverify');
-              // sendMail();
-              return res.text()
-            }else if (res.status === 400){
-              setDispMsg("This avisor is already registered, Please check your details!")
-              setShowSuccessMsg(true);
-              setShowErrorMsg(true);
-              return res.text()
-              
-            }
-            
-            else{
-              setDispMsg("Some error occured while creating your account, Please check the deatils you entered or try again later!");
-              setShowSuccessMsg(true);
-              setShowErrorMsg(true);
-              return res.text()
-              
+            if (res.status === 200) {
+              return res.text();
+            } else if (res.status === 400) {
+              setIsLoading(false);
+              return res.text();
+            } else {
+              setIsLoading(false);
+              return res.text();
             }
           })
-          .then((data) =>{
-            console.log(JSON.parse(data).verificationToken);
-            let m = JSON.parse(data).verificationToken;
-            let sn = JSON.parse(data).sortName;
-            if(m){
-              templateParams.message = m;
-              templateParams.to_name = sn;
-              sendEmail();
+          .then((data) => {
+            try {
+              console.log(JSON.parse(data).verificationToken);
+              let m = JSON.parse(data).verificationToken;
+              let sn = JSON.parse(data).sortName;
+              if (m) {
+                templateParams.message = m;
+                templateParams.to_name = sn;
+                sendEmail(action);
+              }
+            } catch (error) {
+              setIsLoading(false);
+              console.log("Data" + data);
+              sc();
+              if (data == "User already Exist") {
+                setDispMsg(
+                  "This advisor is already registered, Please check your details!"
+                );
+                setShowSuccessMsg(true);
+                setShowErrorMsg(true);
+              } else {
+                setDispMsg(
+                  "Some error occurred while creating your account, Please check the details you entered or try again later!"
+                );
+                setShowSuccessMsg(true);
+                setShowErrorMsg(true);
+              }
             }
-            // alert("Advisor registered successfully.")
-            // alert(data);
-            // window.location ='/login'
-          })
+          });
       } catch (error) {
         console.log("Error b->", error);
+        setIsLoading(false);
       }
-      action.resetForm();
-    }
+    },
   })
-  //console.log(Formik.errors);
-  //console.log(Formik);
     const sc = () =>{
       window.scrollTo(0, 0)
     }
@@ -227,7 +248,15 @@ function Form() {
                   </div>
                   <div className='form-row'>
                     <div className='col-lg-7'>
-                    <button type="submit" className="btn btn-primary mt-3 mb-3 glow-on-hover" onClick={sc}>Sign Up</button>
+                    <button
+                      type="submit"
+                      className={`btn btn-primary mt-3 mb-3 glow-on-hover ${
+                        isLoading ? "loading" : ""
+                      }`}
+                      // onClick={() => setIsLoading(true)}
+                    >
+                      {isLoading ? "Signing Up..." : "Sign Up"}
+                    </button>
                     
                     </div>
                   </div>

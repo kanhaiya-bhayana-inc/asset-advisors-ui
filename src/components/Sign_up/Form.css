@@ -29,3 +29,9 @@
     font-size:x-small;
     margin-top: 3px;
 }
+
+button.loading{
+    background:url('loading.gif') no-repeat right center;
+    background-size: contain;
+    cursor: progress;
+}
