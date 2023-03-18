@@ -1,0 +1,5 @@
+button.loading{
+    background:url('../Sign_up/loading.gif') no-repeat right center;
+    background-size: contain;
+    cursor: progress;
+}

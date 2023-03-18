@@ -1,0 +1,13 @@
+.addbtn{
+    margin-top: 15px;
+}
+.drp{
+    margin-top:auto;
+}
+button.loading{
+    background:url('../Sign_up/loading.gif') no-repeat right center;
+    background-size: contain;
+    cursor: progress;
+    /* padding: 25px; */
+    /* margin-left: 40px; */
+}
