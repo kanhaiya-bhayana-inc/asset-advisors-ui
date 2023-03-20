@@ -98,7 +98,7 @@ const sendEmail = (action) => {
     validationSchema: signUpSchema,
     onSubmit: (values, action) =>  {
       // e.preventDefault();
-      console.log(values);
+      // console.log(values);
       try {
         setIsLoading(true);
         fetch("https://advisorrun.azurewebsites.net/add-user", {
