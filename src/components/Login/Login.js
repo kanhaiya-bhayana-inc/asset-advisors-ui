@@ -77,7 +77,7 @@ function Login() {
             
             console.log("Error occurred:", error);
 
-            if (error == "TypeError: Load failed") {
+            if (error == "TypeError: Load failed" || error == "TypeError: Failed to fetch") {
               setShowErrorMsg(true);
               setShowSuccessMsg(true);
               setDispMsg("Server is Facing some issue. Please check Again Later!");
