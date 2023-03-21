@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.pic{
+    width: 100%;
+    height: 75vh;
+}
+.btn{
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    /* display: inline-block; */
+    padding:10px 30px;
+    border-radius: 50px;
+    /* transition: 0.5s; */
+    text-decoration: none;
+
+    width: 10rem;
+}
+
+#header{
+    width: 100%;
+    height: 80vh;
+    margin-top: 70px;
+}
+
+#header h1{
+    margin: 0 0 10px 0;
+    font-size: 48px;
+    font-weight: 700;
+    color: black;
+  
+}
+.brand{
+    /* color: rgb(34, 0, 255); */
+    color: #536dfe;
+}
+/* .hmbtn{
+    color: #536dfe;
+} */
+
+
+@media screen and (max-width: 990px) {
+    .smDMT {
+      margin-top: 200px !important;
+    }
+}
