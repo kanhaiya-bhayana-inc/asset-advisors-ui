@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineEye } from "react-icons/ai";
 import { CSVLink } from 'react-csv';
 
 import swal from 'sweetalert';
@@ -319,7 +320,9 @@ export default function ViewClient() {
               <th scope="col" style={{ color: "white" }}>Inv-Type</th>
               <th scope="col" style={{ color: "white" }}>Status-Active</th>
               <th scope="col" style={{ color: "white" }}>Amount($)</th>
-              <th scope="col" style={{ color: "white" }}>Action</th>
+              <th scope="col" style={{ color: "white" }}></th>
+              <th scope="col" style={{ color: "white" }}></th>
+              <th scope="col" style={{ color: "white" }}></th>
 
             </tr>
           </thead>
@@ -334,7 +337,9 @@ export default function ViewClient() {
                     <td>{e.investmentTypeName}</td>
                     <td>{e.active}</td>
                     <td>{e.investmentAmount}</td>
-                    <td><Link to={`/editinvestment/${e.inofID}/${e.strategyID}/${vcliID}`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))}  /></Link> &nbsp; <AiOutlineDelete size={20} onClick={(ev)=>showDelDi(e.inofID,e.strategyID)} style={{cursor: "pointer"}} /></td>
+                    <td><Link to={`/editinvestment/${e.inofID}/${e.strategyID}/${vcliID}`}><AiOutlineEdit size={20} onClick={((e) => console.log("Jai ho"))}  /></Link></td> 
+                    <td><Link to={`/editinvestment/${e.inofID}/${e.strategyID}/${vcliID}`} ><AiOutlineEye size={20} onClick={((e) => console.log("Jai ho"))} /></Link></td>
+                    <td><AiOutlineDelete size={20} onClick={(ev)=>showDelDi(e.inofID,e.strategyID)} style={{cursor: "pointer"}} /></td>
                   </tr>
                 </>
               );
