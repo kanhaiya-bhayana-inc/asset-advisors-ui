@@ -6,6 +6,7 @@ import './Edit.css';
 
 import {AiOutlineCloseCircle} from 'react-icons/ai'
 
+import { routes } from '../Utils/Globals'
 
 
 
@@ -36,7 +37,7 @@ export default function EditClients() {
 
 
 
-    await fetch(`https://advisorrun.azurewebsites.net/Get-Client-by/${vcliID}`, {
+    await fetch(`${routes.getSpecificClient}/${vcliID}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -87,7 +88,7 @@ export default function EditClients() {
         console.log("Call maked!");
         console.log(values);
         uId = localStorage.getItem("uid");
-        fetch(`https://advisorrun.azurewebsites.net/Update-Client/${uId}`, {
+        fetch(`${routes.updateClient}/${uId}`, {
           method: 'PUT',
           headers: {
             'Content-type': 'application/json',

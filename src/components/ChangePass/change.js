@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { useFormik } from 'formik';
 import { fschema } from './FPass';
+import {routes} from '../Utils/Globals';
+
 function Change() {
 
   const [showSuccessMsg,setShowSuccessMsg] = useState(false);
@@ -34,7 +36,7 @@ function Change() {
     onSubmit: (values, action) => {
       console.log(values);
       try {
-        fetch('https://advisorrun.azurewebsites.net/reset-password', {
+        fetch(routes.resetPassword, {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',

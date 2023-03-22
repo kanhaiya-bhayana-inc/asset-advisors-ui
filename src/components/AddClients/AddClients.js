@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import { signUpSchema } from './Helper';
 import { useNavigate } from 'react-router-dom';
 import './AddClients.css'
+import {routes} from '../Utils/Globals';
 
 
 export default function AddClients() {
@@ -40,10 +41,11 @@ export default function AddClients() {
     validationSchema: signUpSchema,
     onSubmit: (values, action) => {
       console.log(values);
+      console.log(routes.addAdvisors);
       try {
         setIsLoading(true);
         console.log("Call maked!");
-        fetch('https://advisorrun.azurewebsites.net/add-client', {
+        fetch(routes.addClient, {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',

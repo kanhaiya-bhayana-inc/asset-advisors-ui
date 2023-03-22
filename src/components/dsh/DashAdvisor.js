@@ -8,6 +8,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import './ds.css';
 import swal from 'sweetalert';
 import { CSVLink } from 'react-csv';
+import { routes } from '../Utils/Globals'
 
 export default function DashboardAdv() {
 
@@ -59,7 +60,7 @@ const colName =[
     let ntoken = "Bearer " + token.replaceAll('"', '');
     let id = localStorage.getItem("id");
     console.log(id);
-    await fetch(`https://advisorrun.azurewebsites.net/get-all-clients/${id}`, {
+    await fetch(`${routes.getAllClients}/${id}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -85,7 +86,7 @@ const colName =[
     
 
 
-    await fetch(`https://advisorrun.azurewebsites.net/get-user-auth`, {
+    await fetch(`${routes.getUserAuth}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -137,7 +138,7 @@ let ii = 1;
     console.log("my id si ",delCID);
     try {
       console.log("Call maked!");
-      fetch(`https://advisorrun.azurewebsites.net/Delete-Client/${delCID}`, {
+      fetch(`${routes.deleteClient}/${delCID}`, {
         method: 'DELETE',
         headers: {
           'Content-type': 'application/json',

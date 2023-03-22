@@ -4,6 +4,7 @@ import pic from "./undraw_login_re_4vu2 (1).svg";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { setLocale } from "yup";
+import { routes } from '../Utils/Globals'
 
 function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +35,7 @@ function Login() {
       console.log("ju");
       try {
         setIsLoading(true);
-        fetch("https://advisorrun.azurewebsites.net/adv-login", {
+        fetch(routes.advisorLogin, {
           method: "POST",
           headers: {
             "Content-type": "application/json",

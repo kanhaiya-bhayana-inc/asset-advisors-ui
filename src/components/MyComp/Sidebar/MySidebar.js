@@ -7,6 +7,7 @@ import { TiTick } from 'react-icons/ti';
 import pic from '../Sidebar/favicon-32x32.png'
 import swal from 'sweetalert';
 import emailjs from '@emailjs/browser';
+import { routes } from '../../Utils/Globals'
 
 
 
@@ -50,7 +51,7 @@ export default function MySide() {
     
 
 
-    await fetch(`https://advisorrun.azurewebsites.net/get-user-auth`, {
+    await fetch(routes.getUserAuth, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -82,7 +83,7 @@ export default function MySide() {
     let ntoken = "Bearer " + token.replaceAll('"', '');
     let id = localStorage.getItem("id");
     console.log(id);
-    await fetch(`https://advisorrun.azurewebsites.net/change-password`, {
+    await fetch(routes.changePassword, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
