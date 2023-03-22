@@ -4,7 +4,7 @@ import { signUpSchema } from '../schemas/Helper';
 import {AiOutlineCloseCircle} from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom';
 
-
+import {routes} from '../Utils/Globals'
 
 
 export default function Profile() {
@@ -33,7 +33,7 @@ export default function Profile() {
 
 
 
-    await fetch(`https://advisorrun.azurewebsites.net/get-user-auth`, {
+    await fetch(routes.getUserAuth, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -85,7 +85,7 @@ export default function Profile() {
         console.log(values);
         var auit = localStorage.getItem("auID");
         console.log(auit);
-        fetch(`https://advisorrun.azurewebsites.net/update-user-advisor/${auit}`, {
+        fetch(`${routes.updateUserAdvisor}/${auit}`, {
           method: 'PUT',
           headers: {
             'Content-type': 'application/json',

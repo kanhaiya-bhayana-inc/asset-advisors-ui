@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import { signUpSchema } from './Vald';
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { useNavigate, useParams } from 'react-router-dom';
+import { routes } from '../Utils/Globals'
 
 
 
@@ -35,7 +36,7 @@ export default function EditInvestment() {
 
 
 
-    await fetch(`https://advisorrun.azurewebsites.net/api/Investment/GetSingleInvestment/${infoID}/${strtID}`, {
+    await fetch(`${routes.getSingleInvestment}/${infoID}/${strtID}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -78,7 +79,7 @@ let noc = "nochange";
         let advId = localStorage.getItem("id");
         let ntoken = "Bearer " + token.replaceAll('"', '');
         console.log("Call maked!");
-        fetch(`https://advisorrun.azurewebsites.net/api/Investment/advisorUpdateinvestment/${infoID}/${strtID}/${advId}`, {
+        fetch(`${routes.updateInvestment}/${infoID}/${strtID}/${advId}`, {
           method: 'PUT',
           headers: {
             'Content-type': 'application/json',
