@@ -1,5 +1,7 @@
-const baseURL = 'https://localhost:7214';
-const MidURL = '/api/User/';
+// const baseURL = 'https://localhost:7214';
+const baseURL = 'https://advisorrun.azurewebsites.net';
+// const MidURL = '/api/User/';
+const MidURL = '/';
 
 const addAdvisor = baseURL +MidURL + 'add-user';
 const verifyAccount = baseURL +MidURL + 'verify-user-account';
@@ -13,6 +15,8 @@ const updateClient = baseURL + MidURL +'Update-Client';
 const deleteClient = baseURL + MidURL +'Delete-Client';
 const forgotPassword = baseURL + MidURL +'forgot-password';
 const resetPassword = baseURL + MidURL +'reset-password';
+
+
 
 const MidURLInvestment = "/api/Investment/"
 
