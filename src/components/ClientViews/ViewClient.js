@@ -6,7 +6,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import { CSVLink } from 'react-csv';
 
 import swal from 'sweetalert';
-
+import { routes } from '../Utils/Globals'
 
 export default function ViewClient() {
   const colName =[
@@ -62,7 +62,7 @@ export default function ViewClient() {
 
 
 
-    await fetch(`https://advisorrun.azurewebsites.net/api/Investment/GetTotalAmount/${vcliID}`, {
+    await fetch(`${routes.getTotalInvestmnetAmount}/${vcliID}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -91,7 +91,7 @@ export default function ViewClient() {
 
 
 
-    await fetch(`https://advisorrun.azurewebsites.net/Get-Client-by/${vcliID}`, {
+    await fetch(`${routes.getSpecificClient}/${vcliID}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -134,7 +134,7 @@ export default function ViewClient() {
 
     let token = localStorage.getItem("tokena");
     let ntoken = "Bearer " + token.replaceAll('"', '');
-    await fetch(`https://advisorrun.azurewebsites.net/api/Investment/GetUserInvestments/${vcliID}`, {
+    await fetch(`${routes.getAllInvestments}/${vcliID}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -173,7 +173,7 @@ export default function ViewClient() {
     // console.log("my id si ",delCID);
     try {
       console.log("Call maked!");
-      fetch(`https://advisorrun.azurewebsites.net/api/Investment/advisorDeleteinvestment/${iID}/${sID}`, {
+      fetch(`${routes.deleteInvestment}/${iID}/${sID}`, {
         method: 'DELETE',
         headers: {
           'Content-type': 'application/json',

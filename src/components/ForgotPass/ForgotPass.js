@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import { fschema } from './Fpass';
 import emailjs from '@emailjs/browser';
+import { routes } from '../Utils/Globals'
 
 
 export default function ForgotPass() {
@@ -60,7 +61,7 @@ export default function ForgotPass() {
             console.log(values);
             try {
                 var emailurl = values.email;
-                fetch(`https://advisorrun.azurewebsites.net/forgot-password?email=${emailurl}`, {
+                fetch(`${routes.forgotPassword}?email=${emailurl}`, {
                     method: 'POST',
                     headers: {
                         'Content-type': 'application/json',

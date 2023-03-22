@@ -3,6 +3,8 @@ import { signUpSchema } from './Vald';
 import { useFormik } from 'formik';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../AddInvestment/addinvestment.css';
+import {routes} from '../Utils/Globals';
+
 
 export default function AddInvestment() {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +40,7 @@ export default function AddInvestment() {
       try {
         setIsLoading(true);
         console.log("Call maked!");
-        fetch(`https://advisorrun.azurewebsites.net/api/Investment/advisor-add-investments/${aicliID}`, {
+        fetch(`${routes.addInvestment}/${aicliID}`, {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
