@@ -279,7 +279,7 @@ export default function ViewClient() {
           <h3 className='text-center p-4' style={{ marginTop: "-20px" }}>Investment Details</h3>
         </div>
 
-       {dataLength != 0 ? <div className="nav_link text-center col-3 mt-1" style={{ width: "250px", border: "1px solid black", marginLeft: "120px" }}>
+       {dataLength != 0 ? <div className="nav_link text-center col-3 mt-1" style={{ width: "auto", border: "1px solid black", marginLeft: "120px" }}>
           Total Investments: ${amount && amount.slice(0,-3)}
         </div> :""}
         {showSuccessMsg && <div className='p-4 tex-center'>
