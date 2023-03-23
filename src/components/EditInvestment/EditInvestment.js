@@ -180,7 +180,7 @@ export default function EditInvestment() {
               <div className="col-5">
                 <h5 className="mt-5">Investment Details</h5>
                 <p className="font-weight-bold mt-2">
-                  InvestmentID:{det.inofID}
+                  InvestmentID: {det.inofID}
                 </p>
               </div>
 

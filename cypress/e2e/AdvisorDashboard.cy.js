@@ -3,7 +3,8 @@ import { wait } from "@testing-library/user-event/dist/utils";
 
 function login() {
   //login
-  cy.visit("https://proud-sky-0b36e9d0f.2.azurestaticapps.net/");
+  // cy.visit("https://proud-sky-0b36e9d0f.2.azurestaticapps.net/");
+  cy.visit("http://localhost:3000/");
   cy.get(":nth-child(3) > .nav-link").click();
   cy.readFile("cypress/fixtures/credentials.json").then((credentials) => {
     cy.get(":nth-child(1) > .col-lg-7 > .form-control").type(
@@ -148,7 +149,7 @@ describe("Advisor Operations", () => {
       .invoke("text")
       .then((text) => {
         console.log(text);
-        cy.get(":nth-child(1) > :nth-child(7) > :nth-child(2)").click();
+        cy.get('tbody > :nth-child(1) > :nth-child(9) > svg').click({force:true})
         cy.get(":nth-child(2) > .swal-button").click();
         cy.wait(1000);
         cy.get(".swal-button").click();
