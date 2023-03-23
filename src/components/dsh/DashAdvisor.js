@@ -244,10 +244,7 @@ let ii = 1;
   }
   return (
     <>
-    {isLoading && <div class="loader">
-    <h1></h1>
-      <h2>Loading...</h2>
-    </div>}
+
     {/* <div className='row p-2' style={{backgroundColor:"#dbe2e2", border:"none"}}> */}
       {/* <div className='col'> */}
       {/* <div style={addClientBtn} className='d-flex flex-row-reverse'><b>&nbsp;Add Clients</b> */}
@@ -342,6 +339,10 @@ let ii = 1;
            :""}
 
            
+    </div>}
+    {isLoading && <div class="loader">
+    <h1></h1>
+      <h2>Loading...</h2>
     </div>}
     </>
   )
