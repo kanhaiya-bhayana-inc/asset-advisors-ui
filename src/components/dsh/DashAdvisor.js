@@ -111,7 +111,7 @@ const colName =[
         
       })
       .catch((error) => {
-        // setIsLoading(false);
+        setIsLoading(false);
         console.log("Error occurred:kjfldsjfl", error);
 
         if (error == "TypeError: Load failed" || error == "TypeError: Failed to fetch") {
@@ -192,6 +192,7 @@ let ii = 1;
         })
         
     } catch (error) {
+      isLoading(false)
       console.log("Error b->", error);
     }
   }
