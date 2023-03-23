@@ -58,7 +58,18 @@ export default function EditClients() {
         // console.log("Mydata2->", initialValues);
         // setFlag("true");
         // console.log(flag);
-      });
+      }).catch((error) => {
+            
+        console.log("Error occurred:", error);
+
+        if (error == "TypeError: Load failed" || error == "TypeError: Failed to fetch") {
+          setShowErrorMsg(true);
+          setShowSuccessMsg(true);
+          setDispMsg("Server is Facing some issue. Please check Again Later!");
+        }
+        setIsLoading(false);
+        // Handle the error here
+      });;
   };
 
   let depen = "nochange";

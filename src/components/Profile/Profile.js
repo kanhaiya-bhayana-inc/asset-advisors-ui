@@ -57,7 +57,18 @@ export default function Profile() {
         // console.log("Mydata->", det);
         // console.log("Mydata2->", initialValues);
         // console.log(flag);
-      });
+      }).catch((error) => {
+            
+        console.log("Error occurred:", error);
+
+        if (error == "TypeError: Load failed" || error == "TypeError: Failed to fetch") {
+          setShowErrorMsg(true);
+          setShowSuccessMsg(true);
+          setDispMsg("Server is Facing some issue. Please check Again Later!");
+        }
+        setIsLoading(false);
+        // Handle the error here
+      });;
   };
 
   useEffect(() => {

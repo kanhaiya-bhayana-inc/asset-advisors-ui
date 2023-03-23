@@ -1,7 +1,7 @@
-const baseURL = 'https://localhost:7214';
-// const baseURL = 'https://advisorrun.azurewebsites.net';
-const MidURL = '/api/User/';
-// const MidURL = '/';
+// const baseURL = 'https://localhost:7214';
+const baseURL = 'https://advisorrun.azurewebsites.net';
+// const MidURL = '/api/User/';
+const MidURL = '/';
 
 const addAdvisor = baseURL +MidURL + 'add-user';
 const verifyAccount = baseURL +MidURL + 'verify-user-account';
