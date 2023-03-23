@@ -50,7 +50,7 @@ export default function ViewClient() {
   const [det, setDet] = useState({});
   const [InvestmentDet, setInvestmentDet] = useState([]);
   const [amount, setAmount] = useState("0");
-  const [dataLength, setDataLength] = useState(1);
+  const [dataLength, setDataLength] = useState(-1);
 
   const navigate = useNavigate();
   function myFuncCall() {
@@ -156,7 +156,7 @@ export default function ViewClient() {
           console.log(Object.keys(data.result).length);
           setDataLength(Object.keys(data.result).length);
         }else{
-          setDataLength(0);
+          setDataLength(-1);
         }
       });
   };
@@ -305,7 +305,7 @@ export default function ViewClient() {
           </h3>
         </div>
 
-        {dataLength != 0 ? (
+        {dataLength != -1 ? (
           <div
             className="nav_link text-center col-3 mt-1"
             style={{
@@ -345,7 +345,7 @@ export default function ViewClient() {
             </div>
           </div>
         )}
-        {!isLoading && (dataLength != 0) ? (
+        {!isLoading && (dataLength != -1) ? (
           <>
             {/* {InvestmentDet.splice(0,0,ClientDetailscolName)} */}
 
@@ -459,7 +459,7 @@ export default function ViewClient() {
             {/* {  InvestmentDet} */}
           </tbody>
         </table>
-        {dataLength == 0 ? (
+        {!isLoading && dataLength == -1 ? (
           <div className="p-4 tex-center">
             <div
               className="alert alert-warning alert-dismissible fade show"
@@ -481,7 +481,7 @@ export default function ViewClient() {
         {isLoading && (
           <div class="loader">
             <h1></h1>
-            <h2>Loading...</h2>
+            {/* <h2>Loading...</h2> */}
           </div>
         )}
       </div>
