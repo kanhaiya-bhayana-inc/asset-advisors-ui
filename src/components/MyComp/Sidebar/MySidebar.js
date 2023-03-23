@@ -132,7 +132,8 @@ export default function MySide() {
       }
     });
   }
-  function chanPass(){
+  function chanPass(e){
+    e.preventDefault();
     swal({
       title: "Do you really want to change your password?",
       icon: "info",
@@ -191,7 +192,7 @@ export default function MySide() {
               <Link to="/profile" className="nav_link">
                 <i className='bi bi-person-check nav_icon' /><span className="nav_name dshhvr">Profile</span>
               </Link>
-              <Link to="/advisordash" className="nav_link" onClick={chanPass}>
+              <Link to="." className="nav_link" onClick={chanPass}>
                 <SiGnuprivacyguard /><span className="nav_name dshhvr" >Change Password</span>
               </Link>
               {/* <Link to="/privacypolicy" className="nav_link">
