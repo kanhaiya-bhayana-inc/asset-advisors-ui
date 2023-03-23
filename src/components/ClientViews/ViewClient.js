@@ -479,7 +479,7 @@ export default function ViewClient() {
           ""
         )}
         {isLoading && (
-          <div class="loader">
+          <div class="loaderClient">
             <h1></h1>
             {/* <h2>Loading...</h2> */}
           </div>

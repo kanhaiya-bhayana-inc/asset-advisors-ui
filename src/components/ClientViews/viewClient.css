@@ -1,4 +1,4 @@
-.loader {
+.loaderClient {
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* change 'top' to 'flex-start' */
@@ -8,12 +8,12 @@
     cursor: progress;
     background-color: #ffffff;
   }
-  .loader h1 {
+  .loaderClient h1 {
     background:url('../dsh/loading.gif') no-repeat;
     width: 200px;
     height: 100%; /* change '100px' to '100%' */
   }
-  .loader h2 {
+  .loaderClient h2 {
     font-size: 24px;
     font-weight: bold;
     margin-top: 20px;
