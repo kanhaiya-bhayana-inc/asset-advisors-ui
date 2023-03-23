@@ -13,11 +13,14 @@ import { routes } from '../Utils/Globals'
 export default function DashboardAdv() {
 
   const [showSuccessMsg,setShowSuccessMsg] = useState(false);
+  const [isLoading,setIsLoading] = useState(true);
   const [dispMsg,setDispMsg] = useState("");
   const [showErrorsMsg,setShowErrorMsg] = useState(false);
   const successBg = 'alert alert-success alert-dismissible fade show';
   const warningBg = 'alert alert-warning alert-dismissible fade show';
   const navigate = useNavigate();
+
+
   // const [editShow,setEditShow] = useState(false);
   var fname ="ClientsData"
 const colName =[
@@ -76,6 +79,7 @@ const colName =[
         setDataLength(Object.keys(data).length);
         console.log("called");
         console.log(data);
+        setIsLoading(false)
       })
       
   }
@@ -240,18 +244,22 @@ let ii = 1;
   }
   return (
     <>
+    {isLoading && <div class="loader">
+    <h1></h1>
+      <h2>Loading...</h2>
+    </div>}
     {/* <div className='row p-2' style={{backgroundColor:"#dbe2e2", border:"none"}}> */}
       {/* <div className='col'> */}
       {/* <div style={addClientBtn} className='d-flex flex-row-reverse'><b>&nbsp;Add Clients</b> */}
-      <Link to="/addClient" className="nav_link btndsh mt-3 mb-3" style={{width:"185px",border:"1px solid black"}}>
+      {!isLoading &&<Link to="/addClient" className="nav_link btndsh mt-3 mb-3" style={{width:"185px",border:"1px solid black"}}>
               
       {/* <button  className='btn mb-2 btn-lg' style={addClientBtn}> */}
         <MdPersonAddAlt1  size={20}  className='adclient' /> Add Clients
       {/* </button> */}
-            </Link>
+            </Link>}
 
 
-            {dataLength != 0 ? 
+            {!isLoading &&dataLength != 0 ? 
            (
             <>
             
@@ -270,7 +278,7 @@ let ii = 1;
             </div>
           </div> 
            }
-    {!flag && <div style={style} className='row mt-2'>
+    {!isLoading && !flag && <div style={style} className='row mt-2'>
       {/* </div> */}
       
       <table  className="table table-hover">
