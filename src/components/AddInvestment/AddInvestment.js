@@ -142,13 +142,13 @@ export default function AddInvestment() {
         <input type="text" name="accountID" value={Formik.values.accountID} onChange={Formik.handleChange}  placeholder='Enter acoountID' className='form-control shadow-none my-3' />
         {Formik.errors.accountID && Formik.touched.accountID ? (<p className='Form-error'> {Formik.errors.accountID}</p>) : null}
       </div>
-      <div className='col-4' style={{marginLeft: "20px",width:"400px"}}>
+      <div className='col-4' style={{marginLeft: "20px",width:"580px"}}>
       <lable style={{marginLeft: "13px"}}>Strategy Name</lable>
         <input type="text" name="strategyName" value={Formik.values.strategyName} onChange={Formik.handleChange} placeholder='Enter strategy name' className='form-control shadow-none my-3' />
         {Formik.errors.strategyName && Formik.touched.strategyName ? (<p className='Form-error'> {Formik.errors.strategyName}</p>) : null}
       </div>
 
-      <div className='col-4' style={{marginLeft: "20px",width:"380px"}}>
+      <div className='col-4' style={{marginLeft: "55px",width:"580px"}}>
       <lable style={{marginLeft: "15px"}}>Investment Amount</lable>
         <input type="number" name="investmentAmount" value={Formik.values.investmentAmount} onChange={Formik.handleChange} placeholder='Enter investment amount' className='form-control shadow-none my-3' />
         {Formik.errors.investmentAmount && Formik.touched.investmentAmount ? (<p className='Form-error'> {Formik.errors.investmentAmount}</p>) : null}
