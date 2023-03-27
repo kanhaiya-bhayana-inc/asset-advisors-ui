@@ -4,8 +4,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import { CSVLink } from "react-csv";
-import './viewClient.css';
-
+import "./viewClient.css";
 
 import swal from "sweetalert";
 import { routes } from "../Utils/Globals";
@@ -104,8 +103,8 @@ export default function ViewClient() {
         // localStorage.setItem("id", data.userID);
         // localStorage.setItem("advName", data.sortName);
         setDet(data);
-        setFlag("true");       
-        
+        setFlag("true");
+
         // console.log("data->" + data);
         // setInitialValues(data);
         // Formik.values(data);
@@ -122,7 +121,7 @@ export default function ViewClient() {
           error == "TypeError: Load failed" ||
           error == "TypeError: Failed to fetch"
         ) {
-          setIsLoading(false)
+          setIsLoading(false);
           setShowErrorMsg(true);
           setShowSuccessMsg(true);
           setDispMsg("Server is Facing some issue. Please check Again Later!");
@@ -151,11 +150,15 @@ export default function ViewClient() {
         setInvestmentDet(data.result);
         console.log("V is ", data.result);
 
-        setIsLoading(false)
+        setIsLoading(false);
         if (data.result != null) {
           console.log(Object.keys(data.result).length);
-          setDataLength(Object.keys(data.result).length);
-        }else{
+          if (Object.keys(data.result).length == 0) {
+            setDataLength(-1);
+          } else {
+            setDataLength(Object.keys(data.result).length);
+          }
+        } else {
           setDataLength(-1);
         }
       });
@@ -345,7 +348,7 @@ export default function ViewClient() {
             </div>
           </div>
         )}
-        {!isLoading && (dataLength != -1) ? (
+        {!isLoading && dataLength != -1 ? (
           <>
             {/* {InvestmentDet.splice(0,0,ClientDetailscolName)} */}
 
