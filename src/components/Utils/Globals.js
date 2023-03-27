@@ -15,6 +15,8 @@ const updateClient = baseURL + MidURL +'Update-Client';
 const deleteClient = baseURL + MidURL +'Delete-Client';
 const forgotPassword = baseURL + MidURL +'forgot-password';
 const resetPassword = baseURL + MidURL +'reset-password';
+const changePassword = baseURL + MidURL + 'change-password';
+
 
 
 
@@ -46,5 +48,6 @@ export const routes = {
     "getTotalInvestmnetAmount" : getTotalInvestmnetAmount,
     "updateInvestment" : updateInvestment,
     "deleteInvestment" : deleteInvestment,
-    "resetPassword" : resetPassword
+    "resetPassword" : resetPassword,
+    "changePassword" : changePassword
 }

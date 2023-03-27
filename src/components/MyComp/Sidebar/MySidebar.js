@@ -94,18 +94,13 @@ export default function MySide() {
       }
     })
       .then(res =>{
-        // res.json()
-        // console.log(res);
         return res.text();
       })
       .then((data) => {
-        // let d = JSON.parse(data)
         if (data){
           templateParams.message = data;
           sendEmail();
         }
-        
-        // console.log(data); 
       })
   }
   
@@ -143,14 +138,6 @@ export default function MySide() {
     .then((chnagePassword) => {
       if (chnagePassword) {
         callChangPass();
-         
-        
-        // else{
-        //   swal("Something went wrong, try again!",{
-        //     icon:"error"
-        //   });
-        // }
-        // myFuncCall();
       }
     });
   }
