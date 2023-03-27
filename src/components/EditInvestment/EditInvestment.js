@@ -323,7 +323,7 @@ export default function EditInvestment() {
                   </div>
                   <div
                     className="col-4"
-                    style={{marginLeft: "20px",width:"580px"}}
+                    style={{ marginLeft: "20px", width: "360px" }}
                   >
                     <lable style={{ marginLeft: "13px" }}>Strategy Name</lable>
                     <input
@@ -345,7 +345,7 @@ export default function EditInvestment() {
 
                   <div
                     className="col-4"
-                    style={{marginLeft: "40px",width:"570px"}}
+                    style={{ marginLeft: "40px", width: "360px" }}
                   >
                     <lable style={{ marginLeft: "15px" }}>
                       Investment Amount
